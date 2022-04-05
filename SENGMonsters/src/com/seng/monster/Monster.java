@@ -31,10 +31,15 @@ public class Monster extends BaseItem{
 		
 		
 	}
+	
+	public String toString()
+	{
+		return getDescription();
+	}
 
 	private String createDescription()
 	{
-		String priceFlag = "";
+		String priceFlag = getName() + " is ";
 		if (getPrice() < 35)
 		{
 			priceFlag = "a cheap";
@@ -78,6 +83,10 @@ public class Monster extends BaseItem{
 			healthFlag = "bulky";
 		}
 		
+		if (damageFlag == "")
+		{
+			return priceFlag + " " + healthFlag + " " + getName();
+		}
 		return priceFlag + " " + damageFlag + " " + healthFlag + " " + getName();
 		
 	}
