@@ -89,6 +89,11 @@ public class Player extends BasePlayer{
 	
 	public void removeMonster(Monster monster) {
 		monsters.remove(monster);
+		gold -= monster.getPrice()/2;
+	}
+	
+	public void removeItem(Monster monster) {
+		monsters.remove(monster);
 	}
 
 }
