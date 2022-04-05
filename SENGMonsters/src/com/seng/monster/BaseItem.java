@@ -1,15 +1,17 @@
 package com.seng.monster;
 
 public class BaseItem {
-	private int price = 0;
-	private int sellbackPrice = 0;
-	private String description = "";
-	private String name = "";
+	private int price;
+	private int sellbackPrice;
+	private String description;
+	private String name;
 	
-	public BaseItem(String newDescription, String newName)
+	public BaseItem()
 	{
-		description = newDescription;
-		name = newName;
+		price = 0;
+		sellbackPrice = 0;
+		description = "";
+		name = "";
 	}
 	
 	public int getPrice() 

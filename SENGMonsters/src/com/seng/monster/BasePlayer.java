@@ -8,7 +8,7 @@ public class BasePlayer {
 	protected ArrayList<Monster> monsters;
 	
 	public BasePlayer() {
-		
+		name = "";
 	}
 	
 	public String getName() {
