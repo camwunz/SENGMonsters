@@ -1,7 +1,5 @@
 package com.seng.monster;
-import java.awt.print.Printable;
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class CommandLineInterface {
