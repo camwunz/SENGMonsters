@@ -1,6 +1,8 @@
 package com.seng.monster;
 import java.util.Random;
 
+import org.ietf.jgss.Oid;
+
 public class Monster extends BaseItem{
 	
 	int maxHealth = 0;
@@ -17,6 +19,7 @@ public class Monster extends BaseItem{
 		setSellback((int)getPrice()/2);
 		createStats();
 		setName(namePool[rand.nextInt(10)]);
+		setDescription(createDescription())
 
 	}
 	
@@ -29,6 +32,24 @@ public class Monster extends BaseItem{
 		
 		
 	}
-	// TODO description
+
+	private String createDescription()
+	{
+		String priceFlag = "";
+		if (getPrice() < 35)
+		{
+			priceFlag = "cheap";
+		}
+		else if (getPrice() < 42)
+		{
+			priceFlag = "standard priced";
+		}
+		else
+		{
+			priceFlag = "expensive";
+		}
+		return null;
+		
+	}
 	
 }
