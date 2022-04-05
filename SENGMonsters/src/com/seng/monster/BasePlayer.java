@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class BasePlayer {
 
 	private String name;
-	private ArrayList<Monster> monsters;
+	private ArrayList<Monster> monsters = new ArrayList<Monster>();;
 	
 	public BasePlayer() {
 		name = "";

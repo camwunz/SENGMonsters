@@ -4,7 +4,7 @@ import java.util.ArrayList;
 public class Player extends BasePlayer{
 	
 	private Integer gold;
-	private ArrayList<Item> items;
+	private ArrayList<Item> items = new ArrayList<Item>();
 	private Integer difficulty;
 	private Integer day_count = 0;
 	private Integer total_days;
@@ -12,6 +12,7 @@ public class Player extends BasePlayer{
 	
 	
 	public Player(Integer difficulty_amount, Integer days_amount){
+		super();
 		gold  = 100;
 		difficulty = difficulty_amount;
 		total_days = days_amount;

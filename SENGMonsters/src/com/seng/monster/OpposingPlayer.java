@@ -25,4 +25,9 @@ public class OpposingPlayer extends BasePlayer{
 	{
 		return reward;
 	}
+	
+	public String getDetails()
+	{
+		return getName() + " Reward: " + reward;
+	}
 }
