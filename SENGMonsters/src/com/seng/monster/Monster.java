@@ -21,6 +21,21 @@ public class Monster extends BaseItem{
 
 	}
 	
+	public int getHealth()
+	{
+		return maxHealth;
+	}
+	
+	public int getCurrentHealth()
+	{
+		return currentHealth;
+	}
+	
+	public int getDamage()
+	{
+		return damage;
+	}
+	
 	private void createStats()
 	{
 		Random rand = new Random(); 
@@ -91,4 +106,33 @@ public class Monster extends BaseItem{
 		
 	}
 	
+	public String printDetails()
+	{
+		String output = "";
+		output += "Name: " + getName() + "\n";
+		output += "Current Health: " + getCurrentHealth() + "\n";
+		output += "Attack: " + getDamage() + "\n";
+		return output;
+		
+	}
+	
+	public void useItem(int change, String var)
+	{
+		if (var == "currentHealth")
+		{
+			currentHealth += change;
+		}
+		else if (var == "healAmount")
+		{
+			healAmount += change;
+		}
+		else if (var == "maxHealth")
+		{
+			maxHealth += change;
+		}
+		else if (var == "damage")
+		{
+			damage += change;
+		}
+	}
 }

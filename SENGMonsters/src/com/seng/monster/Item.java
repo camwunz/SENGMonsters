@@ -46,4 +46,19 @@ public class Item extends BaseItem{
 		
 	}
 	
+	public String getDetails()
+	{
+		return getName() + ": " + getDescription();
+	}
+	
+	public String getActionStat()
+	{
+		return actionStat;
+	}
+	
+	public int getActionImprovement()
+	{
+		return actionImprovement;
+	}
+	
 }

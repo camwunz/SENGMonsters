@@ -71,7 +71,7 @@ public class Player extends BasePlayer{
 	
 	public Boolean addMonster(Monster monster) {
 		
-		if(monsters.contains(monster)) {
+		if(containsMonster(monster)) {
 			return false;
 		} else {
 			
@@ -79,16 +79,24 @@ public class Player extends BasePlayer{
 				return false;
 			} else {
 				gold -= monster.getPrice();
-				monsters.add(monster);
+				addMonsterToList(monster);
 				return true;
 			}
 		}
 	}
 	
 	
-	public void removeMonster(Monster monster) {
-		monsters.remove(monster);
-		gold -= monster.getSellback();;
+	public boolean removeMonster(Monster monster) {
+		if (containsMonster(monster))
+		{
+			removeMonsterFromList(monster);
+			gold -= monster.getSellback();
+			return true;
+		}
+		else {
+			return false;
+		}
+		
 	}
 	
 	public void removeItem(Item item) {

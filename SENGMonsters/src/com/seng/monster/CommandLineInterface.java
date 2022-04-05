@@ -1,4 +1,5 @@
 package com.seng.monster;
+import java.awt.desktop.AboutHandler;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -11,7 +12,9 @@ public class CommandLineInterface {
 		int tempDays = getIntBounds("Enter how many days you would like to play: [5-15]", 5, 15);
 		Monster tempMonster = getStartingMonster();  
 		nameMonster(tempMonster);
-		int tempDiff;
+		int tempDiff = getDifficulty();
+		Player player = new Player(tempDiff, tempDays);
+		mainLoop(player);
 	}
 	
 	
@@ -83,5 +86,82 @@ public class CommandLineInterface {
 		else {
 			m.setName(temp);;
 		}
+	}
+	
+	private static int getDifficulty()
+	{
+		System.out.println("What difficulty would you like? [0-2]");
+		return getIntBounds("What difficulty would you like? [0-2]", 0, 2);
+	}
+	
+	private static void mainLoop(Player p)
+	{
+		for (int i = 1; i <= p.getTotalDays(); i++)
+		{
+			while (true)
+			{
+				int outcome = printOptions(i, p);
+				if (outcome == 1)
+				{
+					printMonsters(p);
+				}
+				else if (outcome == 2)
+				{
+					inventory(p);
+				}
+			}
+		}
+	}
+	
+	private static int printOptions(int i, Player p)
+	{
+		System.out.println("Current Gold: " + p.getGold() + " Day " + i + "/" + p.getTotalDays());
+		System.out.println("Please choose an option: [1-5]");
+		System.out.println("1) View Team");
+		System.out.println("2) View Inventory");
+		System.out.println("3) View Battles");
+		System.out.println("4) Visit Shop");
+		System.out.println("5) Go to Sleep");
+		return getIntBounds("Please choose an option: [1-5]", 1, 5);
+	}
+	
+	private static void printMonsters(Player p)
+	{
+		for (Monster m: p.getMonsters())
+		{
+			m.printDetails();
+			System.out.println("\n");
+		}
+	}
+	
+	private static void inventory(Player p)
+	{
+		for (int j = 1; j <= p.getItems().size(); j++)
+		{
+			System.out.println(j + ") " + p.getItems().get(j-1).getDetails());
+		}
+		String temp = "";
+		while (!(temp == "y") && !(temp == "n"))
+		{
+			System.out.println("Would you like to use an item? (y/n)");
+			temp = scanner.nextLine();
+		}
+		if (temp == "y")
+		{
+			int itemCount = p.getItems().size();
+			System.out.println("Which item? [1-" + itemCount + "]");
+			int itemIndex = getIntBounds("Which item? [1-" + itemCount + "]", 1, itemCount);
+			int monsterCount = p.getMonsters().size();
+			System.out.println("Which monster? [1-" + monsterCount + "]");
+			int monsterIndex = getIntBounds("Which monster? [1-" + monsterCount + "]", 1, monsterCount);
+			useItem(itemIndex, monsterIndex, p);
+		}
+	}
+	
+	private static void useItem(int itemIndex, int monsterIndex, Player p)
+	{
+		Item item = p.getItems().get(itemIndex);
+		p.getMonsters().get(monsterIndex).useItem(item.getActionImprovement(), item.getActionStat());
+		
 	}
 }
