@@ -1,5 +1,5 @@
 package com.seng.monster;
 
-public class OpposingPlayer {
+public class OpposingPlayer extends BasePlayer{
 
 }
