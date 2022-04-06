@@ -6,7 +6,7 @@ public class OpposingPlayer extends BasePlayer{
 	
 	private int reward;
 	String[] namePool = {"Finn", "Miranda", "Cameron", "Sharon", "Nadeen", "Murphy", "Jemima", "Carlen", "Glenn", "Annabel", "Lynn", "Warren", "Natalie", "Raven", "Karilyn", "Lucinda", "Jolee", "Rayleen", "Tobias"};
-	public OpposingPlayer()
+	public OpposingPlayer(int day)
 	{
 		super();
 		Random rand = new Random(); 
@@ -14,10 +14,12 @@ public class OpposingPlayer extends BasePlayer{
 		for (int i = 0; i < amountMonsters; i++)
 		{
 			Monster tempMon = new Monster();
+			tempMon.modifyStats(day);
 			reward += tempMon.getHealth()/2;
 			addMonsterToList(tempMon);
 		}
-		setName(namePool[rand.nextInt(20)]);
+		setName(namePool[rand.nextInt(19)]);
+		
 		
 	}
 	

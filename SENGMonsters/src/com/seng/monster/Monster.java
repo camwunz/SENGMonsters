@@ -1,4 +1,5 @@
 package com.seng.monster;
+import java.lang.annotation.AnnotationTypeMismatchException;
 import java.util.Random;
 
 public class Monster extends BaseItem{
@@ -36,6 +37,16 @@ public class Monster extends BaseItem{
 		return damage;
 	}
 	
+	public Boolean takeAttack(int damage)
+	{
+		currentHealth -= damage;
+		if (currentHealth < 0)
+		{
+			currentHealth = 0;
+			return true;
+		}
+		return false;
+	}
 	private void createStats()
 	{
 		Random rand = new Random(); 
@@ -45,6 +56,14 @@ public class Monster extends BaseItem{
 		damage = rand.nextInt(31) + 20;
 		
 		
+	}
+	
+	public void modifyStats(int day)
+	{
+		healAmount = (int) ((healAmount * (day+3))/10);
+		currentHealth = (int) ((currentHealth * (day+3))/10);
+		maxHealth = (int) ((maxHealth * (day+3))/10);
+		damage = (int) ((damage * (day+3))/10);
 	}
 	
 	public String toString()

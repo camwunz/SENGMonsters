@@ -13,6 +13,7 @@ public class CommandLineInterface {
 		nameMonster(tempMonster);
 		int tempDiff = getDifficulty();
 		Player player = new Player(tempDiff, tempDays);
+		player.setName(tempName);
 		player.addMonster(tempMonster);
 		player.setGold(tempMonster.getPrice());
 		mainLoop(player);
@@ -111,7 +112,7 @@ public class CommandLineInterface {
 				}
 				else if (outcome == 3)
 				{
-					battleChoice(p);
+					battleChoice(p, i);
 				}
 			}
 		}
@@ -170,17 +171,17 @@ public class CommandLineInterface {
 		
 	}
 	
-	private static void battleChoice(Player p)
+	private static void battleChoice(Player p, int day)
 	{
 		ArrayList<OpposingPlayer> players = new ArrayList<OpposingPlayer>();
 		for (int i = 0; i < 4; i++)
 		{
-			OpposingPlayer tempPlayer = new OpposingPlayer();
+			OpposingPlayer tempPlayer = new OpposingPlayer(day);
 			players.add(tempPlayer);
 			System.out.println((i+1) + ") " + tempPlayer.getDetails());
 		}
 		int playerIndex = getIntBounds("Which battle would you like? [1-4]", 1, 4);
-		Battle battle = new Battle(p, players.get(playerIndex));
+		Battle battle = new Battle(p, players.get(playerIndex-1));
 		
 		
 		
