@@ -1,5 +1,4 @@
 package com.seng.monster;
-import java.lang.annotation.AnnotationTypeMismatchException;
 import java.util.Random;
 
 public class Monster extends BaseItem{
@@ -131,6 +130,28 @@ public class Monster extends BaseItem{
 		output += "Name: " + getName() + "\n";
 		output += "Current Health: " + getCurrentHealth() + "\n";
 		output += "Attack: " + getDamage() + "\n";
+		return output;
+		
+	}
+	
+	public String printDetailsPrice()
+	{
+		String output = "";
+		output += "Name: " + getName() + "\n";
+		output += "Max Health: " + getCurrentHealth() + "\n";
+		output += "Attack: " + getDamage() + "\n";
+		output += "Price: " + getPrice() + "\n";
+		return output;
+		
+	}
+	
+	public String printDetailsSellback()
+	{
+		String output = "";
+		output += "Name: " + getName() + "\n";
+		output += "Max Health: " + getCurrentHealth() + "\n";
+		output += "Attack: " + getDamage() + "\n";
+		output += "Sellback price: " + getSellback() + "\n";
 		return output;
 		
 	}

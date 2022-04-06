@@ -1,6 +1,10 @@
 package com.seng.monster;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.function.ToDoubleBiFunction;
+
+import javax.print.DocFlavor.BYTE_ARRAY;
+import javax.swing.text.StyledEditorKit.ForegroundAction;
 
 public class CommandLineInterface {
 	
@@ -114,10 +118,129 @@ public class CommandLineInterface {
 				{
 					battleChoice(p, i);
 				}
+				else if (outcome == 4)
+				{
+					shop(p);
+				}
 			}
 		}
 	}
 	
+	private static void shop(Player p) {
+		
+		while (true)
+		{
+			System.out.println("Welcome to the Shop! You have " + p.getGold() + " gold.");
+			
+			int outcome = getIntBounds("Would you like to shop for monsters (0), items (1), sell monsters (3), sell items (4) or leave (5)?", 0, 5);
+			if (outcome == 5)
+			{
+				break;
+			}
+			if (outcome == 0)
+			{
+				if (p.getMonsters().size() >= 4)
+				{
+					System.out.println("You cannot buy new monsters as your party is full.");
+				}
+				System.out.println("Here are 4 new monsters: ");
+				ArrayList<Monster> monsters = new ArrayList<Monster>();
+				for (int i = 0; i < 4; i++)
+				{
+					System.out.println((i+1) + ") ");
+					monsters.add(new Monster());
+					System.out.println(monsters.get(i).printDetailsPrice());
+				}
+				System.out.println("5) Exit");
+				
+				int monsterPicker = getIntBounds("What would you like? [1-5]", 1, 5);
+				if (monsterPicker == 5)
+				{
+					break;
+				}
+				monsterPicker = monsterPicker-1;
+				boolean attempt = p.addMonster(monsters.get(monsterPicker));
+				if (!attempt)
+				{
+					System.out.println("Sorry you do not have enough money to buy that monster");
+					break;
+				} 
+				else {
+					System.out.println(monsters.get(monsterPicker).getName() + " has been bought");
+					break;
+				}
+			}
+			if (outcome == 1)
+			{
+				System.out.println("Here are 4 new items: ");
+				ArrayList<Item> items = new ArrayList<Item>();
+				for (int i = 0; i < 4; i++)
+				{
+					System.out.println((i+1) + ") ");
+					items.add(new Item());
+					System.out.println(items.get(i).getDetails());
+				}
+				System.out.println("5) Exit");
+				
+				int itemPicker = getIntBounds("What would you like? [1-5]", 1, 5);
+				if (itemPicker == 5)
+				{
+					break;	
+				}
+				itemPicker--;
+				boolean attempt = p.addItem(items.get(itemPicker));
+				if (!attempt)
+				{
+					System.out.println("Sorry you do not have enough money to buy that item");
+					break;
+				} 
+				else {
+					System.out.println(items.get(itemPicker).getName() + " has been bought");
+					break;
+				}
+			}
+			if (outcome == 3)
+			{
+				System.out.println("Here are your monsters: ");
+				int i = 0;
+				for (Monster m : p.getMonsters())
+				{
+					System.out.println((i+1) + ") ");
+					System.out.println(m.printDetailsSellback());
+					i++;
+				}
+				System.out.println((i+1) + ") Exit");
+				int monsterPicker = getIntBounds("What would you like? [1-" + (i+1) + "]", 1, i+2);
+				if (monsterPicker == i+2)
+				{
+					break;
+				}
+				// TODO print outcome of sell, make sure they dont get rid of last monster! 
+			}
+			if (outcome == 4)
+			{
+				System.out.println("Here are your items: ");
+				int i = 0;
+				for (Item j : p.getItems())
+				{
+					System.out.println((i+1) + ") ");
+					System.out.println(j.getDetailsSellback());
+					i++;
+				}
+				System.out.println((i+1) + ") Exit");
+				int itemPicker = getIntBounds("What would you like? [1-" + (i+1) + "]", 1, i+2);
+				if (itemPicker == i+2)
+				{
+					break;
+				}
+				p.removeItem(p.getItems().get(itemPicker-1));
+			}
+			
+		}
+		
+	}
+
+
 	private static int printOptions(int i, Player p)
 	{
 		System.out.println("Current Gold: " + p.getGold() + " Day " + i + "/" + p.getTotalDays());

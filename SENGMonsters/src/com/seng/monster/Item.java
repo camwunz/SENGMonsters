@@ -48,7 +48,12 @@ public class Item extends BaseItem{
 	
 	public String getDetails()
 	{
-		return getName() + ": " + getDescription();
+		return getName() + ": " + getDescription() + ". Price: " + getPrice();
+	}
+	
+	public String getDetailsSellback()
+	{
+		return getName() + ": " + getDescription() + ". Sellback Price: " + getDetailsSellback();
 	}
 	
 	public String getActionStat()

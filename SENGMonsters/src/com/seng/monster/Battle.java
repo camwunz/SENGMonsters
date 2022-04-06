@@ -1,11 +1,13 @@
 package com.seng.monster;
 
-import java.util.spi.LocaleServiceProvider;
+import java.nio.file.attribute.UserPrincipalLookupService;
+import java.util.Random;
 
 public class Battle {
 
 	Player user;
 	OpposingPlayer enemy;
+	Random rand = new Random(); 
 	
 	public Battle(Player p, OpposingPlayer q)
 	{
@@ -21,17 +23,55 @@ public class Battle {
 		int i = 1;
 		while (battleDone() == 0)
 		{
+			BasePlayer attacking = null;
+			BasePlayer defending = null;
+			if (user.getDifficulty() == 0)
+			{
+				attacking = user;
+				defending = enemy;
+			}
+			else if (user.getDifficulty() == 1)
+			{
+				int player1 = rand.nextInt(2);
+				if (player1 == 0)
+				{
+					attacking = user;
+					defending = enemy;
+				}
+				else 
+				{
+					attacking = enemy;
+					defending = user;
+				}
+			}
+			else
+			{
+				attacking = enemy;
+				defending = user;
+			}
 			System.out.println("Turn " + i);
-			boolean fainted = attack(user, enemy);
+			boolean fainted = attack(attacking, defending);
 			if (!fainted)
 			{
-				attack(enemy, user);
+				attack(defending, attacking);
 			}
+			
 			i++;
 			System.out.println("\n");
 		}
 		
 		int loser = battleDone();
+		if (loser == 0)
+		{
+			System.out.println("You lost the battle!");
+			System.out.println("Buy some more monsters or items to keep battling!\n");
+		}
+		else 
+		{
+			System.out.println("You won the battle!");
+			System.out.println("Use the " + enemy.getReward() + " gold to buy more monsters or items!\n");
+			user.setGold(enemy.getReward());
+		}
 		
 		
 	}
