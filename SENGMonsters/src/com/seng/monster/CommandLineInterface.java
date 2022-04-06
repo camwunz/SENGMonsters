@@ -180,6 +180,7 @@ public class CommandLineInterface {
 			System.out.println((i+1) + ") " + tempPlayer.getDetails());
 		}
 		int playerIndex = getIntBounds("Which battle would you like? [1-4]", 1, 4);
+		Battle battle = new Battle(p, players.get(playerIndex));
 		
 		
 		
