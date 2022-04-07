@@ -3,13 +3,32 @@ import java.util.Random;
 
 public class Monster extends BaseItem{
 	
+	/**
+	 * Maximum health of the monster
+	 */
 	int maxHealth = 0;
+	/**
+	 * Attacking damage of monster
+	 */
 	int damage = 0;
+	/**
+	 * Healing amount of monster
+	 */
 	int healAmount = 0;
+	/**
+	 * Current health of monster
+	 */
 	int currentHealth = maxHealth;
+	/**
+	 * Names to choose from
+	 */
 	String[] namePool = {"Salamaslash","Hyetar","Parrow","Dolphair","Chillboon","Starraffe","Dewossum","Fieritar","Walruse","Brawnkey"};
 	
 
+	/**
+	 * Constructor
+	 * Makes stats for monster
+	 */
 	public Monster() {
 		super();
 		Random rand = new Random(); 
@@ -21,21 +40,38 @@ public class Monster extends BaseItem{
 
 	}
 	
+	/**
+	 * Gets monster's health
+	 * @return health of monster
+	 */
 	public int getHealth()
 	{
 		return maxHealth;
 	}
 	
+	/**
+	 * Gets monsters current health
+	 * @return the current health of monster
+	 */
 	public int getCurrentHealth()
 	{
 		return currentHealth;
 	}
 	
+	/**
+	 * Gets the attacking damage of the monster
+	 * @return the attacking damage of the monster
+	 */
 	public int getDamage()
 	{
 		return damage;
 	}
 	
+	/**
+	 * Applies an attack of size damage to the monster
+	 * @param damage the amount of the damage
+	 * @return whether or not the monster has fainted
+	 */
 	public Boolean takeAttack(int damage)
 	{
 		currentHealth -= damage;
@@ -46,6 +82,9 @@ public class Monster extends BaseItem{
 		}
 		return false;
 	}
+	/**
+	 * Creates random stats for the monster
+	 */
 	private void createStats()
 	{
 		Random rand = new Random(); 
@@ -53,10 +92,12 @@ public class Monster extends BaseItem{
 		currentHealth = maxHealth;
 		healAmount = rand.nextInt((int)maxHealth/3);
 		damage = rand.nextInt(31) + 20;
-		
-		
 	}
 	
+	/**
+	 * Modifies the monster's stats based on the current day ratio
+	 * @param day the day to change by
+	 */
 	public void modifyStats(int day)
 	{
 		healAmount = (int) ((healAmount * (day+3))/10);
@@ -65,11 +106,18 @@ public class Monster extends BaseItem{
 		damage = (int) ((damage * (day+3))/10);
 	}
 	
+	/**
+	 * returns the description of the monster
+	 */
 	public String toString()
 	{
 		return getDescription();
 	}
 
+	/**
+	 * creates description using the stats and adjectives to describe the stats
+	 * @return the full string description
+	 */
 	private String createDescription()
 	{
 		String priceFlag = getName() + " is ";
@@ -124,38 +172,26 @@ public class Monster extends BaseItem{
 		
 	}
 	
+	/**
+	 * Gets the monsters details
+	 * @return the string of the details
+	 */
 	public String printDetails()
 	{
 		String output = "";
 		output += "Name: " + getName() + "\n";
 		output += "Current Health: " + getCurrentHealth() + "\n";
-		output += "Attack: " + getDamage() + "\n";
+		output += "Max Health: " + getHealth() + "\n";
+		output += "Attack: " + getDamage();
 		return output;
 		
 	}
 	
-	public String printDetailsPrice()
-	{
-		String output = "";
-		output += "Name: " + getName() + "\n";
-		output += "Max Health: " + getCurrentHealth() + "\n";
-		output += "Attack: " + getDamage() + "\n";
-		output += "Price: " + getPrice() + "\n";
-		return output;
-		
-	}
-	
-	public String printDetailsSellback()
-	{
-		String output = "";
-		output += "Name: " + getName() + "\n";
-		output += "Max Health: " + getCurrentHealth() + "\n";
-		output += "Attack: " + getDamage() + "\n";
-		output += "Sellback price: " + getSellback() + "\n";
-		return output;
-		
-	}
-	
+	/**
+	 * Uses an item on the monster
+	 * @param change the amount to change it
+	 * @param var the stat to change
+	 */
 	public void useItem(int change, String var)
 	{
 		if (var == "currentHealth")
@@ -176,6 +212,10 @@ public class Monster extends BaseItem{
 		}
 	}
 
+	/**
+	 * Level up the monster
+	 * Increase its stats by 1.3x
+	 */
 	public void levelUp() {
 		
 		currentHealth = (int) (currentHealth * 1.3);

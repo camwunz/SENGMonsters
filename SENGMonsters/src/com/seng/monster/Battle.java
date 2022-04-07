@@ -1,20 +1,36 @@
 package com.seng.monster;
-
-import java.nio.file.attribute.UserPrincipalLookupService;
 import java.util.Random;
 
 public class Battle {
 
+	/**
+	 * Main player who is fighting the opposing player
+	 */
 	Player user;
+	/**
+	 * Opposing player that the user is fighting
+	 */
 	OpposingPlayer enemy;
+	/**
+	 * Random seed
+	 */
 	Random rand = new Random(); 
 	
+	/**
+	 * Constructor
+	 * @param p player
+	 * @param q opposing player
+	 */
 	public Battle(Player p, OpposingPlayer q)
 	{
 		user = p;
 		enemy = q;
 	}
 	
+	/**
+	 * Runs through the battle turn by turn seeing who wins
+	 * @return whether the player won the battle
+	 */
 	public boolean startBattle()
 	{
 		System.out.println("\nStarting Battle " + user.getName() + " vs " + enemy.getName());
@@ -78,6 +94,12 @@ public class Battle {
 		
 	}
 	
+	/**
+	 * Executes a single attack
+	 * @param attacking the attacking player
+	 * @param defending the reciving player
+	 * @return boolean whether the reciving player's monster has fainted
+	 */
 	private boolean attack(BasePlayer attacking, BasePlayer defending) {
 		
 		Monster firstMonster = null;
@@ -113,6 +135,10 @@ public class Battle {
 		
 	}
 
+	/**
+	 * Check if the battle is done and who the winner is 
+	 * @return int depending on the result 0 = match still going 1 = player won 2 = opposing player won
+	 */
 	private int battleDone()
 	{
 		int total = 0;

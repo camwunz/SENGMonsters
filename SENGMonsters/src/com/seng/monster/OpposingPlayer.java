@@ -4,8 +4,18 @@ import java.util.Random;
 
 public class OpposingPlayer extends BasePlayer{
 	
+	/**
+	 * Reward for defeating player
+	 */
 	private int reward;
+	/**
+	 * Names to choose from
+	 */
 	String[] namePool = {"Finn", "Miranda", "Cameron", "Sharon", "Nadeen", "Murphy", "Jemima", "Carlen", "Glenn", "Annabel", "Lynn", "Warren", "Natalie", "Raven", "Karilyn", "Lucinda", "Jolee", "Rayleen", "Tobias"};
+	/**
+	 * Constructor
+	 * @param day the day to control difficulty
+	 */
 	public OpposingPlayer(int day)
 	{
 		super();
@@ -23,11 +33,19 @@ public class OpposingPlayer extends BasePlayer{
 		
 	}
 	
+	/**
+	 * gets the reward of the opposing player
+	 * @return the reward for defeating
+	 */
 	public int getReward()
 	{
 		return reward;
 	}
 	
+	/**
+	 * gets the details of the opposing player
+	 * @return the details 
+	 */
 	public String getDetails()
 	{
 		return getName() + " Reward: " + reward;
