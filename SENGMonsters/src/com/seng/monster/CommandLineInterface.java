@@ -1,10 +1,7 @@
 package com.seng.monster;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
-import java.util.function.ToDoubleBiFunction;
-
-import javax.print.DocFlavor.BYTE_ARRAY;
-import javax.swing.text.StyledEditorKit.ForegroundAction;
 
 public class CommandLineInterface {
 	
@@ -122,6 +119,66 @@ public class CommandLineInterface {
 				{
 					shop(p);
 				}
+				else 
+				{
+					Random rand = new Random();
+					System.out.println("End of day " + i);
+					for (Monster m : p.getMonsters())
+					{
+						int new_rand = rand.nextInt(100);
+						if (m.getCurrentHealth() == 0)
+						{
+							if (new_rand <= 10)
+							{
+								System.out.println(m.getName() + "leveled up!");
+								m.levelUp();
+							}
+						}
+						else 
+						{
+							if (new_rand <= 20)
+							{
+								System.out.println(m.getName() + "leveled up!");
+								m.levelUp();
+							}
+						}
+					}
+					if (p.getMonsters().size() > 1)
+					{
+						for (Monster m : p.getMonsters())
+						{
+							int new_rand = rand.nextInt(100);
+							if (m.getCurrentHealth() == 0)
+							{
+								if (new_rand <= 10)
+								{
+									System.out.println(m.getName() + " left overnight!");
+									p.removeMonster(m);
+								}
+							}
+							else 
+							{
+								if (new_rand <= 5)
+								{
+									System.out.println(m.getName() + " left overnight!");
+									p.removeMonster(m);
+								}
+							}
+						}
+					}
+					
+					if (p.getMonsters().size() < 4)
+					{
+						int factor = (4 - p.getMonsters().size())*10;
+						if (rand.nextInt(100) <= factor)
+						{
+							Monster tempMon = new Monster();
+							p.addMonster(tempMon);
+							System.out.println(tempMon.getName() + " joined your party overnight!");
+						}
+					}
+					break;
+				}
 			}
 		}
 	}
@@ -201,6 +258,12 @@ public class CommandLineInterface {
 			}
 			if (outcome == 3)
 			{
+				
+				if (p.getMonsters().size() == 1)
+				{
+					System.out.println("Not enough monsters to sell");
+					break;
+				}
 				System.out.println("Here are your monsters: ");
 				int i = 0;
 				for (Monster m : p.getMonsters())
@@ -215,7 +278,9 @@ public class CommandLineInterface {
 				{
 					break;
 				}
-				// TODO print outcome of sell, make sure they dont get rid of last monster! 
+				System.out.println("Sold " + p.getMonsters().get(monsterPicker-1).getName());
+				p.removeMonster(p.getMonsters().get(monsterPicker-1));
+				break;
 			}
 			if (outcome == 4)
 			{
@@ -233,7 +298,10 @@ public class CommandLineInterface {
 				{
 					break;
 				}
+				System.out.println("Sold " + p.getItems().get(itemPicker-1).getName());
 				p.removeItem(p.getItems().get(itemPicker-1));
+				break;
+				
 			}
 			
 		}
