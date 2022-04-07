@@ -13,10 +13,9 @@ public class Battle {
 	{
 		user = p;
 		enemy = q;
-		startBattle();
 	}
 	
-	private void startBattle()
+	public boolean startBattle()
 	{
 		System.out.println("\nStarting Battle " + user.getName() + " vs " + enemy.getName());
 		
@@ -65,12 +64,15 @@ public class Battle {
 		{
 			System.out.println("You lost the battle!");
 			System.out.println("Buy some more monsters or items to keep battling!\n");
+			return false;
 		}
 		else 
 		{
 			System.out.println("You won the battle!");
 			System.out.println("Use the " + enemy.getReward() + " gold to buy more monsters or items!\n");
+			user.addToScore((int)(enemy.getReward()/2));
 			user.setGold(enemy.getReward());
+			return true;
 		}
 		
 		

@@ -8,16 +8,27 @@ public class Player extends BasePlayer{
 	private Integer difficulty;
 	private Integer day_count = 0;
 	private Integer total_days;
+	private Integer score;
 
 	
 	
 	public Player(Integer difficulty_amount, Integer days_amount){
 		super();
+		score = 0;
 		gold  = 100;
 		difficulty = difficulty_amount;
 		total_days = days_amount;
 	}
 	
+	public Integer getScore()
+	{
+		return score;
+	}
+	
+	public void addToScore(int i)
+	{
+		score += i;
+	}
 	
 	
 	public Integer getGold() {

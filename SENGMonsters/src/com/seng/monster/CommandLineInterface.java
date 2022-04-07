@@ -1,4 +1,5 @@
 package com.seng.monster;
+import java.io.NotActiveException;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -113,7 +114,15 @@ public class CommandLineInterface {
 				}
 				else if (outcome == 3)
 				{
-					battleChoice(p, i);
+					boolean win = battleChoice(p, i);
+					if (!win && p.getGold() < 12)
+					{
+						System.out.println("Game over!");
+						System.out.println("You don't have any alive monsters or gold to buy more!");
+						System.out.println("Score: " + p.getScore());
+						return;
+					}
+					
 				}
 				else if (outcome == 4)
 				{
@@ -181,6 +190,9 @@ public class CommandLineInterface {
 				}
 			}
 		}
+		System.out.println("Game Over!");
+		System.out.println("You survived all " + p.getTotalDays() + " days");
+		System.out.println("Score: " + p.getScore());
 	}
 	
 	private static void shop(Player p) {
@@ -336,15 +348,12 @@ public class CommandLineInterface {
 		{
 			System.out.println(j + ") " + p.getItems().get(j-1).getDetails());
 		}
-		String temp = "";
+		int temp = 0;
 		if (p.getItems().size() != 0)
 		{
-			while (!(temp == "y") && !(temp == "n"))
-			{
-				System.out.println("Would you like to use an item? (y/n)");
-				temp = scanner.nextLine();
-			}
-			if (temp == "y")
+			
+			temp = getIntBounds("Would you like to use an item? (yes=0/no=1)", 0, 1);
+			if (temp == 0)
 			{
 				int itemCount = p.getItems().size();
 				int itemIndex = getIntBounds("Which item? [1-" + itemCount + "]", 1, itemCount);
@@ -362,7 +371,7 @@ public class CommandLineInterface {
 		
 	}
 	
-	private static void battleChoice(Player p, int day)
+	private static boolean battleChoice(Player p, int day)
 	{
 		ArrayList<OpposingPlayer> players = new ArrayList<OpposingPlayer>();
 		for (int i = 0; i < 4; i++)
@@ -373,8 +382,8 @@ public class CommandLineInterface {
 		}
 		int playerIndex = getIntBounds("Which battle would you like? [1-4]", 1, 4);
 		Battle battle = new Battle(p, players.get(playerIndex-1));
-		
-		
+		boolean win = battle.startBattle();
+		return win;
 		
 	}
 }
