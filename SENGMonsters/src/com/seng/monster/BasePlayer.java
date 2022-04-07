@@ -19,6 +19,11 @@ public class BasePlayer {
 		return monsters;
 	}
 	
+	public void setMonsters(ArrayList<Monster> new_monsters)
+	{
+		monsters = new_monsters;
+	}
+	
 	public boolean containsMonster(Monster m)
 	{
 		return monsters.contains(m);

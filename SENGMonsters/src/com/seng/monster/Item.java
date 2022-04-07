@@ -4,7 +4,7 @@ import java.util.Random;
 public class Item extends BaseItem{
 	String actionStat = "";
 	int actionImprovement = 0;
-	String[] berries = {"Cheppa", "Lopet", "Wanga", "Mystery", "Aimpo"};
+	String[] berries = {"Cheppa Berry", "Lopet Berry", "Wanga Berry", "Mystery Berry", "Aimpo Berry"};
 	Random rand = new Random(); 
 	
 	public Item() {

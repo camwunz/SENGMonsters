@@ -12,6 +12,10 @@ public class Player extends BasePlayer{
 
 	
 	
+	/**
+	 * @param difficulty_amount
+	 * @param days_amount
+	 */
 	public Player(Integer difficulty_amount, Integer days_amount){
 		super();
 		score = 0;
@@ -20,17 +24,26 @@ public class Player extends BasePlayer{
 		total_days = days_amount;
 	}
 	
+	/**
+	 * @return
+	 */
 	public Integer getScore()
 	{
 		return score;
 	}
 	
+	/**
+	 * @param i
+	 */
 	public void addToScore(int i)
 	{
 		score += i;
 	}
 	
 	
+	/**
+	 * @return
+	 */
 	public Integer getGold() {
 		return gold;
 	}

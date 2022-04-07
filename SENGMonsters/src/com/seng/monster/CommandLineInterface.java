@@ -147,13 +147,14 @@ public class CommandLineInterface {
 						{
 							if (new_rand <= 20)
 							{
-								System.out.println(m.getName() + "leveled up!");
+								System.out.println(m.getName() + " leveled up!");
 								m.levelUp();
 							}
 						}
 					}
 					if (p.getMonsters().size() > 1)
 					{
+						ArrayList<Monster> updatedMonsters = new ArrayList<Monster>();
 						for (Monster m : p.getMonsters())
 						{
 							int new_rand = rand.nextInt(100);
@@ -162,7 +163,9 @@ public class CommandLineInterface {
 								if (new_rand <= 10)
 								{
 									System.out.println(m.getName() + " left overnight!");
-									p.removeMonster(m);
+								}
+								else {
+									updatedMonsters.add(m);
 								}
 							}
 							else 
@@ -170,10 +173,13 @@ public class CommandLineInterface {
 								if (new_rand <= 5)
 								{
 									System.out.println(m.getName() + " left overnight!");
-									p.removeMonster(m);
+								}
+								else {
+									updatedMonsters.add(m);
 								}
 							}
 						}
+						p.setMonsters(updatedMonsters);
 					}
 					
 					if (p.getMonsters().size() < 4)
@@ -358,8 +364,14 @@ public class CommandLineInterface {
 				int itemCount = p.getItems().size();
 				int itemIndex = getIntBounds("Which item? [1-" + itemCount + "]", 1, itemCount);
 				int monsterCount = p.getMonsters().size();
+				int i = 0;
+				for (Monster m: p.getMonsters())
+				{
+					System.out.println((i+1) + ") ");
+					System.out.println(m.printDetails());
+				}
 				int monsterIndex = getIntBounds("Which monster? [1-" + monsterCount + "]", 1, monsterCount);
-				useItem(itemIndex, monsterIndex, p);
+				useItem(itemIndex-1, monsterIndex-1, p);
 			}
 		}
 	}
@@ -368,7 +380,7 @@ public class CommandLineInterface {
 	{
 		Item item = p.getItems().get(itemIndex);
 		p.getMonsters().get(monsterIndex).useItem(item.getActionImprovement(), item.getActionStat());
-		
+		System.out.println(item.getName() + " has been used on " + p.getMonsters().get(monsterIndex).getName() + "\n");
 	}
 	
 	private static boolean battleChoice(Player p, int day)
