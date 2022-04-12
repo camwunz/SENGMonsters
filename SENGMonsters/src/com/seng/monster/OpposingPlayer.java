@@ -2,6 +2,8 @@ package com.seng.monster;
 
 import java.util.Random;
 
+import javax.print.attribute.standard.OutputDeviceAssigned;
+
 public class OpposingPlayer extends BasePlayer{
 	
 	/**
@@ -33,6 +35,28 @@ public class OpposingPlayer extends BasePlayer{
 		
 	}
 	
+	private int getTotalHealth()
+	{
+		int totalHealth = 0;
+		for (Monster m: getMonsters())
+		{
+			totalHealth += m.getHealth();
+		}
+		
+		return totalHealth;
+	}
+	
+	private int getTotalDamage()
+	{
+		int totalDamage = 0;
+		for (Monster m: getMonsters())
+		{
+			totalDamage += m.getDamage();
+		}
+		
+		return totalDamage;
+	}
+	
 	/**
 	 * gets the reward of the opposing player
 	 * @return the reward for defeating
@@ -40,6 +64,16 @@ public class OpposingPlayer extends BasePlayer{
 	public int getReward()
 	{
 		return reward;
+	}
+	
+	public String getPromptHTML()
+	{
+		String output = "<html>" + getName();
+		output += "<br />Monsters: " + getMonsters().size();
+		output += "<br />Total Health: " + getTotalHealth();
+		output += "<br />Total Attack: " + getTotalDamage();
+		output += "<br />Reward: " + getReward() + "<html>";
+		return output;
 	}
 	
 	/**

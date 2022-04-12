@@ -15,7 +15,7 @@ public class BattleWindow {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					BattleWindow window = new BattleWindow();
+					BattleWindow window = new BattleWindow(null, null);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -27,16 +27,17 @@ public class BattleWindow {
 	/**
 	 * Create the application.
 	 */
-	public BattleWindow() {
-		initialize();
+	public BattleWindow(OpposingPlayer chosenEnemy, Player p) {
+		initialize(chosenEnemy, p);
+		frame.setVisible(true);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	private void initialize(OpposingPlayer chosenEnemy, Player p) {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(100, 100, 750, 500);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
