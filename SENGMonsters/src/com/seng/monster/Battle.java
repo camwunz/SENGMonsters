@@ -1,5 +1,7 @@
 package com.seng.monster;
+import java.util.ArrayList;
 import java.util.Random;
+
 
 public class Battle {
 
@@ -15,6 +17,8 @@ public class Battle {
 	 * Random seed
 	 */
 	Random rand = new Random(); 
+	BasePlayer attacking = null;
+	BasePlayer defending = null;
 	
 	/**
 	 * Constructor
@@ -25,12 +29,59 @@ public class Battle {
 	{
 		user = p;
 		enemy = q;
+		
 	}
 	
 	/**
 	 * Runs through the battle turn by turn seeing who wins
 	 * @return whether the player won the battle
 	 */
+	
+	public ArrayList<String> nextTurn(Player user, OpposingPlayer enemy)
+	{
+		if (user.getDifficulty() == 0)
+		{
+			attacking = user;
+			defending = enemy;
+		}
+		else if (user.getDifficulty() == 1)
+		{
+			int player1 = rand.nextInt(2);
+			if (player1 == 0)
+			{
+				attacking = user;
+				defending = enemy;
+			}
+			else 
+			{
+				attacking = enemy;
+				defending = user;
+			}
+		}
+		else
+		{
+			attacking = enemy;
+			defending = user;
+		}
+		ArrayList<String> damagePrompts = new ArrayList<String>();
+		ArrayList<String> output = attack(attacking, defending);
+		String strOutput = output.get(0);
+		boolean fainted = output.get(1) == "true";
+		damagePrompts.add(strOutput);
+		if (!fainted)
+		{
+			output = attack(defending, attacking);
+			damagePrompts.add(output.get(0));
+		}
+		else {
+			damagePrompts.add("");
+		}
+		
+		damagePrompts.add(Integer.toString(battleDone()));
+		return damagePrompts;
+	}
+		
+	
 	public boolean startBattle()
 	{
 		System.out.println("\nStarting Battle " + user.getName() + " vs " + enemy.getName());
@@ -65,10 +116,10 @@ public class Battle {
 				defending = user;
 			}
 			System.out.println("Turn " + i);
-			boolean fainted = attack(attacking, defending);
+			boolean fainted = attackCLI(attacking, defending);
 			if (!fainted)
 			{
-				attack(defending, attacking);
+				attackCLI(defending, attacking);
 			}
 			
 			i++;
@@ -100,7 +151,7 @@ public class Battle {
 	 * @param defending the reciving player
 	 * @return boolean whether the reciving player's monster has fainted
 	 */
-	private boolean attack(BasePlayer attacking, BasePlayer defending) {
+	private boolean attackCLI(BasePlayer attacking, BasePlayer defending) {
 		
 		Monster firstMonster = null;
 		for (Monster m : attacking.getMonsters())
@@ -131,6 +182,45 @@ public class Battle {
 		else {
 			System.out.println(attacking.getName() + "'s " + firstMonster.getName() + " did " + firstMonster.getDamage() + " damage to " + defending.getName() + "'s " + firstEnemy.getName() + "!");
 			return false;
+		}
+		
+	}
+	
+	private ArrayList<String> attack(BasePlayer attacking, BasePlayer defending) {
+		
+		Monster firstMonster = null;
+		for (Monster m : attacking.getMonsters())
+		{
+			if (m.getCurrentHealth() > 0)
+			{
+				firstMonster = m;
+				break;
+			}
+		}
+		
+		Monster firstEnemy = null;
+		for (Monster m : defending.getMonsters())
+		{
+			if (m.getCurrentHealth() > 0)
+			{
+				firstEnemy = m;
+				break;
+			}
+		}
+		
+		if (firstEnemy.takeAttack(firstMonster.getDamage()))
+		{
+			ArrayList<String> output = new ArrayList<String>();
+			output.add(defending.getName() + "'s " + firstEnemy.getName() + " fainted after " + firstMonster.getDamage() + " damage from " + attacking.getName() + "'s " + firstMonster.getName());
+			output.add("true");
+			return output;
+		
+		}
+		else {
+			ArrayList<String> output = new ArrayList<String>();;
+			output.add(attacking.getName() + "'s " + firstMonster.getName() + " did " + firstMonster.getDamage() + " damage to " + defending.getName() + "'s " + firstEnemy.getName() + "!");
+			output.add("false");
+			return output;
 		}
 		
 	}

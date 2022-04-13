@@ -12,8 +12,6 @@ import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.FormSpecs;
 import com.jgoodies.forms.layout.RowSpec;
-import javax.swing.JLabel;
-import com.jgoodies.forms.factories.DefaultComponentFactory;
 
 public class BattleChoiceWindow {
 
@@ -28,11 +26,19 @@ public class BattleChoiceWindow {
 				ArrayList<OpposingPlayer> players = new ArrayList<OpposingPlayer>();
 				for (int i = 0; i < 4; i++)
 				{
-					OpposingPlayer tempPlayer = new OpposingPlayer(1);
+					OpposingPlayer tempPlayer = new OpposingPlayer(12);
 					players.add(tempPlayer);
 				}
+
+				Player p = new Player(1, 10);
+				p.setName("Cameron");
+				p.setGold(99999);
+				p.addMonster(new Monster());
+				p.addMonster(new Monster());
+				p.addMonster(new Monster());
+				p.addMonster(new Monster());
 				try {
-					BattleChoiceWindow window = new BattleChoiceWindow(players, new Player(null, null));
+					BattleChoiceWindow window = new BattleChoiceWindow(players, p);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -92,19 +98,40 @@ public class BattleChoiceWindow {
 		BattleChoice1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				OpposingPlayer chosenEnemy = opposingPlayers.get(0);
-				BattleWindow screen = new BattleWindow(chosenEnemy, p);
+				new BattleWindow(chosenEnemy, p, 1);
 				frame.dispose();
 			}
 		});
 		frame.getContentPane().add(BattleChoice1, "8, 4, fill, fill");
 		
 		JButton BattleChoice2 = new JButton(opposingPlayers.get(1).getPromptHTML());
+		BattleChoice2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				OpposingPlayer chosenEnemy = opposingPlayers.get(1);
+				new BattleWindow(chosenEnemy, p, 1);
+				frame.dispose();
+			}
+		});
 		frame.getContentPane().add(BattleChoice2, "18, 4, fill, fill");
 		
 		JButton BattleChoice3 = new JButton(opposingPlayers.get(2).getPromptHTML());
+		BattleChoice3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				OpposingPlayer chosenEnemy = opposingPlayers.get(2);
+				new BattleWindow(chosenEnemy, p, 1);
+				frame.dispose();
+			}
+		});
 		frame.getContentPane().add(BattleChoice3, "8, 10, fill, fill");
 		
 		JButton BattleChoice4 = new JButton(opposingPlayers.get(3).getPromptHTML());
+		BattleChoice4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				OpposingPlayer chosenEnemy = opposingPlayers.get(3);
+				new BattleWindow(chosenEnemy, p, 1);
+				frame.dispose();
+			}
+		});
 		frame.getContentPane().add(BattleChoice4, "18, 10, fill, fill");
 		
 		JButton BattleChoiceExit = new JButton("Exit");

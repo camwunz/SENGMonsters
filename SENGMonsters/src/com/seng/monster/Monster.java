@@ -187,6 +187,15 @@ public class Monster extends BaseItem{
 		
 	}
 	
+	public String getBattleDetails()
+	{
+		String output = "<html>";
+		output += getName() + "<br />";
+		output += "Damage: " + getDamage() + "<br />";
+		output += "Current Health: " + getCurrentHealth() + "<html>";
+		return output;
+	}
+	
 	/**
 	 * Uses an item on the monster
 	 * @param change the amount to change it
