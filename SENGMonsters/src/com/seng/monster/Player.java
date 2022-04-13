@@ -197,5 +197,7 @@ public class Player extends BasePlayer{
 		items.remove(item);
 		gold -= item.getSellback();
 	}
+	
+	// TODO store all of the shop details and opponent details 
 
 }
