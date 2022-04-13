@@ -1,5 +1,6 @@
 package com.seng.monster;
 import java.util.ArrayList;
+import java.util.Spliterator.OfPrimitive;
 
 public class Player extends BasePlayer{
 	
@@ -27,7 +28,12 @@ public class Player extends BasePlayer{
 	 * Running total of user's score
 	 */
 	private Integer score;
+	
+	private ArrayList<ArrayList<Monster>> shopMonsters = new ArrayList<ArrayList<Monster>>();
+	
+	private ArrayList<ArrayList<Item>> shopItems = new ArrayList<ArrayList<Item>>();
 
+	private ArrayList<ArrayList<OpposingPlayer>> dailyOpponents = new ArrayList<ArrayList<OpposingPlayer>>();
 	
 	
 
@@ -42,6 +48,22 @@ public class Player extends BasePlayer{
 		gold  = 100;
 		difficulty = difficulty_amount;
 		total_days = days_amount;
+		for (int i = 0; i < total_days; i++)
+		{
+			ArrayList<OpposingPlayer> newOpponents = new ArrayList<OpposingPlayer>();
+			ArrayList<Monster> dailyMonsters = new ArrayList<Monster>();
+			ArrayList<Item> dailyItems = new ArrayList<Item>();
+			for (int j = 0; j < 4; j++)
+			{
+				newOpponents.add(new OpposingPlayer(i+1));
+				dailyMonsters.add(new Monster());
+				dailyItems.add(new Item());
+			}
+			dailyOpponents.add(newOpponents);
+			shopMonsters.add(dailyMonsters);
+			shopItems.add(dailyItems);
+		}
+		
 	}
 
 	/**
@@ -61,6 +83,21 @@ public class Player extends BasePlayer{
 	public void addToScore(int i)
 	{
 		score += i;
+	}
+	
+	public ArrayList<Monster> getDailyMonsters(int day)
+	{
+		return shopMonsters.get(day-1);
+	}
+	
+	public ArrayList<Item> getDailyItem(int day)
+	{
+		return shopItems.get(day-1);
+	}
+	
+	public ArrayList<OpposingPlayer> getOpponents(int day)
+	{
+		return dailyOpponents.get(day-1);
 	}
 
 	/**

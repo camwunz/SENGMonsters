@@ -23,13 +23,6 @@ public class BattleChoiceWindow {
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				ArrayList<OpposingPlayer> players = new ArrayList<OpposingPlayer>();
-				for (int i = 0; i < 4; i++)
-				{
-					OpposingPlayer tempPlayer = new OpposingPlayer(12);
-					players.add(tempPlayer);
-				}
-
 				Player p = new Player(1, 10);
 				p.setName("Cameron");
 				p.setGold(99999);
@@ -37,6 +30,7 @@ public class BattleChoiceWindow {
 				p.addMonster(new Monster());
 				p.addMonster(new Monster());
 				p.addMonster(new Monster());
+				ArrayList <OpposingPlayer> players = p.getOpponents(1);
 				try {
 					BattleChoiceWindow window = new BattleChoiceWindow(players, p);
 					window.frame.setVisible(true);
