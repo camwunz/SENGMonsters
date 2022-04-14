@@ -15,7 +15,7 @@ public class MenuWindow {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MenuWindow window = new MenuWindow();
+					MenuWindow window = new MenuWindow(null);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -26,8 +26,10 @@ public class MenuWindow {
 
 	/**
 	 * Create the application.
+	 * @param day 
+	 * @param p 
 	 */
-	public MenuWindow() {
+	public MenuWindow(Player p) {
 		initialize();
 	}
 

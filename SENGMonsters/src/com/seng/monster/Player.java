@@ -48,6 +48,7 @@ public class Player extends BasePlayer{
 		gold  = 100;
 		difficulty = difficulty_amount;
 		total_days = days_amount;
+		day_count = 1;
 		for (int i = 0; i < total_days; i++)
 		{
 			ArrayList<OpposingPlayer> newOpponents = new ArrayList<OpposingPlayer>();
@@ -98,6 +99,11 @@ public class Player extends BasePlayer{
 	public ArrayList<OpposingPlayer> getOpponents(int day)
 	{
 		return dailyOpponents.get(day-1);
+	}
+	
+	public void removeOpponent(int day, int index)
+	{
+		dailyOpponents.get(day-1).remove(index);
 	}
 
 	/**
@@ -152,8 +158,13 @@ public class Player extends BasePlayer{
 	/**
 	 * Increases day count by one
 	 */
-	public void setDaysLeft() {
+	public void addDay() {
 		day_count += 1;
+	}
+	
+	public int getDays()
+	{
+		return day_count;
 	}
 	
 	/**

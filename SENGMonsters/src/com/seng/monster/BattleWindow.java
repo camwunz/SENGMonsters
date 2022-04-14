@@ -180,8 +180,8 @@ public class BattleWindow {
 		EnemyMonster4.setFont(new Font("Verdana", Font.PLAIN, 14));
 		frame.getContentPane().add(EnemyMonster4, "24, 26");
 		
-		JButton btnNewButton = new JButton("Next Turn");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton NextTurnButton = new JButton("Next Turn");
+		NextTurnButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ArrayList<String> damagePrompts = battle.nextTurn(p, chosenEnemy);
 				BattleText1.setText("<html>" + damagePrompts.get(0) + "</html>");
@@ -238,7 +238,7 @@ public class BattleWindow {
 				}
 			}
 		});
-		frame.getContentPane().add(btnNewButton, "14, 30");
+		frame.getContentPane().add(NextTurnButton, "14, 30");
 		
 		if (p.getMonsters().size() >= 2) {
 			changeBorder(PlayerMonster2, p.getMonsters().get(1));

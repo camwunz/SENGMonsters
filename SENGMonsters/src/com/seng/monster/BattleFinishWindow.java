@@ -16,6 +16,8 @@ import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class BattleFinishWindow {
 
@@ -143,6 +145,12 @@ public class BattleFinishWindow {
 		frame.getContentPane().add(PlayerMonster4, "10, 26");
 		
 		JButton ExitButton = new JButton("Exit");
+		ExitButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new MenuWindow(p);
+				frame.dispose();
+			}
+		});
 		frame.getContentPane().add(ExitButton, "30, 26, fill, fill");
 		
 		if (p.getMonsters().size() >= 2) {
@@ -162,7 +170,8 @@ public class BattleFinishWindow {
 		
 		if (winner == 2)
 		{
-			WinnerLabel.setText("You won the battle!");
+			WinnerLabel.setText("You won the battle and won " + chosenPlayer.getReward() + " gold!");
+			p.setGold(chosenPlayer.getReward());
 		}
 		else {
 			WinnerLabel.setText("You lost the battle!");
