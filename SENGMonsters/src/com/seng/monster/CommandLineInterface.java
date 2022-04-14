@@ -271,7 +271,7 @@ public class CommandLineInterface {
 				{
 					System.out.println((i+1) + ") ");
 					monsters.add(new Monster());
-					System.out.println(monsters.get(i).printDetails());
+					System.out.println(monsters.get(i).getDetails());
 					System.out.println("Price: " + monsters.get(i).getPrice() + "\n");
 				}
 				System.out.println("5) Exit");
@@ -405,7 +405,7 @@ public class CommandLineInterface {
 		System.out.println("-------------------Monsters-------------------\n");
 		for (Monster m: p.getMonsters())
 		{
-			System.out.println(m.printDetails());
+			System.out.println(m.getDetails());
 			System.out.println("\n");
 		}
 		System.out.println("----------------------------------------------");
@@ -435,7 +435,7 @@ public class CommandLineInterface {
 				for (Monster m: p.getMonsters())
 				{
 					System.out.println((i+1) + ") ");
-					System.out.println(m.printDetails());
+					System.out.println(m.getDetails());
 				}
 				int monsterIndex = getIntBounds("Which monster? [1-" + monsterCount + "]", 1, monsterCount);
 				useItem(itemIndex-1, monsterIndex-1, p);

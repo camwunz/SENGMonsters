@@ -176,7 +176,7 @@ public class Monster extends BaseItem{
 	 * Gets the monsters details
 	 * @return the string of the details
 	 */
-	public String printDetails()
+	public String getDetails()
 	{
 		String output = "";
 		output += "Name: " + getName() + "\n";
@@ -211,19 +211,19 @@ public class Monster extends BaseItem{
 	 */
 	public void useItem(int change, String var)
 	{
-		if (var == "currentHealth")
+		if (var == "Current Health")
 		{
 			currentHealth += change;
 		}
-		else if (var == "healAmount")
+		else if (var == "Heal Amount")
 		{
 			healAmount += change;
 		}
-		else if (var == "maxHealth")
+		else if (var == "Max Health")
 		{
 			maxHealth += change;
 		}
-		else if (var == "damage")
+		else if (var == "Damage")
 		{
 			damage += change;
 		}
@@ -239,5 +239,23 @@ public class Monster extends BaseItem{
 		healAmount = (int) (healAmount * 1.3);
 		maxHealth = (int) (maxHealth * 1.3);
 		damage = (int) (damage * 1.3);
+	}
+
+	@Override
+	public String getDetailsSellbackHTML() {
+		String output = "<html>" + getName() + "<br />";
+		output += "Damage: " + getDamage() + "<br />";
+		output += "Max Health: " + getHealth() + "<br />";
+		output += "Selling Price: " + getSellback() + "<html>";
+		return output;
+	}
+
+	@Override
+	public String getDetailsPriceHTML() {
+		String output = "<html>" + getName() + "<br />";
+		output += "Damage: " + getDamage() + "<br />";
+		output += "Max Health: " + getHealth() + "<br />";
+		output += "Price: " + getPrice() + "<html>";
+		return output;
 	}
 }

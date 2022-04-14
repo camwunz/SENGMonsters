@@ -224,25 +224,24 @@ public class Player extends BasePlayer{
 	 * @param monster the monster to be removed
 	 * @return if the monster got removed
 	 */
-	public boolean removeMonster(Monster monster) {
-		if (containsMonster(monster))
-		{
-			removeMonsterFromList(monster);
-			gold -= monster.getSellback();
-			return true;
-		}
-		else {
-			return false;
-		}
-		
+	public void removeMonster(Monster monster) 
+	{
+		gold -= monster.getSellback();	
 	}
 	
 	/**
 	 * Remove an item from the user's inventory
 	 * @param item the item to be removed
 	 */
-	public void removeItem(Item item) {
-		items.remove(item);
+	public void removeItem(BaseItem item) {
+		if (item instanceof Monster)
+		{
+			getMonsters().remove(item);
+		}
+		else 
+		{
+			items.remove(item);
+		}
 		gold -= item.getSellback();
 	}
 	

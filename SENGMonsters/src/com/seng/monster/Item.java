@@ -1,6 +1,8 @@
 package com.seng.monster;
 import java.util.Random;
 
+
+
 public class Item extends BaseItem{
 	/**
 	 * Stat for which the item changes
@@ -43,25 +45,26 @@ public class Item extends BaseItem{
 		switch(berryName)
 		{
 			case "Cheppa Berry":
-				actionStat = "damage";
+				actionStat = "Damage";
 				setDescription("Increases damage by " + actionImprovement);
 				break;
 			case "Lopet Berry":
-				actionStat = "maxHealth";
+				actionStat = "Max Health";
 				setDescription("Increases max health by " + actionImprovement);
 				break;
 			case "Wanga Berry":
-				actionStat = "currentHealth";
+				actionStat = "Current Health";
 				setDescription("Increases current health by " + actionImprovement);
 				break;
 			case "Aimpo Berry":
-				actionStat = "healAmount";
+				actionStat = "Heal Amount";
 				setDescription("Increases heal amount by " + actionImprovement);
 				break;
 			case "Mystery Berry":
-				String[] actionList = {"damage", "maxHealth", "currentHealth", "healAmount"};
+				String[] actionList = {"Damage", "Max Health", "Current Health", "Heal Amount"};
 				actionStat = actionList[rand.nextInt(4)];
 				setDescription("Increases a random variable by " + actionImprovement);
+				setPrice(getPrice()*(2/3));
 				break;
 		}
 		
@@ -101,6 +104,33 @@ public class Item extends BaseItem{
 	public int getActionImprovement()
 	{
 		return actionImprovement;
+	}
+
+	@Override
+	public String getDetailsSellbackHTML() {
+		String output = "<html>";
+		output += "Name: " + getName() + "<br />";
+		output += "Stat: " + getActionStat() + "<br />";
+		output += "Stat increase: " + getActionImprovement() + "<br />";
+		output += "Selling Price: " + getSellback() + "<html>";
+		return output;
+		
+	}
+	
+	@Override
+	public String getDetailsPriceHTML() {
+		String output = "<html>";
+		output += "Name: " + getName() + "<br />";
+		output += "Stat: " + getActionStat() + "<br />";
+		output += "Stat increase: " + getActionImprovement() + "<br />";
+		output += "Price: " + getPrice() + "<html>";
+		return output;
+		
+	}
+	
+	public int getCurrentHealth()
+	{
+		return 1;
 	}
 	
 }

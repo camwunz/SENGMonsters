@@ -1,6 +1,6 @@
 package com.seng.monster;
 
-public class BaseItem {
+public abstract class BaseItem implements BaseItemInterface{
 	/**
 	 * Price of item
 	 */
