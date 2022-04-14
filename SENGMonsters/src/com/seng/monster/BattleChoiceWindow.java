@@ -190,6 +190,7 @@ public class BattleChoiceWindow {
 		BattleChoiceExit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new MenuWindow(p);
+				frame.dispose();
 			}
 		});
 		frame.getContentPane().add(BattleChoiceExit, "9, 12, 8, 1");

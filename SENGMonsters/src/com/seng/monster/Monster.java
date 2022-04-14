@@ -196,6 +196,14 @@ public class Monster extends BaseItem{
 		return output;
 	}
 	
+	public String getDetailsShopSellbackHTML()
+	{
+		String output = "<html>" + getName() + "<br />";
+		output += "Damage: " + getDamage() + "<br />";
+		output += "Max Health: " + getHealth() + "<br />";
+		output += "Selling Price: " + getSellback() + "<html>";
+		return output;
+	}
 	/**
 	 * Uses an item on the monster
 	 * @param change the amount to change it

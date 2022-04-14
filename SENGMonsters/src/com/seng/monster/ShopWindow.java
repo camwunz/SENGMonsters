@@ -26,7 +26,13 @@ public class ShopWindow {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ShopWindow window = new ShopWindow(null);
+					Player p = new Player(1,10);
+					p.setGold(9999);
+					p.addMonster(new Monster());
+					p.addMonster(new Monster());
+					p.addMonster(new Monster());
+					p.addMonster(new Monster());
+					ShopWindow window = new ShopWindow(p);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

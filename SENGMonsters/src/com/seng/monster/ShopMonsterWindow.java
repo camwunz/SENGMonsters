@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -17,6 +18,7 @@ import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.FormSpecs;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
+import java.awt.BorderLayout;
 
 public class ShopMonsterWindow {
 
@@ -44,6 +46,7 @@ public class ShopMonsterWindow {
 	 */
 	public ShopMonsterWindow(Player p) {
 		initialize(p);
+		frame.setVisible(true);
 	}
 
 	/**
@@ -59,29 +62,11 @@ public class ShopMonsterWindow {
 				FormSpecs.RELATED_GAP_COLSPEC,
 				FormSpecs.DEFAULT_COLSPEC,
 				FormSpecs.RELATED_GAP_COLSPEC,
-				FormSpecs.DEFAULT_COLSPEC,
+				ColumnSpec.decode("max(34dlu;default)"),
 				FormSpecs.RELATED_GAP_COLSPEC,
 				FormSpecs.DEFAULT_COLSPEC,
 				FormSpecs.RELATED_GAP_COLSPEC,
-				FormSpecs.DEFAULT_COLSPEC,
-				FormSpecs.RELATED_GAP_COLSPEC,
-				FormSpecs.DEFAULT_COLSPEC,
-				FormSpecs.RELATED_GAP_COLSPEC,
-				FormSpecs.DEFAULT_COLSPEC,
-				FormSpecs.RELATED_GAP_COLSPEC,
-				FormSpecs.DEFAULT_COLSPEC,
-				FormSpecs.RELATED_GAP_COLSPEC,
-				FormSpecs.DEFAULT_COLSPEC,
-				FormSpecs.RELATED_GAP_COLSPEC,
-				FormSpecs.DEFAULT_COLSPEC,
-				FormSpecs.RELATED_GAP_COLSPEC,
-				FormSpecs.DEFAULT_COLSPEC,
-				FormSpecs.RELATED_GAP_COLSPEC,
-				FormSpecs.DEFAULT_COLSPEC,
-				FormSpecs.RELATED_GAP_COLSPEC,
-				FormSpecs.DEFAULT_COLSPEC,
-				FormSpecs.RELATED_GAP_COLSPEC,
-				FormSpecs.DEFAULT_COLSPEC,},
+				ColumnSpec.decode("max(32dlu;default)"),},
 			new RowSpec[] {
 				FormSpecs.RELATED_GAP_ROWSPEC,
 				FormSpecs.DEFAULT_ROWSPEC,
@@ -89,6 +74,8 @@ public class ShopMonsterWindow {
 				FormSpecs.DEFAULT_ROWSPEC,
 				FormSpecs.RELATED_GAP_ROWSPEC,
 				FormSpecs.DEFAULT_ROWSPEC,
+				FormSpecs.RELATED_GAP_ROWSPEC,
+				RowSpec.decode("max(13dlu;default)"),
 				FormSpecs.RELATED_GAP_ROWSPEC,
 				FormSpecs.DEFAULT_ROWSPEC,
 				FormSpecs.RELATED_GAP_ROWSPEC,
@@ -108,48 +95,86 @@ public class ShopMonsterWindow {
 				FormSpecs.RELATED_GAP_ROWSPEC,
 				FormSpecs.DEFAULT_ROWSPEC,}));
 		
-		JLabel PlayerName = new JLabel("Your Monsters");
-		PlayerName.setHorizontalAlignment(SwingConstants.LEFT);
-		PlayerName.setFont(new Font("Tahoma", Font.BOLD, 17));
-		frame.getContentPane().add(PlayerName, "8, 8");
+		JLabel NameLabel = new JLabel("Your Monsters");
+		NameLabel.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		frame.getContentPane().add(NameLabel, "8, 10");
 		
-		JLabel PlayerMonster1 = new JLabel(p.getMonsters().get(0).getBattleDetails());
-		PlayerMonster1.setHorizontalAlignment(SwingConstants.LEFT);
-		PlayerMonster1.setFont(new Font("Verdana", Font.PLAIN, 14));
-		changeBorder(PlayerMonster1, p.getMonsters().get(0));
-		frame.getContentPane().add(PlayerMonster1, "8, 12");
+		ArrayList<Monster> MonsterListPlayer = p.getMonsters();
+		int MonsterListSize = MonsterListPlayer.size();
+		JLabel PlayerMonster1 = new JLabel("");
+		frame.getContentPane().add(PlayerMonster1, "8, 14");
+		changeLabel(PlayerMonster1, 0, MonsterListPlayer);
+		
+		JButton MonsterSell1 = new JButton("Sell");
+		MonsterSell1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				sellMonster(p, 0);
+			}
+		});
+		frame.getContentPane().add(MonsterSell1, "10, 14");
+		hideButton(MonsterSell1, 0, MonsterListSize);
 		
 		JLabel PlayerMonster2 = new JLabel("");
-		PlayerMonster2.setHorizontalAlignment(SwingConstants.LEFT);
-		PlayerMonster2.setFont(new Font("Verdana", Font.PLAIN, 14));
-		frame.getContentPane().add(PlayerMonster2, "8, 16");
+		frame.getContentPane().add(PlayerMonster2, "8, 18");
+		changeLabel(PlayerMonster2, 1, MonsterListPlayer);
+		
+		JButton MonsterSell2 = new JButton("Sell");
+		MonsterSell2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				sellMonster(p, 1);
+			}
+		});
+		frame.getContentPane().add(MonsterSell2, "10, 18");
+		hideButton(MonsterSell2, 1, MonsterListSize);
 		
 		JLabel PlayerMonster3 = new JLabel("");
-		PlayerMonster3.setHorizontalAlignment(SwingConstants.LEFT);
-		PlayerMonster3.setFont(new Font("Verdana", Font.PLAIN, 14));
-		frame.getContentPane().add(PlayerMonster3, "8, 20");
+		frame.getContentPane().add(PlayerMonster3, "8, 22");
+		changeLabel(PlayerMonster3, 2, MonsterListPlayer);
+		
+		JButton MonsterSell3 = new JButton("Sell");
+		MonsterSell3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				sellMonster(p, 2);
+			}
+		});
+		frame.getContentPane().add(MonsterSell3, "10, 22");
+		hideButton(MonsterSell3, 2, MonsterListSize);
 		
 		JLabel PlayerMonster4 = new JLabel("");
-		PlayerMonster4.setHorizontalAlignment(SwingConstants.LEFT);
-		PlayerMonster4.setFont(new Font("Verdana", Font.PLAIN, 14));
-		frame.getContentPane().add(PlayerMonster4, "8, 24");
+		frame.getContentPane().add(PlayerMonster4, "8, 26");
+		changeLabel(PlayerMonster4, 3, MonsterListPlayer);
 		
-		
-
-		
-		if (p.getMonsters().size() >= 2) {
-			changeBorder(PlayerMonster2, p.getMonsters().get(1));
-			PlayerMonster2.setText(p.getMonsters().get(1).getBattleDetails());
+		JButton MonsterSell4 = new JButton("Sell");
+		MonsterSell4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				sellMonster(p, 3);
+			}
+		});
+		frame.getContentPane().add(MonsterSell4, "10, 26");
+		hideButton(MonsterSell4, 3, MonsterListSize);
+	}
+	
+	private void hideButton(JButton button, int index, int size)
+	{
+		if (index >= size || size == 1)
+		{
+			button.setVisible(false);
 		}
-		
-		if (p.getMonsters().size() >= 3) {
-			changeBorder(PlayerMonster3, p.getMonsters().get(2));
-			PlayerMonster3.setText(p.getMonsters().get(2).getBattleDetails());
-		}
-		
-		if (p.getMonsters().size() >= 4) {
-			changeBorder(PlayerMonster4, p.getMonsters().get(3));
-			PlayerMonster4.setText(p.getMonsters().get(3).getBattleDetails());
+	}
+	
+	private void sellMonster(Player p, int index)
+	{
+		p.removeMonster(p.getMonsters().get(index));
+		new ShopMonsterWindow(p);
+		frame.dispose();
+	}
+	
+	private void changeLabel(JLabel label, int index, ArrayList<Monster> MonsterList)
+	{
+		if (index < MonsterList.size())
+		{
+			changeBorder(label, MonsterList.get(index));
+			label.setText(MonsterList.get(index).getDetailsShopSellbackHTML());
 		}
 	}
 	
