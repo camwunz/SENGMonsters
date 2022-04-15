@@ -7,11 +7,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.im.InputMethodHighlight;
 import java.util.ArrayList;
+import java.util.List;
 
+import javax.management.modelmbean.RequiredModelMBean;
+import javax.sound.sampled.LineUnavailableException;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 
@@ -163,6 +167,11 @@ public class ShopWindow {
 		}
 		
 		JButton itemBuy1 = new JButton("Buy");
+		itemBuy1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				buyItem(p, 0, PlayerItems, ShopItems);
+			}
+		});
 		frame.getContentPane().add(itemBuy1, "34, 14");
 		
 		JLabel shopItem1 = new JLabel("");
@@ -170,7 +179,6 @@ public class ShopWindow {
 		
 		JLabel playerItem2 = new JLabel("");
 		frame.getContentPane().add(playerItem2, "8, 18");
-		changeLabel(playerItem2, 1, PlayerItems);
 		
 		JButton itemSell2 = new JButton("Sell");
 		itemSell2.addActionListener(new ActionListener() {
@@ -179,9 +187,13 @@ public class ShopWindow {
 			}
 		});
 		frame.getContentPane().add(itemSell2, "10, 18");
-		hideButton(itemSell2, 1, ItemListSize);
 		
 		JButton itemBuy2 = new JButton("Buy");
+		itemBuy2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				buyItem(p, 1, PlayerItems, ShopItems);
+			}
+		});
 		frame.getContentPane().add(itemBuy2, "34, 18");
 		
 		JLabel shopItem2 = new JLabel("");
@@ -189,7 +201,6 @@ public class ShopWindow {
 		
 		JLabel playerItem3 = new JLabel("");
 		frame.getContentPane().add(playerItem3, "8, 22");
-		changeLabel(playerItem3, 2, PlayerItems);
 		
 		JButton itemSell3 = new JButton("Sell");
 		itemSell3.addActionListener(new ActionListener() {
@@ -198,9 +209,13 @@ public class ShopWindow {
 			}
 		});
 		frame.getContentPane().add(itemSell3, "10, 22");
-		hideButton(itemSell3, 2, ItemListSize);
 		
 		JButton itemBuy3 = new JButton("Buy");
+		itemBuy3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				buyItem(p, 2, PlayerItems, ShopItems);
+			}
+		});
 		frame.getContentPane().add(itemBuy3, "34, 22");
 		
 		JLabel shopItem3 = new JLabel("");
@@ -208,7 +223,6 @@ public class ShopWindow {
 		
 		JLabel playerItem4 = new JLabel("");
 		frame.getContentPane().add(playerItem4, "8, 26");
-		changeLabel(playerItem4, 3, PlayerItems);
 		
 		JButton itemSell4 = new JButton("Sell");
 		itemSell4.addActionListener(new ActionListener() {
@@ -217,13 +231,53 @@ public class ShopWindow {
 			}
 		});
 		frame.getContentPane().add(itemSell4, "10, 26");
-		hideButton(itemSell4, 3, ItemListSize);
 		
 		JButton itemBuy4 = new JButton("Buy");
+		itemBuy4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				buyItem(p, 3, PlayerItems, ShopItems);
+			}
+		});
 		frame.getContentPane().add(itemBuy4, "34, 26");
 		
 		JLabel shopItem4 = new JLabel("");
 		frame.getContentPane().add(shopItem4, "36, 26");
+		
+		List<JLabel> sellLabels = List.of(playerItem1, playerItem2, playerItem3, playerItem4);
+		List<JButton> sellButtons = List.of(itemSell1, itemSell2, itemSell3, itemSell4);
+		checkVisibility(PlayerItems, sellLabels, sellButtons, true);
+		
+		List<JLabel> buyLabels = List.of(shopItem1, shopItem2, shopItem3, shopItem4);
+		List<JButton> buyButtons = List.of(itemBuy1, itemBuy2, itemBuy3, itemBuy4);
+		checkVisibility(ShopItems, buyLabels, buyButtons, false);
+		
+		
+	}
+	
+	private void checkVisibility(ArrayList<? extends BaseItem> items, List<JLabel> labels, List<JButton> buttons, boolean selling)
+	{
+		int listSize = items.size();
+		for (int i = 0; i < 4; i++)
+		{
+			if (i >= listSize)
+			{
+				labels.get(i).setVisible(false);
+				buttons.get(i).setVisible(false);
+			}
+			else 
+			{
+				changeBorder(labels.get(i), items.get(i));
+				if (selling)
+				{
+					labels.get(i).setText(items.get(i).getDetailsSellbackHTML());
+				}
+				else 
+				{
+					labels.get(i).setText(items.get(i).getDetailsPriceHTML());
+				}
+				
+			}
+		}
 	}
 	
 	private void hideButton(JButton button, int index, int size)
@@ -234,17 +288,55 @@ public class ShopWindow {
 		}
 	}
 	
-	private void sellItem(Player p, int index, ArrayList<? extends BaseItem> Items, ArrayList<? extends BaseItem> ShopItems)
+	private void buyItem(Player p, int index, ArrayList<? extends BaseItem> items, ArrayList<? extends BaseItem> shopItems)
 	{
-		if (Items.get(index) instanceof Monster)
+		if (items.size() >= 4)
 		{
-			p.removeItem(Items.get(index));
-			new ShopWindow(p, p.getMonsters(), ShopItems);
+			if (items.get(0) instanceof Monster)
+			{
+				JOptionPane.showMessageDialog(frame, "You cannot have more than 4 monsters");
+			}
+			else
+			{
+				JOptionPane.showMessageDialog(frame, "You cannot have more than 4 items");
+			}
+		}
+		else
+		{
+			if (shopItems.get(index).getPrice() > p.getGold())
+			{
+				JOptionPane.showMessageDialog(frame, "You cannot afford that product");
+			}
+			else 
+			{
+				if (shopItems.get(index) instanceof Monster)
+				{
+					p.addItem((Monster) shopItems.get(index));
+					p.removeFromShop((Monster) shopItems.get(index));
+					new ShopWindow(p, items, p.getDailyMonsters(p.getDays()));
+					
+				}
+				else
+				{
+					p.addItem((Item) shopItems.get(index));
+					p.removeFromShop((Item) shopItems.get(index));
+					new ShopWindow(p, items, p.getDailyItem(p.getDays()));
+				}
+			}
+			
+		}
+	}
+	private void sellItem(Player p, int index, ArrayList<? extends BaseItem> items, ArrayList<? extends BaseItem> shopItems)
+	{
+		if (items.get(index) instanceof Monster)
+		{
+			p.removeItem(items.get(index));
+			new ShopWindow(p, p.getMonsters(), shopItems);
 		}
 		else 
 		{
-			p.removeItem(Items.get(index));
-			new ShopWindow(p, p.getItems(), ShopItems);
+			p.removeItem(items.get(index));
+			new ShopWindow(p, p.getItems(), shopItems);
 		}
 		
 		frame.dispose();

@@ -181,20 +181,10 @@ public class Player extends BasePlayer{
 	 * @param item the new item
 	 * @return if the item could be adding depending on the price of the item
 	 */
-	public Boolean addItem(Item item) {
-		
-		if(items.contains(item)) {
-			return false;
-		} else {
-			
-			if(item.getPrice() > gold) {
-				return false;
-			} else {
-				gold -= item.getPrice();
-				items.add(item);
-				return true;
-			}
-		}
+	public void addItem(Item item) 
+	{
+		gold -= item.getPrice();
+		getItems().add(item);
 	}
 	
 	/**
@@ -202,20 +192,20 @@ public class Player extends BasePlayer{
 	 * @param monster the new monster
 	 * @return if the monster could be adding depending on the price of the monster
 	 */
-	public Boolean addMonster(Monster monster) {
-		
-		if(containsMonster(monster)) {
-			return false;
-		} else {
-			
-			if(monster.getPrice() > gold) {
-				return false;
-			} else {
-				gold -= monster.getPrice();
-				addMonsterToList(monster);
-				return true;
-			}
-		}
+	public void addItem(Monster monster) 
+	{
+		gold -= monster.getPrice();
+		addMonsterToList(monster);
+	}
+	
+	public void removeFromShop(Monster m)
+	{
+		getDailyMonsters(getDays()).remove(m);
+	}
+	
+	public void removeFromShop(Item i)
+	{
+		getDailyItem(getDays()).remove(i);
 	}
 	
 	
@@ -242,7 +232,7 @@ public class Player extends BasePlayer{
 		{
 			items.remove(item);
 		}
-		gold -= item.getSellback();
+		gold += item.getSellback();
 	}
 	
 	// TODO store all of the shop details and opponent details 

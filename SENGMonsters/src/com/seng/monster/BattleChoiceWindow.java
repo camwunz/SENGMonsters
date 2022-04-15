@@ -33,10 +33,10 @@ public class BattleChoiceWindow {
 				Player p = new Player(1, 10);
 				p.setName("Cameron");
 				p.setGold(99999);
-				p.addMonster(new Monster());
-				p.addMonster(new Monster());
-				p.addMonster(new Monster());
-				p.addMonster(new Monster());
+				p.addItem(new Monster());
+				p.addItem(new Monster());
+				p.addItem(new Monster());
+				p.addItem(new Monster());
 				int day = p.getDays();
 				ArrayList <OpposingPlayer> players = p.getOpponents(day);
 				try {

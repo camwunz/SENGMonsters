@@ -24,7 +24,7 @@ public class CommandLineInterface {
 		int tempDiff = getDifficulty();
 		Player player = new Player(tempDiff, tempDays);
 		player.setName(tempName);
-		player.addMonster(tempMonster);
+		player.addItem(tempMonster);
 		player.setGold(tempMonster.getPrice());
 		mainLoop(player);
 	}
@@ -229,7 +229,7 @@ public class CommandLineInterface {
 						if (rand.nextInt(100) <= factor)
 						{
 							Monster tempMon = new Monster();
-							p.addMonster(tempMon);
+							p.addItem(tempMon);
 							System.out.println(tempMon.getName() + " joined your party overnight!");
 						}
 					}
@@ -282,13 +282,14 @@ public class CommandLineInterface {
 					break;
 				}
 				monsterPicker = monsterPicker-1;
-				boolean attempt = p.addMonster(monsters.get(monsterPicker));
+				boolean attempt = monsters.get(monsterPicker).getPrice() < p.getGold();
 				if (!attempt)
 				{
 					System.out.println("Sorry you do not have enough money to buy that monster");
 					break;
 				} 
 				else {
+					p.addItem(monsters.get(monsterPicker));
 					System.out.println(monsters.get(monsterPicker).getName() + " has been bought");
 					break;
 				}
@@ -312,13 +313,14 @@ public class CommandLineInterface {
 					break;	
 				}
 				itemPicker--;
-				boolean attempt = p.addItem(items.get(itemPicker));
+				boolean attempt = items.get(itemPicker).getPrice() < p.getGold();
 				if (!attempt)
 				{
 					System.out.println("Sorry you do not have enough money to buy that item");
 					break;
 				} 
 				else {
+					p.addItem(items.get(itemPicker));
 					System.out.println(items.get(itemPicker).getName() + " has been bought");
 					break;
 				}
