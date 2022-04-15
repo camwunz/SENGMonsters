@@ -4,8 +4,6 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import java.awt.BorderLayout;
-import java.awt.Color;
 
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
@@ -13,10 +11,10 @@ import com.jgoodies.forms.layout.RowSpec;
 import com.jgoodies.forms.layout.FormSpecs;
 import java.awt.Font;
 import javax.swing.SwingConstants;
-import javax.swing.border.Border;
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 import java.awt.event.ActionEvent;
 
 public class BattleFinishWindow {
@@ -114,80 +112,71 @@ public class BattleFinishWindow {
 				FormSpecs.RELATED_GAP_ROWSPEC,
 				FormSpecs.DEFAULT_ROWSPEC,}));
 		
-		JLabel PlayerName = new JLabel(p.getName() + "'s Team");
-		PlayerName.setHorizontalAlignment(SwingConstants.LEFT);
-		PlayerName.setFont(new Font("Tahoma", Font.BOLD, 17));
-		frame.getContentPane().add(PlayerName, "10, 10");
+		JLabel playerName = new JLabel(p.getName() + "'s Team");
+		playerName.setHorizontalAlignment(SwingConstants.LEFT);
+		playerName.setFont(new Font("Tahoma", Font.BOLD, 17));
+		frame.getContentPane().add(playerName, "10, 10");
 		
-		JLabel PlayerMonster1 = new JLabel(p.getMonsters().get(0).getBattleDetails());
-		PlayerMonster1.setHorizontalAlignment(SwingConstants.LEFT);
-		PlayerMonster1.setFont(new Font("Verdana", Font.PLAIN, 14));
-		changeBorder(PlayerMonster1, p.getMonsters().get(0));
-		frame.getContentPane().add(PlayerMonster1, "10, 14");
+		JLabel playerMonster1 = new JLabel("");
+		playerMonster1.setHorizontalAlignment(SwingConstants.LEFT);
+		playerMonster1.setFont(new Font("Verdana", Font.PLAIN, 14));
+		frame.getContentPane().add(playerMonster1, "10, 14");
 		
-		JLabel WinnerLabel = new JLabel("New label");
-		WinnerLabel.setFont(new Font("Verdana", Font.PLAIN, 24));
-		frame.getContentPane().add(WinnerLabel, "30, 14, fill, fill");
+		JLabel winnerLabel = new JLabel("");
+		winnerLabel.setFont(new Font("Verdana", Font.PLAIN, 24));
+		frame.getContentPane().add(winnerLabel, "30, 14, fill, fill");
 		
-		JLabel PlayerMonster2 = new JLabel("");
-		PlayerMonster2.setHorizontalAlignment(SwingConstants.LEFT);
-		PlayerMonster2.setFont(new Font("Verdana", Font.PLAIN, 14));
-		frame.getContentPane().add(PlayerMonster2, "10, 18");
+		JLabel playerMonster2 = new JLabel("");
+		playerMonster2.setHorizontalAlignment(SwingConstants.LEFT);
+		playerMonster2.setFont(new Font("Verdana", Font.PLAIN, 14));
+		frame.getContentPane().add(playerMonster2, "10, 18");
 		
-		JLabel PlayerMonster3 = new JLabel("");
-		PlayerMonster3.setHorizontalAlignment(SwingConstants.LEFT);
-		PlayerMonster3.setFont(new Font("Verdana", Font.PLAIN, 14));
-		frame.getContentPane().add(PlayerMonster3, "10, 22");
+		JLabel playerMonster3 = new JLabel("");
+		playerMonster3.setHorizontalAlignment(SwingConstants.LEFT);
+		playerMonster3.setFont(new Font("Verdana", Font.PLAIN, 14));
+		frame.getContentPane().add(playerMonster3, "10, 22");
 		
-		JLabel PlayerMonster4 = new JLabel("");
-		PlayerMonster4.setHorizontalAlignment(SwingConstants.LEFT);
-		PlayerMonster4.setFont(new Font("Verdana", Font.PLAIN, 14));
-		frame.getContentPane().add(PlayerMonster4, "10, 26");
+		JLabel playerMonster4 = new JLabel("");
+		playerMonster4.setHorizontalAlignment(SwingConstants.LEFT);
+		playerMonster4.setFont(new Font("Verdana", Font.PLAIN, 14));
+		frame.getContentPane().add(playerMonster4, "10, 26");
 		
-		JButton ExitButton = new JButton("Exit");
-		ExitButton.addActionListener(new ActionListener() {
+		JButton exitButton = new JButton("Exit");
+		exitButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new MenuWindow(p);
 				frame.dispose();
 			}
 		});
-		frame.getContentPane().add(ExitButton, "30, 26, fill, fill");
+		frame.getContentPane().add(exitButton, "30, 26, fill, fill");
 		
-		if (p.getMonsters().size() >= 2) {
-			changeBorder(PlayerMonster2, p.getMonsters().get(1));
-			PlayerMonster2.setText(p.getMonsters().get(1).getBattleDetails());
-		}
-		
-		if (p.getMonsters().size() >= 3) {
-			changeBorder(PlayerMonster3, p.getMonsters().get(2));
-			PlayerMonster3.setText(p.getMonsters().get(2).getBattleDetails());
-		}
-		
-		if (p.getMonsters().size() >= 4) {
-			changeBorder(PlayerMonster4, p.getMonsters().get(3));
-			PlayerMonster4.setText(p.getMonsters().get(3).getBattleDetails());
-		}
+		List<JLabel> labels = List.of(playerMonster1, playerMonster2, playerMonster3, playerMonster4);
+		checkVisibility(labels, p.getMonsters());
 		
 		if (winner == 2)
 		{
-			WinnerLabel.setText("You won the battle and won " + chosenPlayer.getReward() + " gold!");
+			winnerLabel.setText("You won the battle and won " + chosenPlayer.getReward() + " gold!");
 			p.setGold(chosenPlayer.getReward());
 		}
 		else {
-			WinnerLabel.setText("You lost the battle!");
+			winnerLabel.setText("You lost the battle!");
 		}
 	}
 	
-	private void changeBorder (JLabel label, Monster m)
+	private void checkVisibility(List<JLabel> labels, ArrayList<Monster> monsters)
 	{
-		Border redBorder = BorderFactory.createLineBorder(Color.RED, 5);
-		Border greenBorder = BorderFactory.createLineBorder(Color.GREEN, 5);
-		if (m.getCurrentHealth() <= 0)
+		int size = monsters.size();
+		for (int i = 0; i < 4; i++)
 		{
-			label.setBorder(redBorder);
-		}
-		else {
-			label.setBorder(greenBorder);
+			if (i < size)
+			{
+				healthBorder.changeBorder(labels.get(i), monsters.get(i));
+				labels.get(i).setText(monsters.get(i).getBattleDetails());
+			}
+			else
+			{
+				labels.get(i).setVisible(false);
+			}
 		}
 	}
 }

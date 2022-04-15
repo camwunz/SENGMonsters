@@ -3,8 +3,8 @@ package com.seng.monster;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.time.DayOfWeek;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -13,12 +13,11 @@ import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.FormSpecs;
 import com.jgoodies.forms.layout.RowSpec;
+
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
-import javax.swing.text.html.HTMLDocument.HTMLReader.IsindexAction;
 
 import java.awt.Font;
-import java.awt.PrintGraphics;
 
 public class BattleChoiceWindow {
 
@@ -38,7 +37,7 @@ public class BattleChoiceWindow {
 				p.addItem(new Monster());
 				p.addItem(new Monster());
 				int day = p.getDays();
-				ArrayList <OpposingPlayer> players = p.getOpponents(day);
+				ArrayList <OpposingPlayer> players = p.getOpponents();
 				try {
 					BattleChoiceWindow window = new BattleChoiceWindow(players, p, day);
 					window.frame.setVisible(true);
@@ -97,103 +96,85 @@ public class BattleChoiceWindow {
 				RowSpec.decode("max(38dlu;default)"),}));
 		
 		
-		JButton BattleChoice1 = new JButton("");
-		if (opposingPlayers.size() > 0)
-		{
-			BattleChoice1.setText(opposingPlayers.get(0).getPromptHTML());
-			BattleChoice1.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					OpposingPlayer chosenEnemy = opposingPlayers.get(0);
-					p.removeOpponent(day, 0);
-					new BattleWindow(chosenEnemy, p, 1);
-					frame.dispose();
-				}
-			});
-		}
-		else {
-			BattleChoice1.setVisible(false);
-		}
-		frame.getContentPane().add(BattleChoice1, "8, 4, fill, fill");
+		JButton battleChoice1 = new JButton("");
+		battleChoice1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				chooseBattle(0, opposingPlayers, p);
+			}
+		});
+		frame.getContentPane().add(battleChoice1, "8, 4, fill, fill");
 		
-		JButton BattleChoice2 = new JButton("");
-		if (opposingPlayers.size() > 1)
-		{
-			
-			BattleChoice2.setText(opposingPlayers.get(1).getPromptHTML());
-			BattleChoice2.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					OpposingPlayer chosenEnemy = opposingPlayers.get(1);
-					p.removeOpponent(day, 1);
-					new BattleWindow(chosenEnemy, p, 1);
-					frame.dispose();
-				}
-			});
-		}
-		else 
-		{
-			BattleChoice2.setVisible(false);
-		}
-		frame.getContentPane().add(BattleChoice2, "18, 4, fill, fill");
+		JButton battleChoice2 = new JButton("");
+		battleChoice2.setText(opposingPlayers.get(1).getPromptHTML());
+		battleChoice2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				chooseBattle(1, opposingPlayers, p);
+			}
+		});
+		frame.getContentPane().add(battleChoice2, "18, 4, fill, fill");
 		
-		JButton BattleChoice3 = new JButton("");
-		if (opposingPlayers.size() > 2)
-		{
-			
-			BattleChoice3.setText(opposingPlayers.get(2).getPromptHTML());
-			BattleChoice3.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					OpposingPlayer chosenEnemy = opposingPlayers.get(2);
-					p.removeOpponent(day, 2);
-					new BattleWindow(chosenEnemy, p, 1);
-					frame.dispose();
-				}
-			});
-		}
-		else {
-			BattleChoice3.setVisible(false);
-		}
-		
-		frame.getContentPane().add(BattleChoice3, "8, 10, fill, fill");
+		JButton battleChoice3 = new JButton("");
+		battleChoice3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				chooseBattle(2, opposingPlayers, p);
+			}
+		});
+		frame.getContentPane().add(battleChoice3, "8, 10, fill, fill");
 		
 		
-		JLabel ExitLabel = new JLabel("");
-		ExitLabel.setFont(new Font("Tahoma", Font.PLAIN, 23));
-		ExitLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		frame.getContentPane().add(ExitLabel, "8, 6, 11, 1");
+		JLabel exitLabel = new JLabel("");
+		exitLabel.setFont(new Font("Tahoma", Font.PLAIN, 23));
+		exitLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		frame.getContentPane().add(exitLabel, "8, 6, 11, 1");
 		if (opposingPlayers.size() < 1)
 		{
-			ExitLabel.setText("No more opponents for today!");
+			exitLabel.setText("No more opponents for today!");
 		}
 		
 		
-		JButton BattleChoice4 = new JButton("");
-		if (opposingPlayers.size() > 3)
-		{
-			
-			BattleChoice4.setText(opposingPlayers.get(3).getPromptHTML());
-			BattleChoice4.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					OpposingPlayer chosenEnemy = opposingPlayers.get(3);
-					p.removeOpponent(day, 3);
-					new BattleWindow(chosenEnemy, p, 1);
-					frame.dispose();
-				}
-			});
-		}
-		else
-		{
-			BattleChoice4.setVisible(false);
-		}
-		frame.getContentPane().add(BattleChoice4, "18, 10, fill, fill");
+		JButton battleChoice4 = new JButton("");
+		battleChoice4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				chooseBattle(3, opposingPlayers, p);
+			}
+		});
+		frame.getContentPane().add(battleChoice4, "18, 10, fill, fill");
 		
-		JButton BattleChoiceExit = new JButton("Exit");
-		BattleChoiceExit.addActionListener(new ActionListener() {
+		JButton battleChoiceExit = new JButton("Exit");
+		battleChoiceExit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new MenuWindow(p);
 				frame.dispose();
 			}
 		});
-		frame.getContentPane().add(BattleChoiceExit, "9, 12, 8, 1");
+		frame.getContentPane().add(battleChoiceExit, "9, 12, 8, 1");
+		
+		List<JButton> battleButtons = List.of(battleChoice1, battleChoice2, battleChoice3, battleChoice4);
+		checkVisibility(battleButtons, opposingPlayers);
+	}
+			
+	private void chooseBattle(int index, ArrayList<OpposingPlayer> players, Player p)
+	{
+		OpposingPlayer chosenEnemy = players.get(index);
+		p.removeOpponent(index);
+		new BattleWindow(chosenEnemy, p);
+		frame.dispose();
+	}
+	
+	private void checkVisibility(List<JButton> battleButtons, ArrayList<OpposingPlayer> opposingPlayers)
+	{
+		int size = opposingPlayers.size();
+		for (int i = 0; i < 4; i++)
+		{
+			if (i < size)
+			{
+				battleButtons.get(i).setText(opposingPlayers.get(i).getPromptHTML());
+			}
+			else
+			{
+				battleButtons.get(i).setVisible(false);
+			}
+		}
 	}
 
 }

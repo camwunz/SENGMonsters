@@ -2,7 +2,6 @@ package com.seng.monster;
 
 import java.util.Random;
 
-import javax.print.attribute.standard.OutputDeviceAssigned;
 
 public class OpposingPlayer extends BasePlayer{
 	

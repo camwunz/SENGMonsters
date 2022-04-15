@@ -4,14 +4,11 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JButton;
-import java.awt.BorderLayout;
-import javax.swing.JSplitPane;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
 import com.jgoodies.forms.layout.FormSpecs;
 import java.awt.Font;
-import javax.swing.JSeparator;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -53,7 +50,8 @@ public class ShopfrontWindow {
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize(Player p) {
+	private void initialize(Player p) 
+	{
 		frame = new JFrame();
 		frame.setBounds(100, 100, 750, 500);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -86,24 +84,24 @@ public class ShopfrontWindow {
 				FormSpecs.RELATED_GAP_ROWSPEC,
 				RowSpec.decode("max(115dlu;default)"),}));
 		
-		JButton MonsterShop = new JButton("Monster Shop");
-		MonsterShop.addActionListener(new ActionListener() {
+		JButton monsterShop = new JButton("Monster Shop");
+		monsterShop.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new ShopWindow(p, p.getMonsters(), p.getDailyMonsters(p.getDays()));
+				new ShopWindow(p, p.getMonsters(), p.getDailyMonsters());
 				frame.dispose();
 			}
 		});
-		MonsterShop.setFont(new Font("Verdana", Font.PLAIN, 30));
-		frame.getContentPane().add(MonsterShop, "8, 10, fill, fill");
+		monsterShop.setFont(new Font("Verdana", Font.PLAIN, 30));
+		frame.getContentPane().add(monsterShop, "8, 10, fill, fill");
 		
-		JButton ItemShop = new JButton("<html>Item Shop </html>");
-		ItemShop.addActionListener(new ActionListener() {
+		JButton itemShop = new JButton("<html>Item Shop </html>");
+		itemShop.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new ShopWindow(p, p.getItems(), p.getDailyItem(p.getDays()));
+				new ShopWindow(p, p.getItems(), p.getDailyItem());
 			}
 		});
-		ItemShop.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		frame.getContentPane().add(ItemShop, "16, 10, fill, fill");
+		itemShop.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		frame.getContentPane().add(itemShop, "16, 10, fill, fill");
 	}
 
 }

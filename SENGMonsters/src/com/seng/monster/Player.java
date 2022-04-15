@@ -1,6 +1,5 @@
 package com.seng.monster;
 import java.util.ArrayList;
-import java.util.Spliterator.OfPrimitive;
 
 public class Player extends BasePlayer{
 	
@@ -86,24 +85,24 @@ public class Player extends BasePlayer{
 		score += i;
 	}
 	
-	public ArrayList<Monster> getDailyMonsters(int day)
+	public ArrayList<Monster> getDailyMonsters()
 	{
-		return shopMonsters.get(day-1);
+		return shopMonsters.get(getDays()-1);
 	}
 	
-	public ArrayList<Item> getDailyItem(int day)
+	public ArrayList<Item> getDailyItem()
 	{
-		return shopItems.get(day-1);
+		return shopItems.get(getDays()-1);
 	}
 	
-	public ArrayList<OpposingPlayer> getOpponents(int day)
+	public ArrayList<OpposingPlayer> getOpponents()
 	{
-		return dailyOpponents.get(day-1);
+		return dailyOpponents.get(getDays()-1);
 	}
 	
-	public void removeOpponent(int day, int index)
+	public void removeOpponent(int index)
 	{
-		dailyOpponents.get(day-1).remove(index);
+		dailyOpponents.get(getDays()-1).remove(index);
 	}
 
 	/**
@@ -200,12 +199,12 @@ public class Player extends BasePlayer{
 	
 	public void removeFromShop(Monster m)
 	{
-		getDailyMonsters(getDays()).remove(m);
+		getDailyMonsters().remove(m);
 	}
 	
 	public void removeFromShop(Item i)
 	{
-		getDailyItem(getDays()).remove(i);
+		getDailyItem().remove(i);
 	}
 	
 	

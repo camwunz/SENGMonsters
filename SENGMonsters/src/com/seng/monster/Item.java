@@ -64,7 +64,7 @@ public class Item extends BaseItem{
 				String[] actionList = {"Damage", "Max Health", "Current Health", "Heal Amount"};
 				actionStat = actionList[rand.nextInt(4)];
 				setDescription("Increases a random variable by " + actionImprovement);
-				setPrice(getPrice()*(2/3));
+				setPrice((int) (getPrice()/(1.2)));
 				break;
 		}
 		
@@ -97,6 +97,15 @@ public class Item extends BaseItem{
 		return actionStat;
 	}
 	
+	public String getActionStatHidden()
+	{
+		if (getName().equals("Mystery Berry"))
+		{
+			return "?";
+		}
+		return getActionStat();
+	}
+	
 	/**
 	 * Gets the amount the stat is changing by
 	 * @return the improvement amount
@@ -110,7 +119,7 @@ public class Item extends BaseItem{
 	public String getDetailsSellbackHTML() {
 		String output = "<html>";
 		output += "Name: " + getName() + "<br />";
-		output += "Stat: " + getActionStat() + "<br />";
+		output += "Stat: " + getActionStatHidden() + "<br />";
 		output += "Stat increase: " + getActionImprovement() + "<br />";
 		output += "Selling Price: " + getSellback() + "<html>";
 		return output;
@@ -121,7 +130,7 @@ public class Item extends BaseItem{
 	public String getDetailsPriceHTML() {
 		String output = "<html>";
 		output += "Name: " + getName() + "<br />";
-		output += "Stat: " + getActionStat() + "<br />";
+		output += "Stat: " + getActionStatHidden() + "<br />";
 		output += "Stat increase: " + getActionImprovement() + "<br />";
 		output += "Price: " + getPrice() + "<html>";
 		return output;

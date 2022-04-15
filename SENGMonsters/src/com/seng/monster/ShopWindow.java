@@ -1,41 +1,39 @@
 package com.seng.monster;
 
-import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.im.InputMethodHighlight;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.management.modelmbean.RequiredModelMBean;
-import javax.sound.sampled.LineUnavailableException;
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
-import javax.swing.border.Border;
 
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.FormSpecs;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
-import java.awt.BorderLayout;
 
-public class ShopWindow {
+public class ShopWindow 
+{
 
 	private JFrame frame;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
+	public static void main(String[] args) 
+	{
+		EventQueue.invokeLater(new Runnable() 
+		{
+			public void run() 
+			{
+				try 
+				{
 					ShopWindow window = new ShopWindow(null, null, null);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
@@ -49,15 +47,17 @@ public class ShopWindow {
 	 * Create the application.
 	 * @param p 
 	 */
-	public ShopWindow(Player p, ArrayList<? extends BaseItem> PlayerItems, ArrayList<? extends BaseItem> ShopItems) {
-		initialize(p, PlayerItems, ShopItems);
+	public ShopWindow(Player p, ArrayList<? extends BaseItem> playerItems, ArrayList<? extends BaseItem> shopItems) 
+	{
+		initialize(p, playerItems, shopItems);
 		frame.setVisible(true);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize(Player p, ArrayList<? extends BaseItem> PlayerItems, ArrayList<? extends BaseItem> ShopItems) {
+	private void initialize(Player p, ArrayList<? extends BaseItem> playerItems, ArrayList<? extends BaseItem> shopItems) 
+	{
 		frame = new JFrame();
 		frame.setBounds(100, 100, 750, 500);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -73,13 +73,7 @@ public class ShopWindow {
 				FormSpecs.RELATED_GAP_COLSPEC,
 				ColumnSpec.decode("max(32dlu;default)"),
 				FormSpecs.RELATED_GAP_COLSPEC,
-				FormSpecs.DEFAULT_COLSPEC,
-				FormSpecs.RELATED_GAP_COLSPEC,
-				FormSpecs.DEFAULT_COLSPEC,
-				FormSpecs.RELATED_GAP_COLSPEC,
-				FormSpecs.DEFAULT_COLSPEC,
-				FormSpecs.RELATED_GAP_COLSPEC,
-				FormSpecs.DEFAULT_COLSPEC,
+				ColumnSpec.decode("max(59dlu;default)"),
 				FormSpecs.RELATED_GAP_COLSPEC,
 				FormSpecs.DEFAULT_COLSPEC,
 				FormSpecs.RELATED_GAP_COLSPEC,
@@ -102,11 +96,9 @@ public class ShopWindow {
 				FormSpecs.RELATED_GAP_ROWSPEC,
 				FormSpecs.DEFAULT_ROWSPEC,
 				FormSpecs.RELATED_GAP_ROWSPEC,
-				FormSpecs.DEFAULT_ROWSPEC,
-				FormSpecs.RELATED_GAP_ROWSPEC,
-				FormSpecs.DEFAULT_ROWSPEC,
-				FormSpecs.RELATED_GAP_ROWSPEC,
 				RowSpec.decode("max(13dlu;default)"),
+				FormSpecs.RELATED_GAP_ROWSPEC,
+				FormSpecs.DEFAULT_ROWSPEC,
 				FormSpecs.RELATED_GAP_ROWSPEC,
 				FormSpecs.DEFAULT_ROWSPEC,
 				FormSpecs.RELATED_GAP_ROWSPEC,
@@ -126,41 +118,54 @@ public class ShopWindow {
 				FormSpecs.RELATED_GAP_ROWSPEC,
 				FormSpecs.DEFAULT_ROWSPEC,}));
 		
+		JLabel goldLabel = new JLabel("Current Gold: " + p.getGold());
+		goldLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		goldLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		frame.getContentPane().add(goldLabel, "12, 4, 15, 1");
+		
 		JLabel nameLabel = new JLabel("");
 		nameLabel.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		frame.getContentPane().add(nameLabel, "8, 10");
+		frame.getContentPane().add(nameLabel, "8, 6");
 		
-		if (PlayerItems.size() <= 0)
+		JLabel shopLabel = new JLabel("");
+		shopLabel.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		frame.getContentPane().add(shopLabel, "30, 6");
+		
+		if (playerItems.size() <= 0)
 		{
 			nameLabel.setText("You have no items");
 		}
-		else if (PlayerItems.get(0) instanceof Monster)
+		else if (playerItems.get(0) instanceof Monster)
 		{
 			nameLabel.setText("Your Monsters");
+			shopLabel.setText("New Monsters");
+			
+			if (shopItems.size() <= 0)
+			{
+				shopLabel.setText("<html>No monsters available for today</html>");
+			}
 		}
 		else 
 		{
 			nameLabel.setText("Your Items");
+			shopLabel.setText("New Items");
+			if (shopItems.size() <= 0)
+			{
+				shopLabel.setText("<html>No items available for today</html>");
+			}
 		}
 		
-		
-		int ItemListSize = PlayerItems.size();
-		
-		JLabel shopLabel = new JLabel("");
-		shopLabel.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		frame.getContentPane().add(shopLabel, "36, 10");
 		JLabel playerItem1 = new JLabel("");
-		frame.getContentPane().add(playerItem1, "8, 14");
-		changeLabel(playerItem1, 0, PlayerItems);
+		frame.getContentPane().add(playerItem1, "8, 10");
+		changeLabel(playerItem1, 0, playerItems);
 		
 		JButton itemSell1 = new JButton("Sell");
 		itemSell1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				sellItem(p, 0, PlayerItems, ShopItems);
+				sellItem(p, 0, playerItems, shopItems);
 			}
 		});
-		frame.getContentPane().add(itemSell1, "10, 14");
-		hideButton(itemSell1, 0, ItemListSize);
+		frame.getContentPane().add(itemSell1, "10, 10");
 		if (nameLabel.getText().equals("Your Items"))
 		{
 			itemSell1.setVisible(true);
@@ -169,87 +174,99 @@ public class ShopWindow {
 		JButton itemBuy1 = new JButton("Buy");
 		itemBuy1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				buyItem(p, 0, PlayerItems, ShopItems);
+				buyItem(p, 0, playerItems, shopItems);
 			}
 		});
-		frame.getContentPane().add(itemBuy1, "34, 14");
+		frame.getContentPane().add(itemBuy1, "28, 10");
 		
 		JLabel shopItem1 = new JLabel("");
-		frame.getContentPane().add(shopItem1, "36, 14");
+		frame.getContentPane().add(shopItem1, "30, 10");
 		
 		JLabel playerItem2 = new JLabel("");
-		frame.getContentPane().add(playerItem2, "8, 18");
+		frame.getContentPane().add(playerItem2, "8, 14");
 		
 		JButton itemSell2 = new JButton("Sell");
 		itemSell2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				sellItem(p, 1, PlayerItems, ShopItems);
+				sellItem(p, 1, playerItems, shopItems);
 			}
 		});
-		frame.getContentPane().add(itemSell2, "10, 18");
+		frame.getContentPane().add(itemSell2, "10, 14");
 		
 		JButton itemBuy2 = new JButton("Buy");
 		itemBuy2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				buyItem(p, 1, PlayerItems, ShopItems);
+				buyItem(p, 1, playerItems, shopItems);
 			}
 		});
-		frame.getContentPane().add(itemBuy2, "34, 18");
+		frame.getContentPane().add(itemBuy2, "28, 14");
 		
 		JLabel shopItem2 = new JLabel("");
-		frame.getContentPane().add(shopItem2, "36, 18");
+		frame.getContentPane().add(shopItem2, "30, 14");
 		
 		JLabel playerItem3 = new JLabel("");
-		frame.getContentPane().add(playerItem3, "8, 22");
+		frame.getContentPane().add(playerItem3, "8, 18");
 		
 		JButton itemSell3 = new JButton("Sell");
 		itemSell3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				sellItem(p, 2, PlayerItems, ShopItems);
+				sellItem(p, 2, playerItems, shopItems);
 			}
 		});
-		frame.getContentPane().add(itemSell3, "10, 22");
+		frame.getContentPane().add(itemSell3, "10, 18");
 		
 		JButton itemBuy3 = new JButton("Buy");
 		itemBuy3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				buyItem(p, 2, PlayerItems, ShopItems);
+				buyItem(p, 2, playerItems, shopItems);
 			}
 		});
-		frame.getContentPane().add(itemBuy3, "34, 22");
+		frame.getContentPane().add(itemBuy3, "28, 18");
 		
 		JLabel shopItem3 = new JLabel("");
-		frame.getContentPane().add(shopItem3, "36, 22");
+		frame.getContentPane().add(shopItem3, "30, 18");
 		
 		JLabel playerItem4 = new JLabel("");
-		frame.getContentPane().add(playerItem4, "8, 26");
+		frame.getContentPane().add(playerItem4, "8, 22");
 		
 		JButton itemSell4 = new JButton("Sell");
 		itemSell4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				sellItem(p, 3, PlayerItems, ShopItems);
+				sellItem(p, 3, playerItems, shopItems);
 			}
 		});
-		frame.getContentPane().add(itemSell4, "10, 26");
+		frame.getContentPane().add(itemSell4, "10, 22");
 		
 		JButton itemBuy4 = new JButton("Buy");
 		itemBuy4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				buyItem(p, 3, PlayerItems, ShopItems);
+				buyItem(p, 3, playerItems, shopItems);
 			}
 		});
-		frame.getContentPane().add(itemBuy4, "34, 26");
+		frame.getContentPane().add(itemBuy4, "28, 22");
 		
 		JLabel shopItem4 = new JLabel("");
-		frame.getContentPane().add(shopItem4, "36, 26");
+		frame.getContentPane().add(shopItem4, "30, 22");
 		
 		List<JLabel> sellLabels = List.of(playerItem1, playerItem2, playerItem3, playerItem4);
 		List<JButton> sellButtons = List.of(itemSell1, itemSell2, itemSell3, itemSell4);
-		checkVisibility(PlayerItems, sellLabels, sellButtons, true);
+		checkVisibility(playerItems, sellLabels, sellButtons, true);
 		
 		List<JLabel> buyLabels = List.of(shopItem1, shopItem2, shopItem3, shopItem4);
 		List<JButton> buyButtons = List.of(itemBuy1, itemBuy2, itemBuy3, itemBuy4);
-		checkVisibility(ShopItems, buyLabels, buyButtons, false);
+		checkVisibility(shopItems, buyLabels, buyButtons, false);
+		
+		JButton exitButton = new JButton("Exit");
+		exitButton.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
+				new MenuWindow(p);
+				frame.dispose();
+			}
+		});
+		frame.getContentPane().add(exitButton, "12, 24, 11, 1");
+		
 		
 		
 	}
@@ -266,7 +283,7 @@ public class ShopWindow {
 			}
 			else 
 			{
-				changeBorder(labels.get(i), items.get(i));
+				healthBorder.changeBorder(labels.get(i), items.get(i));
 				if (selling)
 				{
 					labels.get(i).setText(items.get(i).getDetailsSellbackHTML());
@@ -277,14 +294,6 @@ public class ShopWindow {
 				}
 				
 			}
-		}
-	}
-	
-	private void hideButton(JButton button, int index, int size)
-	{
-		if (index >= size || size == 1)
-		{
-			button.setVisible(false);
 		}
 	}
 	
@@ -313,14 +322,14 @@ public class ShopWindow {
 				{
 					p.addItem((Monster) shopItems.get(index));
 					p.removeFromShop((Monster) shopItems.get(index));
-					new ShopWindow(p, items, p.getDailyMonsters(p.getDays()));
+					new ShopWindow(p, items, p.getDailyMonsters());
 					
 				}
 				else
 				{
 					p.addItem((Item) shopItems.get(index));
 					p.removeFromShop((Item) shopItems.get(index));
-					new ShopWindow(p, items, p.getDailyItem(p.getDays()));
+					new ShopWindow(p, items, p.getDailyItem());
 				}
 			}
 			
@@ -342,26 +351,13 @@ public class ShopWindow {
 		frame.dispose();
 	}
 	
-	private void changeLabel(JLabel label, int index, ArrayList<? extends BaseItem> ItemList)
+	private void changeLabel(JLabel label, int index, ArrayList<? extends BaseItem> itemList)
 	{
-		if (index < ItemList.size())
+		if (index < itemList.size())
 		{
-			changeBorder(label, ItemList.get(index));
-			label.setText((ItemList.get(index)).getDetailsSellbackHTML());
-			label.setText((ItemList.get(index)).getDetailsSellbackHTML());
-		}
-	}
-	
-	private void changeBorder (JLabel label, BaseItem i)
-	{
-		Border redBorder = BorderFactory.createLineBorder(Color.RED, 5);
-		Border greenBorder = BorderFactory.createLineBorder(Color.GREEN, 5);
-		if (i.getCurrentHealth() <= 0)
-		{
-			label.setBorder(redBorder);
-		}
-		else {
-			label.setBorder(greenBorder);
+			healthBorder.changeBorder(label, itemList.get(index));
+			label.setText((itemList.get(index)).getDetailsSellbackHTML());
+			label.setText((itemList.get(index)).getDetailsSellbackHTML());
 		}
 	}
 
