@@ -18,6 +18,8 @@ import com.jgoodies.forms.layout.FormSpecs;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
 
+
+// TODO EMPTY SHOP
 public class ShopWindow 
 {
 
