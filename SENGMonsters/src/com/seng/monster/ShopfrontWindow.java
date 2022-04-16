@@ -87,7 +87,7 @@ public class ShopfrontWindow {
 		JButton monsterShop = new JButton("Monster Shop");
 		monsterShop.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new ShopWindow(p, p.getMonsters(), p.getDailyMonsters());
+				new ShopWindow(p, p.getMonsters(), p.getDailyMonsters(), "monster");
 				frame.dispose();
 			}
 		});
@@ -97,7 +97,8 @@ public class ShopfrontWindow {
 		JButton itemShop = new JButton("<html>Item Shop </html>");
 		itemShop.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new ShopWindow(p, p.getItems(), p.getDailyItem());
+				new ShopWindow(p, p.getItems(), p.getDailyItem(), "item");
+				frame.dispose();
 			}
 		});
 		itemShop.setFont(new Font("Tahoma", Font.PLAIN, 30));

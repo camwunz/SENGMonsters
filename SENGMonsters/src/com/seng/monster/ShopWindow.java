@@ -36,7 +36,7 @@ public class ShopWindow
 			{
 				try 
 				{
-					ShopWindow window = new ShopWindow(null, null, null);
+					ShopWindow window = new ShopWindow(null, null, null, "");
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -49,16 +49,16 @@ public class ShopWindow
 	 * Create the application.
 	 * @param p 
 	 */
-	public ShopWindow(Player p, ArrayList<? extends BaseItem> playerItems, ArrayList<? extends BaseItem> shopItems) 
+	public ShopWindow(Player p, ArrayList<? extends BaseItem> playerItems, ArrayList<? extends BaseItem> shopItems, String type) 
 	{
-		initialize(p, playerItems, shopItems);
+		initialize(p, playerItems, shopItems, type);
 		frame.setVisible(true);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize(Player p, ArrayList<? extends BaseItem> playerItems, ArrayList<? extends BaseItem> shopItems) 
+	private void initialize(Player p, ArrayList<? extends BaseItem> playerItems, ArrayList<? extends BaseItem> shopItems, String type) 
 	{
 		frame = new JFrame();
 		frame.setBounds(100, 100, 750, 500);
@@ -133,11 +133,8 @@ public class ShopWindow
 		shopLabel.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		frame.getContentPane().add(shopLabel, "30, 6");
 		
-		if (playerItems.size() <= 0)
-		{
-			nameLabel.setText("You have no items");
-		}
-		else if (playerItems.get(0) instanceof Monster)
+		
+		if (type.equals("monster"))
 		{
 			nameLabel.setText("Your Monsters");
 			shopLabel.setText("New Monsters");
@@ -155,6 +152,10 @@ public class ShopWindow
 			{
 				shopLabel.setText("<html>No items available for today</html>");
 			}
+		}
+		if (playerItems.size() <= 0)
+		{
+			nameLabel.setText("You have no " + type + "s");
 		}
 		
 		JLabel playerItem1 = new JLabel("");
@@ -278,8 +279,14 @@ public class ShopWindow
 		int listSize = items.size();
 		for (int i = 0; i < 4; i++)
 		{
+			if (listSize == 1 && i == 0 && items.get(i) instanceof Monster && selling)
+			{
+				buttons.get(i).setVisible(false);
+			}
+			
 			if (i >= listSize)
 			{
+				
 				labels.get(i).setVisible(false);
 				buttons.get(i).setVisible(false);
 			}
@@ -324,14 +331,16 @@ public class ShopWindow
 				{
 					p.addItem((Monster) shopItems.get(index));
 					p.removeFromShop((Monster) shopItems.get(index));
-					new ShopWindow(p, items, p.getDailyMonsters());
+					new ShopWindow(p, items, p.getDailyMonsters(), "monster");
+					frame.dispose();
 					
 				}
 				else
 				{
 					p.addItem((Item) shopItems.get(index));
 					p.removeFromShop((Item) shopItems.get(index));
-					new ShopWindow(p, items, p.getDailyItem());
+					new ShopWindow(p, items, p.getDailyItem(), "item");
+					frame.dispose();
 				}
 			}
 			
@@ -342,12 +351,12 @@ public class ShopWindow
 		if (items.get(index) instanceof Monster)
 		{
 			p.removeItem(items.get(index));
-			new ShopWindow(p, p.getMonsters(), shopItems);
+			new ShopWindow(p, p.getMonsters(), shopItems, "monster");
 		}
 		else 
 		{
 			p.removeItem(items.get(index));
-			new ShopWindow(p, p.getItems(), shopItems);
+			new ShopWindow(p, p.getItems(), shopItems, "item");
 		}
 		
 		frame.dispose();
