@@ -153,14 +153,22 @@ public class CommandLineInterface {
 				// View Battles
 				else if (outcome == 3)
 				{
-					boolean win = battleChoice(p, i);
-					if (!win && p.getGold() < 12)
+					if (p.getOpponents().size() == 0)
 					{
-						System.out.println("Game over!");
-						System.out.println("You don't have any alive monsters or gold to buy more!");
-						System.out.println("Score: " + p.getScore());
-						return;
+						System.out.println("No more opponents today");
 					}
+					else 
+					{
+						boolean win = battleChoice(p, i);
+						if (!win && p.getGold() < 12)
+						{
+							System.out.println("Game over!");
+							System.out.println("You don't have any alive monsters or gold to buy more!");
+							System.out.println("Score: " + p.getScore());
+							return;
+						}
+					}
+					
 					
 				}
 				// View Shop
@@ -233,6 +241,7 @@ public class CommandLineInterface {
 							System.out.println(tempMon.getName() + " joined your party overnight!");
 						}
 					}
+					p.addDay();
 					break;
 				}
 			}
@@ -265,19 +274,23 @@ public class CommandLineInterface {
 				{
 					System.out.println("You cannot buy new monsters as your party is full.");
 				}
-				System.out.println("Here are 4 new monsters: ");
-				ArrayList<Monster> monsters = new ArrayList<Monster>();
-				for (int i = 0; i < 4; i++)
+				ArrayList<Monster> monsters = p.getDailyMonsters();
+				System.out.println("Here are some new monsters: ");
+				if (monsters.size() == 0)
+				{
+					System.out.println("No more monsters for today");
+					break;
+				}
+				for (int i = 0; i < monsters.size(); i++)
 				{
 					System.out.println((i+1) + ") ");
-					monsters.add(new Monster());
 					System.out.println(monsters.get(i).getDetails());
 					System.out.println("Price: " + monsters.get(i).getPrice() + "\n");
 				}
 				System.out.println("5) Exit");
 				
-				int monsterPicker = getIntBounds("What would you like? [1-5]", 1, 5);
-				if (monsterPicker == 5)
+				int monsterPicker = getIntBounds("What would you like? [1-" + monsters.size()+1 + "]", 1, monsters.size()+1);
+				if (monsterPicker == monsters.size()+1)
 				{
 					break;
 				}
@@ -291,24 +304,24 @@ public class CommandLineInterface {
 				else {
 					p.addItem(monsters.get(monsterPicker));
 					System.out.println(monsters.get(monsterPicker).getName() + " has been bought");
+					p.removeFromShop(monsters.get(monsterPicker));
 					break;
 				}
 			}
 			// buy items
 			if (outcome == 1)
 			{
-				System.out.println("Here are 4 new items: ");
-				ArrayList<Item> items = new ArrayList<Item>();
-				for (int i = 0; i < 4; i++)
+				System.out.println("Here are some new items: ");
+				ArrayList<Item> items = p.getItems();
+				for (int i = 0; i < items.size(); i++)
 				{
 					System.out.println((i+1) + ") ");
-					items.add(new Item());
 					System.out.println(items.get(i).getDetails());
 				}
 				System.out.println("5) Exit");
 				
-				int itemPicker = getIntBounds("What would you like? [1-5]", 1, 5);
-				if (itemPicker == 5)
+				int itemPicker = getIntBounds("What would you like? [1-" + items.size()+1 + "]", 1, items.size()+1);
+				if (itemPicker == items.size()+1)
 				{
 					break;	
 				}
@@ -322,6 +335,7 @@ public class CommandLineInterface {
 				else {
 					p.addItem(items.get(itemPicker));
 					System.out.println(items.get(itemPicker).getName() + " has been bought");
+					p.removeFromShop(items.get(itemPicker));
 					break;
 				}
 			}
@@ -470,14 +484,12 @@ public class CommandLineInterface {
 	 */
 	private static boolean battleChoice(Player p, int day)
 	{
-		ArrayList<OpposingPlayer> players = new ArrayList<OpposingPlayer>();
-		for (int i = 0; i < 4; i++)
+		ArrayList<OpposingPlayer> players = p.getOpponents();
+		for (int i = 0; i < players.size(); i++)
 		{
-			OpposingPlayer tempPlayer = new OpposingPlayer(day);
-			players.add(tempPlayer);
-			System.out.println((i+1) + ") " + tempPlayer.getDetails());
+			System.out.println((i+1) + ") " + players.get(i).getDetails());
 		}
-		int playerIndex = getIntBounds("Which battle would you like? [1-4]", 1, 4);
+		int playerIndex = getIntBounds("Which battle would you like? [1-" + players.size() + "]", 1, players.size());
 		Battle battle = new Battle(p, players.get(playerIndex-1));
 		boolean win = battle.startBattle();
 		return win;

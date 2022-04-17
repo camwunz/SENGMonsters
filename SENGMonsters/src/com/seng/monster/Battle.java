@@ -189,6 +189,7 @@ public class Battle {
 	private ArrayList<String> attack(BasePlayer attacking, BasePlayer defending) {
 		
 		Monster firstMonster = null;
+		Monster firstEnemy = null;
 		for (Monster m : attacking.getMonsters())
 		{
 			if (m.getCurrentHealth() > 0)
@@ -198,7 +199,6 @@ public class Battle {
 			}
 		}
 		
-		Monster firstEnemy = null;
 		for (Monster m : defending.getMonsters())
 		{
 			if (m.getCurrentHealth() > 0)
@@ -208,16 +208,16 @@ public class Battle {
 			}
 		}
 		
+		ArrayList<String> output = new ArrayList<String>();;
 		if (firstEnemy.takeAttack(firstMonster.getDamage()))
 		{
-			ArrayList<String> output = new ArrayList<String>();
 			output.add(defending.getName() + "'s " + firstEnemy.getName() + " fainted after " + firstMonster.getDamage() + " damage from " + attacking.getName() + "'s " + firstMonster.getName());
 			output.add("true");
 			return output;
 		
 		}
 		else {
-			ArrayList<String> output = new ArrayList<String>();;
+			
 			output.add(attacking.getName() + "'s " + firstMonster.getName() + " did " + firstMonster.getDamage() + " damage to " + defending.getName() + "'s " + firstEnemy.getName() + "!");
 			output.add("false");
 			return output;
