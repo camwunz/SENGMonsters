@@ -39,7 +39,7 @@ public class BattleChoiceWindow {
 				int day = p.getDays();
 				ArrayList <OpposingPlayer> players = p.getOpponents();
 				try {
-					BattleChoiceWindow window = new BattleChoiceWindow(players, p, day);
+					BattleChoiceWindow window = new BattleChoiceWindow(p);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -51,14 +51,16 @@ public class BattleChoiceWindow {
 	/**
 	 * Create the application.
 	 */
-	public BattleChoiceWindow(ArrayList<OpposingPlayer> opposingPlayers, Player p, int day) {
-		initialize(opposingPlayers, p, day);
+	public BattleChoiceWindow(Player p) {
+		initialize(p);
+		frame.setVisible(true);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize(ArrayList<OpposingPlayer> opposingPlayers, Player p, int day) {
+	private void initialize(Player p) {
+		ArrayList<OpposingPlayer> opposingPlayers = p.getOpponents();
 		frame = new JFrame();
 		frame.setBounds(100, 100, 750, 500);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

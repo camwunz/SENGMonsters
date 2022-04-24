@@ -187,6 +187,17 @@ public class Monster extends BaseItem{
 		
 	}
 	
+	public String getDetailsHTML()
+	{
+		String output = "<html>";
+		output += "Name: " + getName() + "<br />";
+		output += "Current Health: " + getCurrentHealth() + "<br />";
+		output += "Max Health: " + getHealth() + "<br />";
+		output += "Attack: " + getDamage() + "</html>";
+		return output;
+		
+	}
+	
 	public String getBattleDetails()
 	{
 		String output = "<html>";

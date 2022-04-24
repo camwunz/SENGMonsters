@@ -45,6 +45,7 @@ public class ShopfrontWindow {
 	 */
 	public ShopfrontWindow(Player p) {
 		initialize(p);
+		frame.setVisible(true);
 	}
 
 	/**
