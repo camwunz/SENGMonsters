@@ -156,7 +156,7 @@ public class BattleFinishWindow {
 		if (winner == 2)
 		{
 			winnerLabel.setText("You won the battle and won " + chosenPlayer.getReward() + " gold!");
-			p.setGold(chosenPlayer.getReward());
+			p.addGold(chosenPlayer.getReward());
 		}
 		else {
 			winnerLabel.setText("You lost the battle!");
@@ -171,7 +171,7 @@ public class BattleFinishWindow {
 			if (i < size)
 			{
 				healthBorder.changeBorder(labels.get(i), monsters.get(i));
-				labels.get(i).setText(monsters.get(i).getBattleDetails());
+				labels.get(i).setText(monsters.get(i).getDetails(true));
 			}
 			else
 			{

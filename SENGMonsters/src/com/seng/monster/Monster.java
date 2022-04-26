@@ -176,24 +176,20 @@ public class Monster extends BaseItem{
 	 * Gets the monsters details
 	 * @return the string of the details
 	 */
-	public String getDetails()
+	public String getDetails(boolean html)
 	{
-		String output = "";
-		output += "Name: " + getName() + "\n";
-		output += "Current Health: " + getCurrentHealth() + "\n";
-		output += "Max Health: " + getHealth() + "\n";
-		output += "Attack: " + getDamage();
-		return output;
-		
-	}
-	
-	public String getDetailsHTML()
-	{
-		String output = "<html>";
-		output += "Name: " + getName() + "<br />";
-		output += "Current Health: " + getCurrentHealth() + "<br />";
-		output += "Max Health: " + getHealth() + "<br />";
-		output += "Attack: " + getDamage() + "</html>";
+		String sep = "\n";
+		String start = "";
+		if (html)
+		{
+			start = "<html>";
+			sep = "<br />";
+		}
+		String output = start;
+		output += "Name: " + getName() + sep;
+		output += "Current Health: " + getCurrentHealth() + sep;
+		output += "Max Health: " + getHealth() + sep;
+		output += "Attack: " + getDamage() + sep;
 		return output;
 		
 	}
@@ -201,18 +197,26 @@ public class Monster extends BaseItem{
 	public String getBattleDetails()
 	{
 		String output = "<html>";
-		output += getName() + "<br />";
-		output += "Damage: " + getDamage() + "<br />";
-		output += "Current Health: " + getCurrentHealth() + "<html>";
+		output += "Name: " + getName() + "<br />";
+		output += "Max Health: " + getHealth() + "<br />";
+		output += "Attack: " + getDamage() + "<br />";
 		return output;
 	}
+
 	
-	public String getDetailsShopSellbackHTML()
+	public String getDetailsSellback(boolean html)
 	{
-		String output = "<html>" + getName() + "<br />";
-		output += "Damage: " + getDamage() + "<br />";
-		output += "Max Health: " + getHealth() + "<br />";
-		output += "Selling Price: " + getSellback() + "<html>";
+		String sep = "\n";
+		String start = "";
+		if (html)
+		{
+			start = "<html>";
+			sep = "<br />";
+		}
+		String output = start + getName() + sep;
+		output += "Damage: " + getDamage() + sep;
+		output += "Max Health: " + getHealth() + sep;
+		output += "Selling Price: " + getSellback() + sep;
 		return output;
 	}
 	/**
@@ -253,20 +257,18 @@ public class Monster extends BaseItem{
 	}
 
 	@Override
-	public String getDetailsSellbackHTML() {
-		String output = "<html>" + getName() + "<br />";
-		output += "Damage: " + getDamage() + "<br />";
-		output += "Max Health: " + getHealth() + "<br />";
-		output += "Selling Price: " + getSellback() + "<html>";
-		return output;
-	}
-
-	@Override
-	public String getDetailsPriceHTML() {
-		String output = "<html>" + getName() + "<br />";
-		output += "Damage: " + getDamage() + "<br />";
-		output += "Max Health: " + getHealth() + "<br />";
-		output += "Price: " + getPrice() + "<html>";
+	public String getDetailsPrice(boolean html) {
+		String sep = "\n";
+		String start = "";
+		if (html)
+		{
+			start = "<html>";
+			sep = "<br />";
+		}
+		String output = start + getName() + sep;
+		output += "Damage: " + getDamage() + sep;
+		output += "Max Health: " + getHealth() + sep;
+		output += "Price: " + getPrice() + sep;
 		return output;
 	}
 }

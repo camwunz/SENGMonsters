@@ -142,7 +142,7 @@ public class Player extends BasePlayer{
 	 * Increase the users gold
 	 * @param amount amount to add to the player's balance
 	 */
-	public void setGold(Integer amount) {
+	public void addGold(Integer amount) {
 		gold += amount;
 	}
 	

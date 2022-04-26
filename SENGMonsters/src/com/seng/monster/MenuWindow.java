@@ -31,7 +31,7 @@ public class MenuWindow {
 				try {
 					Player p = new Player(1, 10);
 					p.setName("Cameron");
-					p.setGold(9999);
+					p.addGold(9999);
 					p.addItem(new Monster());
 					
 					MenuWindow window = new MenuWindow(p);
@@ -199,7 +199,7 @@ public class MenuWindow {
 			}
 			else 
 			{
-				labels.get(i).setText(monsters.get(i).getDetailsHTML());
+				labels.get(i).setText(monsters.get(i).getDetails(true));
 				healthBorder.changeBorder(labels.get(i), monsters.get(i));
 				
 			}

@@ -31,7 +31,7 @@ public class BattleChoiceWindow {
 			public void run() {
 				Player p = new Player(1, 10);
 				p.setName("Cameron");
-				p.setGold(99999);
+				p.addGold(99999);
 				p.addItem(new Monster());
 				p.addItem(new Monster());
 				p.addItem(new Monster());

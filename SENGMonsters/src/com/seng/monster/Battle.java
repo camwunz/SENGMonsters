@@ -138,7 +138,7 @@ public class Battle {
 			System.out.println("You won the battle!");
 			System.out.println("Use the " + enemy.getReward() + " gold to buy more monsters or items!\n");
 			user.addToScore((int)(enemy.getReward()/2));
-			user.setGold(enemy.getReward());
+			user.addGold(enemy.getReward());
 			return true;
 		}
 		

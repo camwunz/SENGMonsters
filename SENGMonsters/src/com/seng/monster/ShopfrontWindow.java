@@ -24,7 +24,7 @@ public class ShopfrontWindow {
 			public void run() {
 				try {
 					Player p = new Player(1,10);
-					p.setGold(9999);
+					p.addGold(9999);
 					p.addItem(new Monster());
 					p.addItem(new Monster());
 					p.addItem(new Monster());

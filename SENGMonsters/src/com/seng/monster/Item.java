@@ -116,23 +116,37 @@ public class Item extends BaseItem{
 	}
 
 	@Override
-	public String getDetailsSellbackHTML() {
-		String output = "<html>";
-		output += "Name: " + getName() + "<br />";
-		output += "Stat: " + getActionStatHidden() + "<br />";
-		output += "Stat increase: " + getActionImprovement() + "<br />";
-		output += "Selling Price: " + getSellback() + "<html>";
+	public String getDetailsSellback(boolean html) {
+		String sep = "\n";
+		String start = "";
+		if (html)
+		{
+			start = "<html>";
+			sep = "<br />";
+		}
+		String output = start;
+		output += "Name: " + getName() + sep;
+		output += "Stat: " + getActionStatHidden() + sep;
+		output += "Stat increase: " + getActionImprovement() + sep;
+		output += "Selling Price: " + getSellback() + sep;
 		return output;
 		
 	}
 	
 	@Override
-	public String getDetailsPriceHTML() {
-		String output = "<html>";
-		output += "Name: " + getName() + "<br />";
-		output += "Stat: " + getActionStatHidden() + "<br />";
-		output += "Stat increase: " + getActionImprovement() + "<br />";
-		output += "Price: " + getPrice() + "<html>";
+	public String getDetailsPrice(boolean html) {
+		String sep = "\n";
+		String start = "";
+		if (html)
+		{
+			start = "<html>";
+			sep = "<br />";
+		}
+		String output = start;
+		output += "Name: " + getName() + sep;
+		output += "Stat: " + getActionStatHidden() + sep;
+		output += "Stat increase: " + getActionImprovement() + sep;
+		output += "Price: " + getPrice() + sep;
 		return output;
 		
 	}

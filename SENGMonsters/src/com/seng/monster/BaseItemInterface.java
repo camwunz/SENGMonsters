@@ -2,8 +2,8 @@ package com.seng.monster;
 
 public interface BaseItemInterface {
 	
-	String getDetailsSellbackHTML();
-	String getDetailsPriceHTML();
+	String getDetailsSellback(boolean html);
+	String getDetailsPrice(boolean html);
 	int getCurrentHealth();
 
 }

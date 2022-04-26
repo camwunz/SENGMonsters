@@ -25,7 +25,7 @@ public class CommandLineInterface {
 		Player player = new Player(tempDiff, tempDays);
 		player.setName(tempName);
 		player.addItem(tempMonster);
-		player.setGold(tempMonster.getPrice());
+		player.addGold(tempMonster.getPrice());
 		mainLoop(player);
 	}
 	
@@ -230,7 +230,7 @@ public class CommandLineInterface {
 				for (int i = 0; i < monsters.size(); i++)
 				{
 					System.out.println((i+1) + ") ");
-					System.out.println(monsters.get(i).getDetails());
+					System.out.println(monsters.get(i).getDetails(false));
 					System.out.println("Price: " + monsters.get(i).getPrice() + "\n");
 				}
 				System.out.println("5) Exit");
@@ -367,7 +367,7 @@ public class CommandLineInterface {
 		System.out.println("-------------------Monsters-------------------\n");
 		for (Monster m: p.getMonsters())
 		{
-			System.out.println(m.getDetails());
+			System.out.println(m.getDetails(false));
 			System.out.println("\n");
 		}
 		System.out.println("----------------------------------------------");
@@ -397,7 +397,7 @@ public class CommandLineInterface {
 				for (Monster m: p.getMonsters())
 				{
 					System.out.println((i+1) + ") ");
-					System.out.println(m.getDetails());
+					System.out.println(m.getDetails(false));
 				}
 				int monsterIndex = getIntBounds("Which monster? [1-" + monsterCount + "]", 1, monsterCount);
 				useItem(itemIndex-1, monsterIndex-1, p);

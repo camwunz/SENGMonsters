@@ -295,11 +295,11 @@ public class ShopWindow
 				healthBorder.changeBorder(labels.get(i), items.get(i));
 				if (selling)
 				{
-					labels.get(i).setText(items.get(i).getDetailsSellbackHTML());
+					labels.get(i).setText(items.get(i).getDetailsSellback(true));
 				}
 				else 
 				{
-					labels.get(i).setText(items.get(i).getDetailsPriceHTML());
+					labels.get(i).setText(items.get(i).getDetailsPrice(true));
 				}
 				
 			}
@@ -367,8 +367,8 @@ public class ShopWindow
 		if (index < itemList.size())
 		{
 			healthBorder.changeBorder(label, itemList.get(index));
-			label.setText((itemList.get(index)).getDetailsSellbackHTML());
-			label.setText((itemList.get(index)).getDetailsSellbackHTML());
+			label.setText((itemList.get(index)).getDetailsSellback(true));
+			label.setText((itemList.get(index)).getDetailsSellback(true));
 		}
 	}
 

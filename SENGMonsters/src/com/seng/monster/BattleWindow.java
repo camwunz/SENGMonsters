@@ -128,7 +128,7 @@ public class BattleWindow {
 		enemyName.setFont(new Font("Tahoma", Font.BOLD, 17));
 		frame.getContentPane().add(enemyName, "24, 10");
 		
-		JLabel playerMonster1 = new JLabel(p.getMonsters().get(0).getBattleDetails());
+		JLabel playerMonster1 = new JLabel("");
 		playerMonster1.setHorizontalAlignment(SwingConstants.LEFT);
 		playerMonster1.setFont(new Font("Verdana", Font.PLAIN, 14));
 		frame.getContentPane().add(playerMonster1, "6, 14");
@@ -143,7 +143,7 @@ public class BattleWindow {
 		battleText2.setFont(new Font("Verdana", Font.PLAIN, 18));
 		frame.getContentPane().add(battleText2, "14, 18, 3, 8");
 		
-		JLabel enemyMonster1 = new JLabel(chosenEnemy.getMonsters().get(0).getBattleDetails());
+		JLabel enemyMonster1 = new JLabel("");
 		enemyMonster1.setHorizontalAlignment(SwingConstants.LEFT);
 		enemyMonster1.setFont(new Font("Verdana", Font.PLAIN, 14));
 		frame.getContentPane().add(enemyMonster1, "24, 14");
