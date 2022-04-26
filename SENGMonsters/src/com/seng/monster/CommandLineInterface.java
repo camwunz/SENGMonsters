@@ -179,70 +179,16 @@ public class CommandLineInterface {
 				// Go to sleep
 				else 
 				{
-					Random rand = new Random();
-					System.out.println("End of day " + i);
-					for (Monster m : p.getMonsters())
+					ArrayList<String> outcomes = Sleep.getOutcomes(p);
+					if (outcomes.size() <= 0)
 					{
-						int new_rand = rand.nextInt(100);
-						if (m.getCurrentHealth() == 0)
-						{
-							if (new_rand <= 10)
-							{
-								System.out.println(m.getName() + "leveled up!");
-								m.levelUp();
-							}
-						}
-						else 
-						{
-							if (new_rand <= 20)
-							{
-								System.out.println(m.getName() + " leveled up!");
-								m.levelUp();
-							}
-						}
+						System.out.println("Good Morning!");
 					}
-					if (p.getMonsters().size() > 1)
+					else
 					{
-						ArrayList<Monster> updatedMonsters = new ArrayList<Monster>();
-						for (Monster m : p.getMonsters())
-						{
-							int new_rand = rand.nextInt(100);
-							if (m.getCurrentHealth() == 0)
-							{
-								if (new_rand <= 10)
-								{
-									System.out.println(m.getName() + " left overnight!");
-								}
-								else {
-									updatedMonsters.add(m);
-								}
-							}
-							else 
-							{
-								if (new_rand <= 5)
-								{
-									System.out.println(m.getName() + " left overnight!");
-								}
-								else {
-									updatedMonsters.add(m);
-								}
-							}
-						}
-						p.setMonsters(updatedMonsters);
+						System.out.println("Overnight this happenened: ");
+						System.out.println(String.join("\n", outcomes));
 					}
-					
-					if (p.getMonsters().size() < 4)
-					{
-						int factor = (4 - p.getMonsters().size())*10;
-						if (rand.nextInt(100) <= factor)
-						{
-							Monster tempMon = new Monster();
-							p.addItem(tempMon);
-							System.out.println(tempMon.getName() + " joined your party overnight!");
-						}
-					}
-					p.addDay();
-					break;
 				}
 			}
 		}
