@@ -246,10 +246,10 @@ public class Monster extends BaseItem{
 	 */
 	public void levelUp() {
 		
-		currentHealth = (int) (currentHealth * 1.3);
-		healAmount = (int) (healAmount * 1.3);
-		maxHealth = (int) (maxHealth * 1.3);
-		damage = (int) (damage * 1.3);
+		currentHealth = (int) (currentHealth * 1.2);
+		healAmount = (int) (healAmount * 1.2);
+		maxHealth = (int) (maxHealth * 1.2);
+		damage = (int) (damage * 1.2);
 	}
 
 	@Override

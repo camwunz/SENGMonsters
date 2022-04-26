@@ -33,8 +33,6 @@ public class MenuWindow {
 					p.setName("Cameron");
 					p.setGold(9999);
 					p.addItem(new Monster());
-					p.addItem(new Monster());
-					p.addItem(new Monster());
 					
 					MenuWindow window = new MenuWindow(p);
 					window.frame.setVisible(true);
@@ -111,15 +109,15 @@ public class MenuWindow {
 				FormSpecs.RELATED_GAP_ROWSPEC,
 				FormSpecs.DEFAULT_ROWSPEC,
 				FormSpecs.RELATED_GAP_ROWSPEC,
-				FormSpecs.DEFAULT_ROWSPEC,
+				RowSpec.decode("max(43dlu;default)"),
 				FormSpecs.RELATED_GAP_ROWSPEC,
 				FormSpecs.DEFAULT_ROWSPEC,
 				FormSpecs.RELATED_GAP_ROWSPEC,
-				FormSpecs.DEFAULT_ROWSPEC,
+				RowSpec.decode("max(43dlu;default)"),
 				FormSpecs.RELATED_GAP_ROWSPEC,
 				FormSpecs.DEFAULT_ROWSPEC,
 				FormSpecs.RELATED_GAP_ROWSPEC,
-				FormSpecs.DEFAULT_ROWSPEC,
+				RowSpec.decode("max(43dlu;default)"),
 				FormSpecs.RELATED_GAP_ROWSPEC,
 				FormSpecs.DEFAULT_ROWSPEC,
 				FormSpecs.RELATED_GAP_ROWSPEC,
@@ -178,6 +176,12 @@ public class MenuWindow {
 		frame.getContentPane().add(playerMonster4, "8, 22");
 		
 		JButton sleepButton = new JButton("Go To Sleep");
+		sleepButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new SleepWindow(p);
+				frame.dispose();
+			}
+		});
 		frame.getContentPane().add(sleepButton, "20, 32, 11, 1");
 		
 		List<JLabel> labels = List.of(playerMonster1, playerMonster2, playerMonster3, playerMonster4);
