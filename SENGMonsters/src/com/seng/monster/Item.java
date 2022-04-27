@@ -97,6 +97,10 @@ public class Item extends BaseItem{
 		return actionStat;
 	}
 	
+	/**
+	 * Gets the stat that the item is changing for the user to read, but hide mystery berries
+	 * @return the changing stat (or ?)
+	 */
 	public String getActionStatHidden()
 	{
 		if (getName().equals("Mystery Berry"))
@@ -115,7 +119,11 @@ public class Item extends BaseItem{
 		return actionImprovement;
 	}
 
-	@Override
+	/**
+	 * Gets the items details for the selling page of the shop
+	 * @param if needs html for the gui
+	 * @return the item's details with sellback price
+	 */
 	public String getDetailsSellback(boolean html) {
 		String sep = "\n";
 		String start = "";
@@ -133,7 +141,12 @@ public class Item extends BaseItem{
 		
 	}
 	
-	@Override
+	/**
+	 * Gets the items details for the buying page of the shop
+	 * @param if needs html for the gui
+	 * @return the item's details with purchase price
+	 */
+
 	public String getDetailsPrice(boolean html) {
 		String sep = "\n";
 		String start = "";
@@ -151,6 +164,10 @@ public class Item extends BaseItem{
 		
 	}
 	
+	/**
+	 * Allows healthBorder to work with Items and baseItemInterface (defaults at 1)
+	 * @return 1 (default for items)
+	 */
 	public int getCurrentHealth()
 	{
 		return 1;

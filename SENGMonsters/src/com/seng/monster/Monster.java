@@ -1,5 +1,5 @@
 package com.seng.monster;
-import java.nio.channels.SelectableChannel;
+
 import java.util.Random;
 
 public class Monster extends BaseItem{
@@ -41,6 +41,10 @@ public class Monster extends BaseItem{
 
 	}
 	
+	/**
+	 * Constructor
+	 * Allows user to input stats for testing
+	 */
 	public Monster(int maxH, int damage, int healA)
 	{
 		super();
@@ -91,7 +95,7 @@ public class Monster extends BaseItem{
 	public Boolean takeAttack(int damage)
 	{
 		currentHealth -= damage;
-		if (currentHealth < 0)
+		if (currentHealth <= 0)
 		{
 			currentHealth = 0;
 			return true;
@@ -210,16 +214,24 @@ public class Monster extends BaseItem{
 		
 	}
 	
+	/**
+	 * Gets the monsters details for battle (no max health)
+	 * @return the string of the details
+	 */
 	public String getBattleDetails()
 	{
 		String output = "<html>";
 		output += "Name: " + getName() + "<br />";
-		output += "Max Health: " + getHealth() + "<br />";
+		output += "Current Health: " + getCurrentHealth() + "<br />";
 		output += "Attack: " + getDamage() + "<br />";
 		return output;
 	}
 
-	
+	/**
+	 * Gets the monsters details for selling page of shop
+	 * @param if its running through gui and needs html
+	 * @return the string of the details with sellback price
+	 */
 	public String getDetailsSellback(boolean html)
 	{
 		String sep = "\n";
@@ -272,7 +284,11 @@ public class Monster extends BaseItem{
 		damage = (int) (damage * 1.2);
 	}
 
-	@Override
+	/**
+	 * Gets the monsters details for buying page of shop
+	 * @param if its running through gui and needs html
+	 * @return the string of the details with purchase price
+	 */
 	public String getDetailsPrice(boolean html) {
 		String sep = "\n";
 		String start = "";

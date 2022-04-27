@@ -17,7 +17,9 @@ public abstract class BaseItem implements BaseItemInterface{
 	 * Name of item
 	 */
 	private String name;
-	
+	/**
+	 * Constructor
+	 */
 	public BaseItem()
 	{
 		price = 0;

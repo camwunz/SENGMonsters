@@ -34,6 +34,10 @@ public class OpposingPlayer extends BasePlayer{
 		
 	}
 	
+	/**
+	 * gets the total health of monsters for difficulty checking
+	 * @return sum of monster health
+	 */
 	private int getTotalHealth()
 	{
 		int totalHealth = 0;
@@ -45,6 +49,10 @@ public class OpposingPlayer extends BasePlayer{
 		return totalHealth;
 	}
 	
+	/**
+	 * gets the total attacking damage of monsters for difficulty checking
+	 * @return sum of monster attacking damage
+	 */
 	private int getTotalDamage()
 	{
 		int totalDamage = 0;
@@ -65,6 +73,10 @@ public class OpposingPlayer extends BasePlayer{
 		return reward;
 	}
 	
+	/**
+	 * gets the opponent details for choosing
+	 * @return string of opponent details
+	 */
 	public String getPromptHTML()
 	{
 		String output = "<html>" + getName();

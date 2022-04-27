@@ -27,11 +27,17 @@ public class Player extends BasePlayer{
 	 * Running total of user's score
 	 */
 	private Integer score;
-	
+	/**
+	 * The items in the monster shop for each day
+	 */
 	private ArrayList<ArrayList<Monster>> shopMonsters = new ArrayList<ArrayList<Monster>>();
-	
+	/**
+	 * The items in the item shop for each day
+	 */
 	private ArrayList<ArrayList<Item>> shopItems = new ArrayList<ArrayList<Item>>();
-
+	/**
+	 * The opponents for each day
+	 */
 	private ArrayList<ArrayList<OpposingPlayer>> dailyOpponents = new ArrayList<ArrayList<OpposingPlayer>>();
 	
 	
@@ -85,21 +91,34 @@ public class Player extends BasePlayer{
 		score += i;
 	}
 	
+	/**
+	 * Gets the monster shop's items
+	 * @return today's monsters in the shop
+	 */
 	public ArrayList<Monster> getDailyMonsters()
 	{
 		return shopMonsters.get(getDays()-1);
 	}
-	
+	/**
+	 * Gets the item shop's items
+	 * @return today's item in the shop
+	 */
 	public ArrayList<Item> getDailyItem()
 	{
 		return shopItems.get(getDays()-1);
 	}
-	
+	/**
+	 * Gets the daily opponents
+	 * @return today's 4 opponents
+	 */
 	public ArrayList<OpposingPlayer> getOpponents()
 	{
 		return dailyOpponents.get(getDays()-1);
 	}
-	
+	/**
+	 * Removes an opponent from today's opponents once they have battled them
+	 * @param index of the opponent
+	 */
 	public void removeOpponent(int index)
 	{
 		dailyOpponents.get(getDays()-1).remove(index);
@@ -160,7 +179,10 @@ public class Player extends BasePlayer{
 	public void addDay() {
 		day_count += 1;
 	}
-	
+	/**
+	 * Gets current day
+	 * @return the current day of the game
+	 */
 	public int getDays()
 	{
 		return day_count;
@@ -196,12 +218,19 @@ public class Player extends BasePlayer{
 		gold -= monster.getPrice();
 		addMonsterToList(monster);
 	}
-	
+	/**
+	 * Removes an monster from today's shop
+	 * Note the overloading to make it work with both BaseItem types (Item/Monster)
+	 * @param monster to remove
+	 */
 	public void removeFromShop(Monster m)
 	{
 		getDailyMonsters().remove(m);
 	}
-	
+	/**
+	 * Removes an item from today's shop
+	 * @param item to remove
+	 */
 	public void removeFromShop(Item i)
 	{
 		getDailyItem().remove(i);
@@ -234,6 +263,6 @@ public class Player extends BasePlayer{
 		gold += item.getSellback();
 	}
 	
-	// TODO store all of the shop details and opponent details 
+
 
 }

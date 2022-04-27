@@ -9,6 +9,10 @@ import java.util.ArrayList;
 public class Sleep {
 	
 	static Random rand = new Random();
+	/**
+	 * Gets outcomes of the night using random seeds
+	 * @param the player
+	 */
 	public static ArrayList<String> getOutcomes(Player p)
 	{
 		ArrayList<String> outcomes = new ArrayList<String>();

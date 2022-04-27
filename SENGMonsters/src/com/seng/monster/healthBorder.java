@@ -7,7 +7,11 @@ import javax.swing.JLabel;
 import javax.swing.border.Border;
 
 public class healthBorder {
-	
+	/**
+	 * Changes the border based on the item's health
+	 * @param the label
+	 * @param the item to check the health of (items are always positive)
+	 */
 	public static void changeBorder (JLabel label, BaseItem i)
 	{
 		Border redBorder = BorderFactory.createLineBorder(Color.RED, 5);

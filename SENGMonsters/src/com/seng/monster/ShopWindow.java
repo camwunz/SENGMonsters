@@ -47,7 +47,10 @@ public class ShopWindow
 
 	/**
 	 * Create the application.
-	 * @param p 
+	 * @param player
+	 * @param list of monsters OR items from player
+	 * @param list of monsters OR items for shop
+	 * @param the type (monster/item)
 	 */
 	public ShopWindow(Player p, ArrayList<? extends BaseItem> playerItems, ArrayList<? extends BaseItem> shopItems, String type) 
 	{
@@ -57,6 +60,10 @@ public class ShopWindow
 
 	/**
 	 * Initialize the contents of the frame.
+	 * @param player
+	 * @param list of monsters OR items from player
+	 * @param list of monsters OR items for shop
+	 * @param the type (monster/item)
 	 */
 	private void initialize(Player p, ArrayList<? extends BaseItem> playerItems, ArrayList<? extends BaseItem> shopItems, String type) 
 	{
@@ -274,6 +281,13 @@ public class ShopWindow
 		
 	}
 	
+	/**
+	 * Checks the visibility and text of all shop buttons and labels
+	 * @param the list of items
+	 * @param the list of JLabels
+	 * @param the list of JButtons
+	 * @param if these labels and buttons are selling or not
+	 */
 	private void checkVisibility(ArrayList<? extends BaseItem> items, List<JLabel> labels, List<JButton> buttons, boolean selling)
 	{
 		int listSize = items.size();
@@ -306,6 +320,13 @@ public class ShopWindow
 		}
 	}
 	
+	/**
+	 * Checks and then maybe purchase an item if possible
+	 * @param the player
+	 * @param the index of item
+	 * @param the list of player items
+	 * @param the list of items to purchase from
+	 */
 	private void buyItem(Player p, int index, ArrayList<? extends BaseItem> items, ArrayList<? extends BaseItem> shopItems)
 	{
 		if (items.size() >= 4)
@@ -346,6 +367,14 @@ public class ShopWindow
 			
 		}
 	}
+	
+	/**
+	 * Checks and then maybe sell an item if possible
+	 * @param the player
+	 * @param the index of item
+	 * @param the list of player items
+	 * @param the list of items to purchase from
+	 */
 	private void sellItem(Player p, int index, ArrayList<? extends BaseItem> items, ArrayList<? extends BaseItem> shopItems)
 	{
 		if (items.get(index) instanceof Monster)
@@ -362,12 +391,17 @@ public class ShopWindow
 		frame.dispose();
 	}
 	
+	/**
+	 * Updates label text
+	 * @param the label to change
+	 * @param the index of item
+	 * @param the list of items to get details from
+	 */
 	private void changeLabel(JLabel label, int index, ArrayList<? extends BaseItem> itemList)
 	{
 		if (index < itemList.size())
 		{
 			healthBorder.changeBorder(label, itemList.get(index));
-			label.setText((itemList.get(index)).getDetailsSellback(true));
 			label.setText((itemList.get(index)).getDetailsSellback(true));
 		}
 	}

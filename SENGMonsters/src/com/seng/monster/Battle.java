@@ -17,7 +17,13 @@ public class Battle {
 	 * Random seed
 	 */
 	Random rand = new Random(); 
+	/**
+	 * The attacking player/opponent
+	 */
 	BasePlayer attacking = null;
+	/**
+	 * The defending player/opponent
+	 */
 	BasePlayer defending = null;
 	
 	/**
@@ -32,11 +38,13 @@ public class Battle {
 		
 	}
 	
-	/**
-	 * Runs through the battle turn by turn seeing who wins
-	 * @return whether the player won the battle
-	 */
 	
+	/**
+	 * Implements the next turn of the battle (GUI)
+	 * @param the player which is being controlled
+	 * @param the opposingplayer which the player is battling
+	 * @return the damage prompts aka which monster did damage to who
+	 */
 	public ArrayList<String> nextTurn(Player user, OpposingPlayer enemy)
 	{
 		if (user.getDifficulty() == 0)
@@ -81,7 +89,10 @@ public class Battle {
 		return damagePrompts;
 	}
 		
-	
+	/**
+	 * Runs through the battle turn by turn seeing who wins
+	 * @return whether the player won the battle
+	 */
 	public boolean startBattle()
 	{
 		System.out.println("\nStarting Battle " + user.getName() + " vs " + enemy.getName());
@@ -185,7 +196,12 @@ public class Battle {
 		}
 		
 	}
-	
+	/**
+	 * Implements a single attack (GUI)
+	 * @param the attacking BasePlayer
+	 * @param the defending BasePlayer
+	 * @return Arraylist of the damage prompt and if defending monster had fainted
+	 */
 	private ArrayList<String> attack(BasePlayer attacking, BasePlayer defending) {
 		
 		Monster firstMonster = null;

@@ -42,6 +42,7 @@ public class ShopfrontWindow {
 
 	/**
 	 * Create the application.
+	 * @param player
 	 */
 	public ShopfrontWindow(Player p) {
 		initialize(p);
@@ -50,6 +51,7 @@ public class ShopfrontWindow {
 
 	/**
 	 * Initialize the contents of the frame.
+	 * @param player
 	 */
 	private void initialize(Player p) 
 	{

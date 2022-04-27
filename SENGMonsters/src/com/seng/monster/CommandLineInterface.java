@@ -1,6 +1,6 @@
 package com.seng.monster;
 import java.util.ArrayList;
-import java.util.Random;
+
 import java.util.Scanner;
 
 public class CommandLineInterface {
@@ -188,6 +188,7 @@ public class CommandLineInterface {
 					{
 						System.out.println("Overnight this happenened: ");
 						System.out.println(String.join("\n", outcomes));
+						break;
 					}
 				}
 			}

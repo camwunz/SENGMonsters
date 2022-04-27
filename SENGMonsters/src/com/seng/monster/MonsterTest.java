@@ -2,12 +2,11 @@ package com.seng.monster;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import junit.framework.Assert;
+
 
 class MonsterTest {
 
@@ -41,9 +40,15 @@ class MonsterTest {
 
 	@Test
 	void testLevelUp() {
-		List<Integer> vars = List.of((int) (tempMonster.currentHealth*1.2), (int) (tempMonster.healAmount*1.2), (int) (tempMonster.maxHealth*1.2),(int) (tempMonster.damage*1.2));
+		int currentH = tempMonster.currentHealth;
+		int maxH = tempMonster.maxHealth;
+		int damage = tempMonster.damage;
+		int healA = tempMonster.healAmount;
 		tempMonster.levelUp();
-		
+		assertEquals(currentH*1.2, tempMonster.currentHealth);
+		assertEquals(maxH*1.2, tempMonster.maxHealth);
+		assertEquals(damage*1.2, tempMonster.damage);
+		assertEquals(healA*1.2, tempMonster.healAmount);
 		
 	}
 

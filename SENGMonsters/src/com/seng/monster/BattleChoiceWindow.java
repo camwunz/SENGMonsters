@@ -36,8 +36,6 @@ public class BattleChoiceWindow {
 				p.addItem(new Monster());
 				p.addItem(new Monster());
 				p.addItem(new Monster());
-				int day = p.getDays();
-				ArrayList <OpposingPlayer> players = p.getOpponents();
 				try {
 					BattleChoiceWindow window = new BattleChoiceWindow(p);
 					window.frame.setVisible(true);
@@ -50,6 +48,7 @@ public class BattleChoiceWindow {
 
 	/**
 	 * Create the application.
+	 * @param the player
 	 */
 	public BattleChoiceWindow(Player p) {
 		initialize(p);
@@ -58,6 +57,7 @@ public class BattleChoiceWindow {
 
 	/**
 	 * Initialize the contents of the frame.
+	 * @param the player
 	 */
 	private void initialize(Player p) {
 		ArrayList<OpposingPlayer> opposingPlayers = p.getOpponents();
@@ -154,7 +154,13 @@ public class BattleChoiceWindow {
 		List<JButton> battleButtons = List.of(battleChoice1, battleChoice2, battleChoice3, battleChoice4);
 		checkVisibility(battleButtons, opposingPlayers);
 	}
-			
+	
+	/**
+	 * Closes the window and opens a window with the chosen battle
+	 * @param the index of the opponent
+	 * @param the list of opposing players
+	 * @param the player
+	 */
 	private void chooseBattle(int index, ArrayList<OpposingPlayer> players, Player p)
 	{
 		OpposingPlayer chosenEnemy = players.get(index);
@@ -163,6 +169,11 @@ public class BattleChoiceWindow {
 		frame.dispose();
 	}
 	
+	/**
+	 * Checks the visibility and text of all choice buttons
+	 * @param the list of JButtons
+	 * @param the list of opposing players
+	 */
 	private void checkVisibility(List<JButton> battleButtons, ArrayList<OpposingPlayer> opposingPlayers)
 	{
 		int size = opposingPlayers.size();

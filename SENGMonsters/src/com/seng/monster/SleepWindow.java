@@ -3,8 +3,6 @@ package com.seng.monster;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
-import javax.swing.JTextArea;
-import java.awt.BorderLayout;
 import javax.swing.JButton;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
@@ -39,6 +37,7 @@ public class SleepWindow {
 
 	/**
 	 * Create the application.
+	 * @param player 
 	 */
 	public SleepWindow(Player p) {
 		initialize(p, Sleep.getOutcomes(p));
@@ -47,6 +46,8 @@ public class SleepWindow {
 
 	/**
 	 * Initialize the contents of the frame.
+	 * @param player
+	 * @param list of outcomes during the night (empty if nothing happenened)
 	 */
 	private void initialize(Player p, ArrayList<String> outcomes) {
 		frame = new JFrame();

@@ -40,6 +40,8 @@ public class BattleWindow {
 
 	/**
 	 * Create the application.
+	 * @param the chosen opponent
+	 * @param the player
 	 */
 	public BattleWindow(OpposingPlayer chosenEnemy, Player p) {
 		initialize(chosenEnemy, p);
@@ -48,6 +50,8 @@ public class BattleWindow {
 
 	/**
 	 * Initialize the contents of the frame.
+	 * @param the chosen opponent
+	 * @param the player
 	 */
 	private void initialize(OpposingPlayer chosenEnemy, Player p) {
 		Battle battle = new Battle(p, chosenEnemy);
@@ -218,7 +222,11 @@ public class BattleWindow {
 		
 	}
 	
-	
+	/**
+	 * Checks Visibility of labels for the users and opponent monsters
+	 * @param the list of JLabels
+	 * @param the lsit of monsters
+	 */
 	private void checkVisibility(List<JLabel> labels, ArrayList<Monster> monsters)
 	{
 		int listSize = monsters.size();

@@ -9,7 +9,6 @@ import com.jgoodies.forms.layout.RowSpec;
 import com.jgoodies.forms.layout.FormSpecs;
 import javax.swing.JLabel;
 import java.awt.Font;
-import java.awt.Window;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,8 +44,7 @@ public class MenuWindow {
 
 	/**
 	 * Create the application.
-	 * @param day 
-	 * @param p 
+	 * @param player
 	 */
 	public MenuWindow(Player p) {
 		initialize(p);
@@ -55,6 +53,7 @@ public class MenuWindow {
 
 	/**
 	 * Initialize the contents of the frame.
+	 * @param player
 	 */
 	private void initialize(Player p) {
 		frame = new JFrame();
@@ -187,7 +186,12 @@ public class MenuWindow {
 		List<JLabel> labels = List.of(playerMonster1, playerMonster2, playerMonster3, playerMonster4);
 		checkVisibility(labels, p.getMonsters());
 	}
-
+	
+	/**
+	 * Checks Visibility of labels for the users monsters
+	 * @param the list of JLabels
+	 * @param the lsit of monsters
+	 */
 	private void checkVisibility(List<JLabel> labels, ArrayList<Monster> monsters)
 	{
 		int listSize = monsters.size();
