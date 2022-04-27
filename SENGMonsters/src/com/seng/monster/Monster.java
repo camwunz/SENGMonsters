@@ -1,4 +1,5 @@
 package com.seng.monster;
+import java.nio.channels.SelectableChannel;
 import java.util.Random;
 
 public class Monster extends BaseItem{
@@ -38,6 +39,21 @@ public class Monster extends BaseItem{
 		setName(namePool[rand.nextInt(10)]);
 		setDescription(createDescription());
 
+	}
+	
+	public Monster(int maxH, int damage, int healA)
+	{
+		super();
+		Random rand = new Random(); 
+		setPrice(rand.nextInt(21) + 30);
+		setSellback((int)getPrice()/2);
+		maxHealth = maxH;
+		this.damage = damage;
+		healAmount = healA;
+		currentHealth = maxH;
+		setName(namePool[rand.nextInt(10)]);
+		setDescription(createDescription());
+		
 	}
 	
 	/**
