@@ -24,7 +24,7 @@ public class OpposingPlayer extends BasePlayer{
 		int amountMonsters = rand.nextInt(3)+2;
 		for (int i = 0; i < amountMonsters; i++)
 		{
-			Monster tempMon = new Monster();
+			Monster tempMon = new Monster(day+1);
 			tempMon.modifyStats(day);
 			reward += tempMon.getHealth()/2;
 			addMonsterToList(tempMon);

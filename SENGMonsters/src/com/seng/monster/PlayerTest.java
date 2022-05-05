@@ -46,7 +46,7 @@ class PlayerTest {
 	@Test
 	void testAddItemMonster() {
 		ArrayList<Monster> checkMonsters = new ArrayList<Monster>();
-		Monster testMonster = new Monster();
+		Monster testMonster = new Monster(2);
 		p.addItem(testMonster);
 		checkMonsters.add(testMonster);
 		assertEquals(checkMonsters, p.getMonsters());

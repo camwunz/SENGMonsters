@@ -15,6 +15,7 @@ public class Sleep {
 	 */
 	public static ArrayList<String> getOutcomes(Player p)
 	{
+		
 		ArrayList<String> outcomes = new ArrayList<String>();
 		if (p.getMonsters().size() > 1)
 		{
@@ -61,11 +62,15 @@ public class Sleep {
 		int nextInt = rand.nextInt(100);
 		if (nextInt < (freeSlots*8))
 		{
-			Monster newMonster = new Monster();
+			Monster newMonster = new Monster(p.getDays());
 			outcomes.add(newMonster.getName() + " joined your party!");
 			p.addItem(newMonster);
 		}
 		
+		for (Monster m: p.getMonsters())
+		{
+			m.heal();
+		}
 	
 		p.addDay();
 		return outcomes;

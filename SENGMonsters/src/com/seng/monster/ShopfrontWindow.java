@@ -25,10 +25,10 @@ public class ShopfrontWindow {
 				try {
 					Player p = new Player(1,10);
 					p.addGold(9999);
-					p.addItem(new Monster());
-					p.addItem(new Monster());
-					p.addItem(new Monster());
-					p.addItem(new Monster());
+					p.addItem(new Monster(p.getDays()));
+					p.addItem(new Monster(p.getDays()));
+					p.addItem(new Monster(p.getDays()));
+					p.addItem(new Monster(p.getDays()));
 					p.addItem(new Item());
 					p.addItem(new Item());
 					ShopfrontWindow window = new ShopfrontWindow(p);

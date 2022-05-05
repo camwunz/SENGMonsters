@@ -30,12 +30,13 @@ public class Monster extends BaseItem{
 	 * Constructor
 	 * Makes stats for monster
 	 */
-	public Monster() {
+	public Monster(int day) {
 		super();
 		Random rand = new Random(); 
 		setPrice(rand.nextInt(21) + 30);
 		setSellback((int)getPrice()/2);
 		createStats();
+		modifyStats(day);
 		setName(namePool[rand.nextInt(10)]);
 		setDescription(createDescription());
 
@@ -87,6 +88,29 @@ public class Monster extends BaseItem{
 		return damage;
 	}
 	
+	/**
+	 * Gets the heal amount of the monster
+	 * @return the heal amount
+	 */
+	public int getHealAmount()
+	{
+		return healAmount;
+	}
+
+	/**
+	 * Heals the monster overnight by their heal amount, not exceeding their max health
+	 */
+	public void heal()
+	{
+		if ((currentHealth + healAmount) > maxHealth)
+		{
+			currentHealth = maxHealth;
+		}
+		else
+		{
+			currentHealth += healAmount;
+		}
+	}
 	/**
 	 * Applies an attack of size damage to the monster
 	 * @param damage the amount of the damage
@@ -256,7 +280,14 @@ public class Monster extends BaseItem{
 	{
 		if (var == "Current Health")
 		{
-			currentHealth += change;
+			if (currentHealth + change > maxHealth)
+			{
+				currentHealth = maxHealth;
+			}
+			else
+			{
+				currentHealth += change;
+			}
 		}
 		else if (var == "Heal Amount")
 		{
@@ -302,5 +333,25 @@ public class Monster extends BaseItem{
 		output += "Max Health: " + getHealth() + sep;
 		output += "Price: " + getPrice() + sep;
 		return output;
+	}
+
+	public int getStat(String actionStat) {
+		if (actionStat.equals("Damage"))
+		{
+			return getDamage();
+		}
+		if (actionStat.equals("Max Health"))
+		{
+			return getHealth();
+		}
+		if (actionStat.equals("Current Health"))
+		{
+			return getCurrentHealth();
+		}
+		if (actionStat.equals("Heal Amount"))
+		{
+			return healAmount;
+		}
+		return 0;
 	}
 }

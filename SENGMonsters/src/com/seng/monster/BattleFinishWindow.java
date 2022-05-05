@@ -162,6 +162,7 @@ public class BattleFinishWindow {
 		{
 			winnerLabel.setText("You won the battle and won " + chosenPlayer.getReward() + " gold!");
 			p.addGold(chosenPlayer.getReward());
+			p.addToScore((int)(chosenPlayer.getReward()/2));
 		}
 		else {
 			winnerLabel.setText("You lost the battle!");

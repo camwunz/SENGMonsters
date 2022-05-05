@@ -31,7 +31,7 @@ public class MenuWindow {
 					Player p = new Player(1, 10);
 					p.setName("Cameron");
 					p.addGold(9999);
-					p.addItem(new Monster());
+					p.addItem(new Monster(3));
 					
 					MenuWindow window = new MenuWindow(p);
 					window.frame.setVisible(true);
@@ -143,6 +143,8 @@ public class MenuWindow {
 		JButton inventoryButton = new JButton("View Inventory");
 		inventoryButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				new InventoryViewWindow(p);
+				frame.dispose();
 			}
 		});
 		frame.getContentPane().add(inventoryButton, "38, 10, 1, 2");
@@ -177,8 +179,16 @@ public class MenuWindow {
 		JButton sleepButton = new JButton("Go To Sleep");
 		sleepButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new SleepWindow(p);
-				frame.dispose();
+				if (p.getDays() < p.getTotalDays())
+				{
+					new SleepWindow(p);
+					frame.dispose();
+				}
+				else
+				{
+					new FinishWindow(p);
+					frame.dispose();
+				}
 			}
 		});
 		frame.getContentPane().add(sleepButton, "20, 32, 11, 1");

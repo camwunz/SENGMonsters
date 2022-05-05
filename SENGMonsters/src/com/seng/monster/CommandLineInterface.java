@@ -61,7 +61,7 @@ public class CommandLineInterface {
 		ArrayList<Monster> monsterChoices = new ArrayList<Monster>();
 		for (int i = 0; i < 5; i++)
 		{
-			Monster tempMon = new Monster();
+			Monster tempMon = new Monster(3);
 			monsterChoices.add(tempMon);
 			System.out.println((i+1) + ") " + tempMon);
 		}
@@ -263,7 +263,7 @@ public class CommandLineInterface {
 				for (int i = 0; i < items.size(); i++)
 				{
 					System.out.println((i+1) + ") ");
-					System.out.println(items.get(i).getDetails());
+					System.out.println(items.get(i).getDetails(false));
 				}
 				System.out.println("5) Exit");
 				
@@ -321,7 +321,7 @@ public class CommandLineInterface {
 				for (Item j : p.getItems())
 				{
 					System.out.println((i+1) + ") ");
-					System.out.println(j.getDetailsSellback());
+					System.out.println(j.getDetailsSellback(false));
 					i++;
 				}
 				System.out.println((i+1) + ") Exit");
@@ -382,7 +382,7 @@ public class CommandLineInterface {
 	{
 		for (int j = 1; j <= p.getItems().size(); j++)
 		{
-			System.out.println(j + ") " + p.getItems().get(j-1).getDetails());
+			System.out.println(j + ") " + p.getItems().get(j-1).getDetails(false));
 		}
 		int temp = 0;
 		if (p.getItems().size() != 0)

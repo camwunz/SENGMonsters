@@ -62,7 +62,7 @@ public class Player extends BasePlayer{
 			for (int j = 0; j < 4; j++)
 			{
 				newOpponents.add(new OpposingPlayer(i+1));
-				dailyMonsters.add(new Monster());
+				dailyMonsters.add(new Monster(i+1));
 				dailyItems.add(new Item());
 			}
 			dailyOpponents.add(newOpponents);

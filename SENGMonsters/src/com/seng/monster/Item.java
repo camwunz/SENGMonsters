@@ -74,20 +74,20 @@ public class Item extends BaseItem{
 	 * Gets the item's details
 	 * @return the name, description and price
 	 */
-	public String getDetails()
+	public String getDetails(boolean html)
 	{
+		if (html)
+		{
+			String output = "<html>";
+			output += "Name: " + getName() + "<br />";
+			output += "Stat: " + getActionStatHidden() + "<br />";
+			output += "Stat increase: " + getActionImprovement() + "<br />";
+			return output;
+		}
 		return getName() + ": " + getDescription() + ". Price: " + getPrice();
 	}
 	
-	/**
-	 * Gets the items dettails including its sellback price
-	 * @return the full details with sellback price
-	 */
-	public String getDetailsSellback()
-	{
-		return getName() + ": " + getDescription() + ". Sellback Price: " + getDetailsSellback();
-	}
-	
+
 	/**
 	 * Gets the stat that the item is changing
 	 * @return the changing stat

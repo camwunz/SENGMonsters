@@ -32,10 +32,10 @@ public class BattleChoiceWindow {
 				Player p = new Player(1, 10);
 				p.setName("Cameron");
 				p.addGold(99999);
-				p.addItem(new Monster());
-				p.addItem(new Monster());
-				p.addItem(new Monster());
-				p.addItem(new Monster());
+				p.addItem(new Monster(p.getDays()));
+				p.addItem(new Monster(p.getDays()));
+				p.addItem(new Monster(p.getDays()));
+				p.addItem(new Monster(p.getDays()));
 				try {
 					BattleChoiceWindow window = new BattleChoiceWindow(p);
 					window.frame.setVisible(true);
