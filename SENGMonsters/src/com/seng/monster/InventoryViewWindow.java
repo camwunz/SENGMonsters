@@ -181,7 +181,7 @@ public class InventoryViewWindow {
 			}
 		});
 		frame.getContentPane().add(exitButton, "10, 28");
-		checkVisibility(p.getItems(), labels, buttons);
+		setNames(p.getItems(), labels, buttons);
 	}
 
 	/**
@@ -190,7 +190,7 @@ public class InventoryViewWindow {
 	 * @param the labels 
 	 * @param the buttons
 	 */
-	private void checkVisibility(ArrayList<Item> items, List<JLabel> labels, List<JButton> buttons)
+	private void setNames(ArrayList<Item> items, List<JLabel> labels, List<JButton> buttons)
 	{
 		int listSize = items.size();
 		for (int i = 0; i < 4; i++)

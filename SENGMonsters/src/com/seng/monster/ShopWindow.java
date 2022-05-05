@@ -167,7 +167,6 @@ public class ShopWindow
 		
 		JLabel playerItem1 = new JLabel("");
 		frame.getContentPane().add(playerItem1, "8, 10");
-		changeLabel(playerItem1, 0, playerItems);
 		
 		JButton itemSell1 = new JButton("Sell");
 		itemSell1.addActionListener(new ActionListener() {
@@ -260,11 +259,11 @@ public class ShopWindow
 		
 		List<JLabel> sellLabels = List.of(playerItem1, playerItem2, playerItem3, playerItem4);
 		List<JButton> sellButtons = List.of(itemSell1, itemSell2, itemSell3, itemSell4);
-		checkVisibility(playerItems, sellLabels, sellButtons, true);
+		updateText(playerItems, sellLabels, sellButtons, true);
 		
 		List<JLabel> buyLabels = List.of(shopItem1, shopItem2, shopItem3, shopItem4);
 		List<JButton> buyButtons = List.of(itemBuy1, itemBuy2, itemBuy3, itemBuy4);
-		checkVisibility(shopItems, buyLabels, buyButtons, false);
+		updateText(shopItems, buyLabels, buyButtons, false);
 		
 		JButton exitButton = new JButton("Exit");
 		exitButton.addActionListener(new ActionListener() 
@@ -288,7 +287,7 @@ public class ShopWindow
 	 * @param the list of JButtons
 	 * @param if these labels and buttons are selling or not
 	 */
-	private void checkVisibility(ArrayList<? extends BaseItem> items, List<JLabel> labels, List<JButton> buttons, boolean selling)
+	private void updateText(ArrayList<? extends BaseItem> items, List<JLabel> labels, List<JButton> buttons, boolean selling)
 	{
 		int listSize = items.size();
 		for (int i = 0; i < 4; i++)
@@ -390,20 +389,6 @@ public class ShopWindow
 		
 		frame.dispose();
 	}
-	
-	/**
-	 * Updates label text
-	 * @param the label to change
-	 * @param the index of item
-	 * @param the list of items to get details from
-	 */
-	private void changeLabel(JLabel label, int index, ArrayList<? extends BaseItem> itemList)
-	{
-		if (index < itemList.size())
-		{
-			healthBorder.changeBorder(label, itemList.get(index));
-			label.setText((itemList.get(index)).getDetailsSellback(true));
-		}
-	}
+
 
 }

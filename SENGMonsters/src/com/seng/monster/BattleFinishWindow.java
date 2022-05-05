@@ -156,7 +156,7 @@ public class BattleFinishWindow {
 		frame.getContentPane().add(exitButton, "30, 26, fill, fill");
 		
 		List<JLabel> labels = List.of(playerMonster1, playerMonster2, playerMonster3, playerMonster4);
-		checkVisibility(labels, p.getMonsters());
+		updateText(labels, p.getMonsters());
 		
 		if (winner == 2)
 		{
@@ -174,7 +174,7 @@ public class BattleFinishWindow {
 	 * @param the list of JLabels
 	 * @param the lsit of monsters
 	 */
-	private void checkVisibility(List<JLabel> labels, ArrayList<Monster> monsters)
+	private void updateText(List<JLabel> labels, ArrayList<Monster> monsters)
 	{
 		int size = monsters.size();
 		for (int i = 0; i < 4; i++)

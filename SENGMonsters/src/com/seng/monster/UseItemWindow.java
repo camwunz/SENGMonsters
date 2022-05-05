@@ -172,7 +172,7 @@ public class UseItemWindow {
 		List<JLabel> infoLabels = List.of(monsterInfo1, monsterInfo2, monsterInfo3, monsterInfo4);
 		List<JButton> buttons = List.of(useButton1, useButton2, useButton3, useButton4);
 		
-		checkVisibility(p.getMonsters(), infoLabels, changeLabels, buttons, i);
+		updateItemComponents(p.getMonsters(), infoLabels, changeLabels, buttons, i);
 	}
 	
 	/**
@@ -197,7 +197,7 @@ public class UseItemWindow {
 	 * @param the buttons for using the item
 	 * @param the used item
 	 */
-	private void checkVisibility(ArrayList<Monster> monsters, List<JLabel> infoLabels, List<JLabel> changeLabels, List<JButton> buttons, Item usedItem)
+	private void updateItemComponents(ArrayList<Monster> monsters, List<JLabel> infoLabels, List<JLabel> changeLabels, List<JButton> buttons, Item usedItem)
 	{
 		int listSize = monsters.size();
 		for (int i = 0; i < 4; i++)
