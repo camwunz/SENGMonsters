@@ -200,7 +200,7 @@ public class MenuWindow {
 	/**
 	 * Checks Visibility of labels for the users monsters
 	 * @param the list of JLabels
-	 * @param the lsit of monsters
+	 * @param the list of monsters
 	 */
 	private void checkVisibility(List<JLabel> labels, ArrayList<Monster> monsters)
 	{

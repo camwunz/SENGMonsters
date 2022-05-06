@@ -181,7 +181,7 @@ public class UseItemWindow {
 	 * @param the monster that the item is being used on
 	 * @param the player 
 	 */
-	private void finish (Item i, Monster m, Player p)
+	private void finish(Item i, Monster m, Player p)
 	{
 		m.useItem(i.getActionImprovement(), i.getActionStat());
 		p.removeItem(i);

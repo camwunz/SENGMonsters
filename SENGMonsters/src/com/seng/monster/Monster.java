@@ -334,7 +334,12 @@ public class Monster extends BaseItem{
 		output += "Price: " + getPrice() + sep;
 		return output;
 	}
-
+	
+	/**
+	 * Returns the given monster attribute
+	 * @param which stat to return
+	 * @return the integer of the attribute
+	 */
 	public int getStat(String actionStat) {
 		if (actionStat.equals("Damage"))
 		{

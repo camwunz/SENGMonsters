@@ -90,7 +90,7 @@ public class Battle {
 	}
 		
 	/**
-	 * Runs through the battle turn by turn seeing who wins
+	 * Runs through the battle turn by turn seeing who wins (CLI)
 	 * @return whether the player won the battle
 	 */
 	public boolean startBattle()
@@ -157,7 +157,7 @@ public class Battle {
 	}
 	
 	/**
-	 * Executes a single attack
+	 * Executes a single attack (CLI)
 	 * @param attacking the attacking player
 	 * @param defending the reciving player
 	 * @return boolean whether the reciving player's monster has fainted
