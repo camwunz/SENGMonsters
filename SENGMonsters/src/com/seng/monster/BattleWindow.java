@@ -116,7 +116,7 @@ public class BattleWindow {
 				FormSpecs.RELATED_GAP_ROWSPEC,
 				FormSpecs.DEFAULT_ROWSPEC,}));
 		
-		turn = 0;
+		turn = 1;
 		JLabel turnCounter = new JLabel("Turn " + turn);
 		turnCounter.setHorizontalAlignment(SwingConstants.CENTER);
 		turnCounter.setFont(new Font("Tahoma", Font.PLAIN, 17));

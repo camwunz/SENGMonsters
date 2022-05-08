@@ -121,7 +121,6 @@ public class NameChoiceWindow {
 		
 		JSlider daysSlider = new JSlider();
 		daysSlider.setMajorTickSpacing(1);
-		daysSlider.setToolTipText("Test");
 		daysSlider.setValue(10);
 		daysSlider.setMinorTickSpacing(1);
 		daysSlider.setSnapToTicks(true);

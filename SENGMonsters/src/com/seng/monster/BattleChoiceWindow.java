@@ -107,7 +107,6 @@ public class BattleChoiceWindow {
 		frame.getContentPane().add(battleChoice1, "8, 4, fill, fill");
 		
 		JButton battleChoice2 = new JButton("");
-		battleChoice2.setText(opposingPlayers.get(1).getPromptHTML());
 		battleChoice2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				chooseBattle(1, opposingPlayers, p);
