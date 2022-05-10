@@ -26,7 +26,7 @@ public class OpposingPlayer extends BasePlayer{
 		{
 			Monster tempMon = new Monster(day+1);
 			tempMon.modifyStats(day);
-			reward += tempMon.getHealth()/2;
+			reward += tempMon.getHealth()/3.5;
 			addMonsterToList(tempMon);
 		}
 		setName(namePool[rand.nextInt(19)]);
