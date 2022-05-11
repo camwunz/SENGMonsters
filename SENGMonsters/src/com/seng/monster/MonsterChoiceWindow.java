@@ -15,12 +15,19 @@ import java.util.ArrayList;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+/**
+* Window for choosing the first monster at the start of the game
+*
+* @author  Cameron Wu
+* @version 1.0
+*/
 public class MonsterChoiceWindow {
 
 	private JFrame frame;
 
 	/**
 	 * Launch the application.
+	 * @param args, n/a
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -37,7 +44,7 @@ public class MonsterChoiceWindow {
 
 	/**
 	 * Create the application.
-	 * @param player
+	 * @param p, player
 	 */
 	public MonsterChoiceWindow(Player p) {
 		initialize(p);

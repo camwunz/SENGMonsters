@@ -14,12 +14,19 @@ import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+/**
+* Window for the end of the game when the days reach the limit
+*
+* @author  Cameron Wu
+* @version 1.0
+*/
 public class FinishWindow {
 
 	private JFrame frame;
 
 	/**
 	 * Launch the application.
+	 * @param args, n/a
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -36,7 +43,7 @@ public class FinishWindow {
 
 	/**
 	 * Create the application.
-	 * @param the player
+	 * @param p, the player
 	 */
 	public FinishWindow(Player p) {
 		initialize(p);

@@ -2,7 +2,15 @@ package com.seng.monster;
 import java.util.ArrayList;
 import java.util.Random;
 
-
+/**
+* Battle class to track the health of every monster
+* and turn progression, as well as the states and outcomes
+* of each turn.
+* There are exclusive GUI and CLI functions.
+*
+* @author  Cameron Wu
+* @version 1.0
+*/
 public class Battle {
 
 	/**
@@ -41,8 +49,8 @@ public class Battle {
 	
 	/**
 	 * Implements the next turn of the battle (GUI)
-	 * @param the player which is being controlled
-	 * @param the opposingplayer which the player is battling
+	 * @param user, the player which is being controlled
+	 * @param enemy, the opposingplayer which the player is battling
 	 * @return the damage prompts aka which monster did damage to who
 	 */
 	public ArrayList<String> nextTurn(Player user, OpposingPlayer enemy)

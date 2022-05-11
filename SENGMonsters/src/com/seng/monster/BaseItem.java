@@ -1,5 +1,14 @@
 package com.seng.monster;
 
+/**
+* abstract BaseItem which implements the BaseItemInterface to
+* allow the Monster and Item classes to have different implementations
+* of the getDetails() functions for the shop. Overall more modularity
+* is achieved by having this parent class
+*
+* @author  Cameron Wu
+* @version 1.0
+*/
 public abstract class BaseItem implements BaseItemInterface{
 	/**
 	 * Price of item

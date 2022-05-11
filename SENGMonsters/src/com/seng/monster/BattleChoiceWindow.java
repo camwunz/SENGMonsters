@@ -19,12 +19,19 @@ import javax.swing.SwingConstants;
 
 import java.awt.Font;
 
+/**
+* Window for the user to choose from 4 or less battles each day
+*
+* @author  Cameron Wu
+* @version 1.0
+*/
 public class BattleChoiceWindow {
 
 	private JFrame frame;
 
 	/**
 	 * Launch the application.
+	 * @param args, n/a
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -48,7 +55,7 @@ public class BattleChoiceWindow {
 
 	/**
 	 * Create the application.
-	 * @param the player
+	 * @param p, the player
 	 */
 	public BattleChoiceWindow(Player p) {
 		initialize(p);

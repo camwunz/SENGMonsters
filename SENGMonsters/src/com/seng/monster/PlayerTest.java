@@ -7,6 +7,12 @@ import java.util.ArrayList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+/**
+* Tests player class
+*
+* @author  Cameron Wu
+* @version 1.0
+*/
 class PlayerTest {
 
 	Player p;

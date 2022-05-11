@@ -6,12 +6,19 @@ import java.util.Random;
 
 import java.util.ArrayList;
 
+/**
+* Class for generating the random elements that happen over night
+*
+* @author  Cameron Wu
+* @version 1.0
+*/
 public class Sleep {
 	
 	static Random rand = new Random();
 	/**
 	 * Gets outcomes of the night using random seeds
-	 * @param the player
+	 * @param p, the player
+	 * @return the outcomes
 	 */
 	public static ArrayList<String> getOutcomes(Player p)
 	{

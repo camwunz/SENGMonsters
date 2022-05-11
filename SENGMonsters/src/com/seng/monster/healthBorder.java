@@ -6,11 +6,18 @@ import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.border.Border;
 
+/**
+* Class to set the border of labels if the health of a monster is 0
+* Items are default green
+*
+* @author  Cameron Wu
+* @version 1.0
+*/
 public class healthBorder {
 	/**
 	 * Changes the border based on the item's health
-	 * @param the label
-	 * @param the item to check the health of (items are always positive)
+	 * @param label, the label
+	 * @param i, the item to check the health of (items are always positive)
 	 */
 	public static void changeBorder (JLabel label, BaseItem i)
 	{

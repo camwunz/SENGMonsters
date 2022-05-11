@@ -12,12 +12,19 @@ import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+/**
+* Window for choosing between monster shop and item shop
+*
+* @author  Cameron Wu
+* @version 1.0
+*/
 public class ShopfrontWindow {
 
 	private JFrame frame;
 
 	/**
 	 * Launch the application.
+	 * @param args, n/a
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -42,7 +49,7 @@ public class ShopfrontWindow {
 
 	/**
 	 * Create the application.
-	 * @param player
+	 * @param p, player
 	 */
 	public ShopfrontWindow(Player p) {
 		initialize(p);

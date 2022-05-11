@@ -1,7 +1,13 @@
 package com.seng.monster;
 import java.util.ArrayList;
 
-
+/**
+* BasePlayer which lets Player and OpposingPlayer share
+* multiple functions to increase modularity
+*
+* @author  Cameron Wu
+* @version 1.0
+*/
 public class BasePlayer {
 
 	/**

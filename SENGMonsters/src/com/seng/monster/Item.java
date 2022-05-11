@@ -2,7 +2,12 @@ package com.seng.monster;
 import java.util.Random;
 
 
-
+/**
+* Item class which has the name, stat and the improvement of each one.
+*
+* @author  Cameron Wu
+* @version 1.0
+*/
 public class Item extends BaseItem{
 	/**
 	 * Stat for which the item changes
@@ -72,6 +77,7 @@ public class Item extends BaseItem{
 	
 	/**
 	 * Gets the item's details
+	 * @param html, if its in the gui and requires html
 	 * @return the name, description and price
 	 */
 	public String getDetails(boolean html)
@@ -121,7 +127,7 @@ public class Item extends BaseItem{
 
 	/**
 	 * Gets the items details for the selling page of the shop
-	 * @param if needs html for the gui
+	 * @param html, if needs html for the gui
 	 * @return the item's details with sellback price
 	 */
 	public String getDetailsSellback(boolean html) {
@@ -143,7 +149,7 @@ public class Item extends BaseItem{
 	
 	/**
 	 * Gets the items details for the buying page of the shop
-	 * @param if needs html for the gui
+	 * @param html, if needs html for the gui
 	 * @return the item's details with purchase price
 	 */
 

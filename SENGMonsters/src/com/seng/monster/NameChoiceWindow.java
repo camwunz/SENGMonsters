@@ -19,6 +19,12 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+/**
+* Prompts the user to choose their name, length of the game and difficulty
+*
+* @author  Cameron Wu
+* @version 1.0
+*/
 public class NameChoiceWindow {
 
 	private JFrame frame;
@@ -27,6 +33,7 @@ public class NameChoiceWindow {
 
 	/**
 	 * Launch the application.
+	 * @param args, n/a
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {

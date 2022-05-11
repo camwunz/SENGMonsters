@@ -19,7 +19,12 @@ import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
 
 
-
+/**
+* Window for both shops, uses dynamic arraylists with generics to achieve this
+*
+* @author  Cameron Wu
+* @version 1.0
+*/
 public class ShopWindow 
 {
 
@@ -27,6 +32,7 @@ public class ShopWindow
 
 	/**
 	 * Launch the application.
+	 * @param args, n/a
 	 */
 	public static void main(String[] args) 
 	{
@@ -47,10 +53,10 @@ public class ShopWindow
 
 	/**
 	 * Create the application.
-	 * @param player
-	 * @param list of monsters OR items from player
-	 * @param list of monsters OR items for shop
-	 * @param the type (monster/item)
+	 * @param p, player
+	 * @param playerItems, list of monsters OR items from player
+	 * @param shopItems, list of monsters OR items for shop
+	 * @param type, the type (monster/item)
 	 */
 	public ShopWindow(Player p, ArrayList<? extends BaseItem> playerItems, ArrayList<? extends BaseItem> shopItems, String type) 
 	{

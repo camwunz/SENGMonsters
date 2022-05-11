@@ -7,7 +7,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 
-
+/**
+* Testing monster class
+*
+* @author  Cameron Wu
+* @version 1.0
+*/
 class MonsterTest {
 
 	Monster tempMonster;
@@ -30,10 +35,10 @@ class MonsterTest {
 	void testUseItem() {
 		tempMonster.useItem(10, "Heal Amount");
 		assertEquals(20, tempMonster.healAmount);
-		tempMonster.useItem(10, "Current Health");
-		assertEquals(110, tempMonster.currentHealth);
 		tempMonster.useItem(10, "Max Health");
 		assertEquals(110, tempMonster.maxHealth);
+		tempMonster.useItem(10, "Current Health");
+		assertEquals(110, tempMonster.currentHealth);
 		tempMonster.useItem(10, "Damage");
 		assertEquals(20, tempMonster.damage);
 	}

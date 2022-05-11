@@ -2,6 +2,12 @@ package com.seng.monster;
 
 import java.util.Random;
 
+/**
+* Monster class for storing many stats as well as a name and the current health for its current state.
+*
+* @author  Cameron Wu
+* @version 1.0
+*/
 public class Monster extends BaseItem{
 	
 	/**
@@ -29,6 +35,7 @@ public class Monster extends BaseItem{
 	/**
 	 * Constructor
 	 * Makes stats for monster
+	 * @param day, the day of creation
 	 */
 	public Monster(int day) {
 		super();
@@ -45,6 +52,9 @@ public class Monster extends BaseItem{
 	/**
 	 * Constructor
 	 * Allows user to input stats for testing
+	 * @param maxH, max health
+	 * @param damage, attacking damage
+	 * @param healA, heal amount
 	 */
 	public Monster(int maxH, int damage, int healA)
 	{
@@ -218,7 +228,8 @@ public class Monster extends BaseItem{
 	
 	/**
 	 * Gets the monsters details
-	 * @return the string of the details
+	 * @param html, if its in a gui and requires html
+	 * @return the string of the details.
 	 */
 	public String getDetails(boolean html)
 	{
@@ -253,7 +264,7 @@ public class Monster extends BaseItem{
 
 	/**
 	 * Gets the monsters details for selling page of shop
-	 * @param if its running through gui and needs html
+	 * @param html, if its running through gui and needs html
 	 * @return the string of the details with sellback price
 	 */
 	public String getDetailsSellback(boolean html)
@@ -317,7 +328,7 @@ public class Monster extends BaseItem{
 
 	/**
 	 * Gets the monsters details for buying page of shop
-	 * @param if its running through gui and needs html
+	 * @param html, if its running through gui and needs html
 	 * @return the string of the details with purchase price
 	 */
 	public String getDetailsPrice(boolean html) {
@@ -337,7 +348,7 @@ public class Monster extends BaseItem{
 	
 	/**
 	 * Returns the given monster attribute
-	 * @param which stat to return
+	 * @param actionStat, which stat to return
 	 * @return the integer of the attribute
 	 */
 	public int getStat(String actionStat) {

@@ -17,6 +17,13 @@ import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.FormSpecs;
 import com.jgoodies.forms.layout.RowSpec;
 
+/**
+* Window for showing the health of user and opposing player
+* each turn of the battle, as well as the outcome for each turn
+*
+* @author  Cameron Wu
+* @version 1.0
+*/
 public class BattleWindow {
 
 	private JFrame frame;
@@ -24,6 +31,7 @@ public class BattleWindow {
 
 	/**
 	 * Launch the application.
+	 * @param args, n/a
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -40,8 +48,8 @@ public class BattleWindow {
 
 	/**
 	 * Create the application.
-	 * @param the chosen opponent
-	 * @param the player
+	 * @param chosenEnemy, the chosen opponent
+	 * @param p, the player
 	 */
 	public BattleWindow(OpposingPlayer chosenEnemy, Player p) {
 		initialize(chosenEnemy, p);

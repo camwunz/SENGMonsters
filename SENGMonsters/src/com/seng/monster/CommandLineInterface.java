@@ -3,6 +3,12 @@ import java.util.ArrayList;
 
 import java.util.Scanner;
 
+/**
+* Command Line implemetation
+*
+* @author  Cameron Wu
+* @version 1.0
+*/
 public class CommandLineInterface {
 	
 	/**
@@ -13,7 +19,7 @@ public class CommandLineInterface {
 	
 	/**
 	 * Sets up the user data and runs the main loop
-	 * @param args
+	 * @param args, n/a
 	 */
 	public static void main(String args[])
 	{

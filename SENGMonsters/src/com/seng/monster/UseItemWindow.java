@@ -16,12 +16,19 @@ import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+/**
+* Window for showing which monster the player would like to use an item on
+*
+* @author  Cameron Wu
+* @version 1.0
+*/
 public class UseItemWindow {
 
 	private JFrame frame;
 
 	/**
 	 * Launch the application.
+	 * @param args, n/a
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -38,8 +45,8 @@ public class UseItemWindow {
 
 	/**
 	 * Create the application.
-	 * @param the player
-	 * @param the item of choice
+	 * @param p, the player
+	 * @param i, the item of choice
 	 */
 	public UseItemWindow(Player p, Item i) {
 		initialize(p, i);

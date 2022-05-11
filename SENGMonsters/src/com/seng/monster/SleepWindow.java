@@ -15,12 +15,19 @@ import java.util.ArrayList;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+/**
+* Window for showing the outcomes during the night
+*
+* @author  Cameron Wu
+* @version 1.0
+*/
 public class SleepWindow {
 
 	private JFrame frame;
 
 	/**
 	 * Launch the application.
+	 * @param args, n/a
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -37,7 +44,7 @@ public class SleepWindow {
 
 	/**
 	 * Create the application.
-	 * @param player 
+	 * @param p, player 
 	 */
 	public SleepWindow(Player p) {
 		initialize(p, Sleep.getOutcomes(p));

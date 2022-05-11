@@ -17,12 +17,19 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+/**
+* Window for showing the user inventory and giving them the option to use item
+*
+* @author  Cameron Wu
+* @version 1.0
+*/
 public class InventoryViewWindow {
 
 	private JFrame frame;
 
 	/**
 	 * Launch the application.
+	 * @param args, n/a
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -39,7 +46,7 @@ public class InventoryViewWindow {
 
 	/**
 	 * Create the application.
-	 * @param the player
+	 * @param p, the player
 	 */
 	public InventoryViewWindow(Player p) {
 		initialize(p);

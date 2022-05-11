@@ -2,7 +2,13 @@ package com.seng.monster;
 
 import java.util.Random;
 
-
+/**
+* OpposingPlayer which the Player will battle in the game
+* extends parent BasePlayer for modularity
+*
+* @author  Cameron Wu
+* @version 1.0
+*/
 public class OpposingPlayer extends BasePlayer{
 	
 	/**

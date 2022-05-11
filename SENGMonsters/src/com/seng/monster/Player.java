@@ -1,6 +1,13 @@
 package com.seng.monster;
 import java.util.ArrayList;
 
+/**
+* Primary player class which controls and stores the key game infomation such as the current days, name
+* and the shop inventory for each day,
+*
+* @author  Cameron Wu
+* @version 1.0
+*/
 public class Player extends BasePlayer{
 	
 	/**
@@ -200,7 +207,6 @@ public class Player extends BasePlayer{
 	/**
 	 * Adds item to users inventory
 	 * @param item the new item
-	 * @return if the item could be adding depending on the price of the item
 	 */
 	public void addItem(Item item) 
 	{
@@ -211,7 +217,6 @@ public class Player extends BasePlayer{
 	/**
 	 * Add monster into user's party
 	 * @param monster the new monster
-	 * @return if the monster could be adding depending on the price of the monster
 	 */
 	public void addItem(Monster monster) 
 	{
@@ -221,7 +226,7 @@ public class Player extends BasePlayer{
 	/**
 	 * Removes an monster from today's shop
 	 * Note the overloading to make it work with both BaseItem types (Item/Monster)
-	 * @param monster to remove
+	 * @param m, monster to remove
 	 */
 	public void removeFromShop(Monster m)
 	{
@@ -229,7 +234,7 @@ public class Player extends BasePlayer{
 	}
 	/**
 	 * Removes an item from today's shop
-	 * @param item to remove
+	 * @param i, item to remove
 	 */
 	public void removeFromShop(Item i)
 	{
@@ -240,7 +245,6 @@ public class Player extends BasePlayer{
 	/**
 	 * Remove a monster from the users party
 	 * @param monster the monster to be removed
-	 * @return if the monster got removed
 	 */
 	public void removeMonster(Monster monster) 
 	{

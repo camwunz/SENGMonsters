@@ -17,12 +17,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.awt.event.ActionEvent;
 
+/**
+* Shows the user the outcome at the end of the battle
+*
+* @author  Cameron Wu
+* @version 1.0
+*/
 public class BattleFinishWindow {
 
 	private JFrame frame;
 
 	/**
 	 * Launch the application.
+	 * @param args, n/a
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -39,9 +46,9 @@ public class BattleFinishWindow {
 
 	/**
 	 * Create the application.
-	 * @param the player
-	 * @param the chosen opponent
-	 * @param winner 
+	 * @param p, the player
+	 * @param chosenPlayer, the chosen opponent
+	 * @param winner, int based on who won
 	 */
 	public BattleFinishWindow(Player p, OpposingPlayer chosenPlayer, int winner) {
 		initialize(p, chosenPlayer, winner);
