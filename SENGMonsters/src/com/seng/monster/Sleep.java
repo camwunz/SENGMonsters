@@ -46,7 +46,7 @@ public class Sleep {
 			if (removedMonster != null)
 			{
 				outcomes.add(removedMonster.getName() + " left your party!");
-				p.getMonsters().remove(removedMonster);
+				p.removeMonsterFromList(removedMonster);
 			}
 		}
 		
