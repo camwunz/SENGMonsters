@@ -72,6 +72,7 @@ public class Sleep {
 			Monster newMonster = new Monster(p.getDays());
 			outcomes.add(newMonster.getName() + " joined your party!");
 			p.addItem(newMonster);
+			p.addGold(newMonster.getPrice());
 		}
 		
 		for (Monster m: p.getMonsters())
