@@ -8,5 +8,9 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
+	<classpathentry kind="lib" path="C:/Users/camwu/git/SENGMonsters/SENGMonsters/jgoodies-common-1.8.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/camwu/git/SENGMonsters/SENGMonsters/jgoodies-forms-1.8.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/camwu/git/SENGMonsters/SENGMonsters/src/com/seng/monster/jgoodies-common-1.8.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/camwu/git/SENGMonsters/SENGMonsters/src/com/seng/monster/jgoodies-forms-1.8.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

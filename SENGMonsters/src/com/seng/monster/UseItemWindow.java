@@ -191,6 +191,7 @@ public class UseItemWindow {
 	private void finish(Item i, Monster m, Player p)
 	{
 		m.useItem(i.getActionImprovement(), i.getActionStat());
+		p.addGold(-i.getSellback());
 		p.removeItem(i);
 		new MenuWindow(p);
 		frame.dispose();
